@@ -56,6 +56,7 @@ $autoload['libraries'] = array(
         'Auth',
 	'CSVWriter',
 	'email',
+        'Flash',
 	'form_validation',
 	'session',
 	'String',

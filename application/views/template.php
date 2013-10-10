@@ -59,6 +59,7 @@
             </div>
         </div>
         <div class="container">
+            <?= $flash ?>
             <div class="row">
                 <div class="col-lg-4">
                     <h2>Heading</h2>

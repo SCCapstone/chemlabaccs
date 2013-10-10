@@ -15,5 +15,6 @@ function hook_bootstrap() {
     # add to the template
     $CI->template->write_view('navbar_sign_in', 'users/navbar-sign-in');
     $CI->template->write_view('navbar_signed_in', 'users/navbar-signed-in');
+    $CI->template->write('flash', CI()->flash);
     
 }

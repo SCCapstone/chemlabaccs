@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Signed in as <strong><?= CI()->auth->get_user_name(); ?></strong> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="#">Sign out</a></li>
+            <li><?= anchor('users/signout', 'Sign out') ?></li>
         </ul>
     </li>
 </ul>

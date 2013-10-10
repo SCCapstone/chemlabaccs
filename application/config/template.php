@@ -64,6 +64,7 @@ $template['default']['regions'] = array(
     'title',
     'navbar_signed_in',
     'navbar_sign_in',
+    'flash',
     'content'
 );
 $template['default']['parser'] = 'parser';
