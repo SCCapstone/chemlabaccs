@@ -59,7 +59,8 @@ $autoload['libraries'] = array(
 	'form_validation',
 	'session',
 	'String',
-	'table'
+	'table',
+        'template'
 );
 
 

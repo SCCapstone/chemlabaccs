@@ -1,62 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-   <title>Template</title>
-   <?= $_scripts ?>
-   <?= $_styles ?>
-   <style type="text/css">
-      body {
-      background-color: #fff;
-      margin:           40px;
-      font-family:      Lucida Grande, Verdana, Sans-serif;
-      font-size:        12px;
-      color:            #000;
-      }
-      
-      #content  {
-      border:           #999 1px solid;
-      background-color: #fff;
-      padding:       20px 20px 12px 20px;
-      }
-      
-      h1 {
-      font-weight:      normal;
-      font-size:        14px;
-      color:            #990000;
-      margin:        0 0 4px 0;
-      }
-      
-      a {
-         color: #069;
-         text-decoration: underline;
-      }
-      a:hover {
-         color: #900;
-      }
-      
-      p {
-         line-height: 1.55;
-      }
-   </style>
-</head>
-<body>
-   
-   <div id="content">
-      <h1>Template Library</h1>
-      <p>The Template library, written for the <a href="http://www.codeigniter.com">CodeIgniter PHP
-         framework</a>, is a wrapper for CI's View 
-         implementation. Template is a reaction to the numerous questions from the CI community 
-         regarding how one would display multiple views for one controller, and how to embed "views 
-         within views" in a standardized fashion.</p>
-      <p>In addition, Template provides extra Views loading 
-         capabilities and shortcuts for including CSS, JavaScript, and other common elements in your 
-         final rendered HTML.</p>
-      <p><a href="http://www.williamsconcepts.com/ci/libraries/template/index.html">Read Template 
-         Library Documentation Online</a></p>
-      <?php print $content ?>
-   </div>
-   
-   
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><?= $title ?></title>
+        <?= $_styles ?>
+        <?= $_scripts ?>
+        <style type="text/css">
+            body {
+                padding-top: 70px;
+            }
+        </style>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="../../assets/js/html5shiv.js"></script>
+          <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><?= APP_NAME ?></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Link <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Link Header</li>
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Navbar example</h1>
+                <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+                <p>To see the difference between static and fixed top navbars, just scroll.</p>
+                <p>
+                    <a class="btn btn-lg btn-primary" href="../../components/#navbar">View navbar docs &raquo;</a>
+                </p>
+                <?php print $content ?>
+            </div>
+        </div>
+    </body>
 </html>
