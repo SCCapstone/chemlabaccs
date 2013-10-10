@@ -31,7 +31,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link</a></li>
+                        <li class="active"><a href="#">Dashboard</a></li>
                         <li><a href="#">Link</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Link <b class="caret"></b></a>
@@ -44,45 +44,9 @@
                         </li>
                     </ul>
                     <?php if (CI()->auth->is_authenticated()): ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Signed in as <strong><?= $user_name ?></strong> <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Sign out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <?= $navbar_signed_in ?>
                     <?php else: ?>
-                        <?php echo form_open('users/signin', array('class' => 'navbar-form navbar-right')); ?>
-                            <div class="form-group">
-                                <?php
-                                    echo form_input(array(
-                                        'name' => 'user_name',
-                                        'id' => 'user_name',
-                                        'class' => 'form-control',
-                                        'placeholder' => 'Username'
-                                    ));
-                                ?>
-                            </div>
-                            <div class="form-group">
-                                <?php
-                                    echo form_password(array(
-                                        'name' => 'password',
-                                        'id' => 'password',
-                                        'class' => 'form-control',
-                                        'placeholder' => 'Password'
-                                    ));
-                                ?>
-                            </div>
-                            <?php
-                                echo form_submit(array(
-                                    'name' => 'sign-in',
-                                    'id' => 'sign-in',
-                                    'class' => 'btn btn-success',
-                                    'value' => 'Sign in'
-                                ));
-                            ?>
-                        <?php echo form_close(); ?>
+                        <?= $navbar_sign_in ?>
                     <?php endif; ?>
                 </div>
             </div>

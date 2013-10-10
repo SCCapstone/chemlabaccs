@@ -62,7 +62,8 @@ $template['active_template'] = 'default';
 $template['default']['template'] = 'template';
 $template['default']['regions'] = array(
     'title',
-    'user_name',
+    'navbar_signed_in',
+    'navbar_sign_in',
     'content'
 );
 $template['default']['parser'] = 'parser';
