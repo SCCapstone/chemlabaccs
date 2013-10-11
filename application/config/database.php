@@ -51,7 +51,7 @@ if (!defined('BASEPATH'))
 $active_group = 'default';
 $active_record = TRUE;
 
-if ($_SERVER['HTTP_HOST'] = 'mscribellito.com') {
+if ($_SERVER['HTTP_HOST'] == 'mscribellito.com') {
 
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'mscribel_csce490';
