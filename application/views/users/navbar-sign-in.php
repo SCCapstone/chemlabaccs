@@ -3,7 +3,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
 
-<?php echo form_open('users/signin', array('class' => 'navbar-form navbar-right')); ?>
+<?php echo form_open('users/authenticate', array('class' => 'navbar-form navbar-right')); ?>
 <div class="form-group">
     <?php
     echo form_input(array(
