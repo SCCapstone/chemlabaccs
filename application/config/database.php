@@ -57,21 +57,17 @@ if ($_SERVER['HTTP_HOST'] == 'mscribellito.com') {
     $db['default']['username'] = 'mscribel_csce490';
     $db['default']['password'] = '5=]#EK2-v4uS';
     $db['default']['database'] = 'mscribel_csce490db';
-	$db['default']['dbdriver'] = 'mysql';
     
-}
-
- else {
+} else {
 
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
-    $db['default']['password'] = 'kloft';
-    $db['default']['database'] = 'localChem';
-	$db['default']['dbdriver'] = 'mysqld';
+    $db['default']['password'] = '';
+    $db['default']['database'] = 'chemlabaccs';
     
 }
 
-
+$db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

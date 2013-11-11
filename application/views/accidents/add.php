@@ -3,43 +3,60 @@
 $date = array(
     "id" => "date",
     "name" => "date",
-    "placeholder" => "Date"
+    "placeholder" => "Date",
+    "class" => "form-control",
+    "value" => set_value("date")
 );
 
 $time = array(
     "id" => "time",
     "name" => "time",
-    "placeholder" => "Time"
+    "placeholder" => "Time",
+    "class" => "form-control",
+    "value" => set_value("time")
 );
 
 $building = array(
     "id" => "building",
     "name" => "building",
-    "placeholder" => "Building"
+    "placeholder" => "Building",
+    "class" => "form-control",
+    "value" => set_value("building")
 );
 
 $room = array(
     "id" => "room",
     "name" => "room",
-    "placeholder" => "Room"
+    "placeholder" => "Room",
+    "class" => "form-control",
+    "value" => set_value("room")
 );
 
 $description = array(
     "id" => "description",
     "name" => "description",
-    "placeholder" => "Description"
+    "placeholder" => "Description",
+    "class" => "form-control",
+    "rows" => 3,
+    "value" => set_value("description")
 );
 
 $root = array(
     "id" => "root",
     "name" => "root",
-    "placeholder" => "Root"
+    "placeholder" => "Root",
+    "class" => "form-control",
+    "rows" => 3,
+    "value" => set_value("root")
 );
 
 $prevention = array(
     "id" => "prevention",
     "name" => "prevention",
-    "placeholder" => "Prevention"
+    "placeholder" => "Prevention",
+    "class" => "form-control",
+    "rows" => 3,
+    "value" => set_value("prevention")
 );
 
 ?>
@@ -50,7 +67,7 @@ $prevention = array(
     <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($date["name"]); ?>
-        <input type="text" class="form-control" id="<?php echo $date["id"]; ?>" name="<?php echo $date["id"]; ?>" placeholder="<?php echo $date["placeholder"]; ?>">
+        <?php echo form_input($date); ?>
     </div>
 </div>
 
@@ -58,7 +75,7 @@ $prevention = array(
     <label for="<?php echo $time["id"]; ?>" class="col-sm-2 control-label"><?php echo $time["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($time["name"]); ?>
-        <input type="text" class="form-control" id="<?php echo $time["id"]; ?>" name="<?php echo $time["id"]; ?>" placeholder="<?php echo $time["placeholder"]; ?>">
+        <?php echo form_input($time); ?>
     </div>
 </div>
 
@@ -66,7 +83,7 @@ $prevention = array(
     <label for="<?php echo $building["id"]; ?>" class="col-sm-2 control-label"><?php echo $building["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($building["name"]); ?>
-        <input type="text" class="form-control" id="<?php echo $building["id"]; ?>" name="<?php echo $building["id"]; ?>" placeholder="<?php echo $building["placeholder"]; ?>">
+        <?php echo form_input($building); ?>
     </div>
 </div>
 
@@ -74,7 +91,7 @@ $prevention = array(
     <label for="<?php echo $room["id"]; ?>" class="col-sm-2 control-label"><?php echo $room["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($room["name"]); ?>
-        <input type="text" class="form-control" id="<?php echo $room["id"]; ?>" name="<?php echo $room["id"]; ?>" placeholder="<?php echo $room["placeholder"]; ?>">
+        <?php echo form_input($room); ?>
     </div>
 </div>
 
@@ -82,7 +99,7 @@ $prevention = array(
     <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($description["name"]); ?>
-        <textarea class="form-control" id="<?php echo $description["id"]; ?>" name="<?php echo $description["id"]; ?>" placeholder="<?php echo $description["placeholder"]; ?>"></textarea>
+        <?php echo form_textarea($description); ?>
     </div>
 </div>
 
@@ -91,11 +108,19 @@ $prevention = array(
     <div class="col-sm-10">
         <?php echo form_error("severity"); ?>
         <?php foreach(array("low", "medium", "high") as $severity): ?>
+        <?php
+        
+        $selected = "";
+        if ($this->input->post("severity") == $severity) {
+            $selected = 'checked="checked"';
+        }
+        
+        ?>
         <div class="radio">
-        <label>
-            <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>">
-            <?php echo $severity; ?>
-        </label>
+            <label>
+                <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
+                <?php echo $severity; ?>
+            </label>
         </div>
         <?php endforeach; ?>
     </div>
@@ -105,7 +130,7 @@ $prevention = array(
     <label for="<?php echo $root["id"]; ?>" class="col-sm-2 control-label"><?php echo $root["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($root["name"]); ?>
-        <textarea id="<?php echo $root["id"]; ?>" name="<?php echo $root["id"]; ?>" placeholder="<?php echo $root["placeholder"]; ?>" class="form-control"></textarea>
+        <?php echo form_textarea($root); ?>
     </div>
 </div>
 
@@ -113,7 +138,7 @@ $prevention = array(
     <label for="<?php echo $prevention["id"]; ?>" class="col-sm-2 control-label"><?php echo $prevention["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($prevention["name"]); ?>
-        <textarea class="form-control" id="<?php echo $prevention["id"]; ?>" name="<?php echo $prevention["id"]; ?>" placeholder="<?php echo $prevention["placeholder"]; ?>"></textarea>
+        <?php echo form_textarea($prevention); ?>
     </div>
 </div>
 
