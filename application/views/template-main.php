@@ -43,9 +43,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><?php echo anchor("dashboard", "Dashboard"); ?></li>
-                        <li><?php echo anchor("accident/add", "Add Accident Report"); ?></li>
-                        <li class="dropdown">
+                        <li><?php echo anchor("accident/add", "Add Report"); ?></li>
+                        <li><?php echo anchor("accident/all", "View Reports"); ?></li>
+                        <!--<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Link <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Link</a></li>
@@ -53,7 +53,7 @@
                                 <li class="dropdown-header">Link Header</li>
                                 <li><a href="#">Link</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                     <?php if (CI()->auth->is_authenticated()): ?>
                         <?php echo $navbar_signed_in ?>
@@ -73,7 +73,7 @@
             </div>
             <hr />
             <footer>
-                <p>&copy; Company 2013</p>
+                <p>&copy; <?php echo APP_NAME ?> <?php echo date("Y"); ?>. All Rights Reserved.</p>
             </footer>
         </div>
     </body>

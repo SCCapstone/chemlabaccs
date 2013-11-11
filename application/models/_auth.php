@@ -65,5 +65,20 @@ class _Auth extends CI_Model {
         return NULL;
         
     }
+    
+    public function get_user_name($id) {
+        
+        $where = array("id" => $id);
+        
+        $query = $this->db->get_where($this->table, $where);
+        
+        if ($query->num_rows == 1) {
+            $user_name = String($query->row()->email);
+            return $user_name->substring(0, $user_name->indexOf("@"));
+        }
+        
+        return NULL;
+        
+    }
 
 }

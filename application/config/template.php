@@ -59,7 +59,7 @@ $template['active_template'] = 'default';
   |--------------------------------------------------------------------------
  */
 
-$template['default']['template'] = 'template';
+$template['default']['template'] = 'template-main';
 $template['default']['regions'] = array(
     'title',
     'navbar_signed_in',

@@ -23,6 +23,18 @@ class _Accidents extends CI_Model {
         
     }
     
+    public function all() {
+        
+        $query = $this->db->get($this->table);
+        
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        
+        return NULL;
+        
+    }
+    
     public function add($record) {
         
         $record->user = $this->auth->get_user_id();
@@ -30,6 +42,20 @@ class _Accidents extends CI_Model {
         $this->db->insert($this->table, $record);
         
         return $this->db->affected_rows() == 1;
+        
+    }
+    
+    public function detail($id) {
+        
+        $where = array("id" => $id);
+        
+        $query = $this->db->get_where($this->table, $where);
+        
+        if ($query->num_rows() == 1) {
+            return $query->row();
+        }
+        
+        return NULL;
         
     }
 

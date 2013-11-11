@@ -137,6 +137,7 @@ class Auth {
     public function required($uri = '') {
         
         if ($this->is_authenticated() == false) {
+            $this->CI->flash->danger("You must be signed in to do that.");
             if ($uri != '') {
                 redirect($uri);
             }

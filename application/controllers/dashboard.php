@@ -19,8 +19,7 @@ class Dashboard extends CI_Controller {
         $user = new stdClass;
         $user->email = "hamodm@email.sc.edu";
         $user->password = "123456";
-        $this->auth->create_user($user);
-         * 
+        $this->auth->create_user($user); 
          */
 
         $this->template->write('title', 'Dashboard');
