@@ -75,6 +75,7 @@ class Accident extends CI_Controller {
 
         $this->template->set_master_template("template-main");
         $this->template->write("title", "Add Accident Report");
+        $this->template->write("heading", "Add Accident Report");
         $this->template->write_view("content", "accidents/add", $data);
         
         $this->template->render();
@@ -124,7 +125,8 @@ class Accident extends CI_Controller {
         }
 
         $this->template->set_master_template("template-main");
-        $this->template->write("title", "View Accident Reports");
+        $this->template->write("title", "Accident Reports");
+        $this->template->write("heading", "Accident Reports");
         $this->template->write_view("content", "accidents/all", $data);
         
         $this->template->render();
@@ -137,8 +139,22 @@ class Accident extends CI_Controller {
         $data["details"] = $this->_accidents->detail($id);
 
         $this->template->set_master_template("template-main");
-        $this->template->write("title", "View Detailed Accident Report");
+        $this->template->write("title", "Detailed Accident Report");
+        $this->template->write("heading", "Detailed Accident Report");
         $this->template->write_view("content", "accidents/detail", $data);
+        
+        $this->template->render();
+        
+    }
+    
+    public function search() {
+        
+        $data = array();
+
+        $this->template->set_master_template("template-main");
+        $this->template->write("title", "Search Accident Reports");
+        $this->template->write("heading", "Search Accident Reports");
+        $this->template->write_view("content", "accidents/search", $data);
         
         $this->template->render();
         

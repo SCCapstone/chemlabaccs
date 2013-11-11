@@ -19,4 +19,12 @@ function hook_bootstrap() {
     $CI->template->write_view('navbar_signed_in', 'users/navbar-signed-in');
     $CI->template->write('flash', CI()->flash);
     
+    $current_theme = $CI->_auth->get_user_theme($CI->auth->get_user_id());
+    
+    if ($current_theme == 0) {
+        $CI->template->write('theme', 'navbar-inverse');  
+    } else {
+        $CI->template->write('theme', '');        
+    }
+    
 }

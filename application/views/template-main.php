@@ -23,15 +23,15 @@
         <script>
             $(function() {
                 $('#date').calendricalDate({
-                    usa : true,
-                    separator : "/"
-                }); 
+                    usa: true,
+                    separator: "/"
+                });
                 $('#time').calendricalTime();
             });
         </script>
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-default navbar-fixed-top">
+        <div class="navbar <?php echo $theme; ?> navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,17 +43,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><?php echo anchor("accident/add", "Add Report"); ?></li>
-                        <li><?php echo anchor("accident/all", "View Reports"); ?></li>
-                        <!--<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Link <b class="caret"></b></a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accidents <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Link</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Link Header</li>
-                                <li><a href="#">Link</a></li>
+                                <li><?php echo anchor("accident/add", "Add"); ?></li>
+                                <li><?php echo anchor("accident/all", "View"); ?></li>
+                                <li><?php echo anchor("accident/search", "Search"); ?></li>
                             </ul>
-                        </li>-->
+                        </li>
                     </ul>
                     <?php if (CI()->auth->is_authenticated()): ?>
                         <?php echo $navbar_signed_in ?>
@@ -66,11 +63,12 @@
         <div class="container">
             <?php echo $flash; ?>
             <?php echo @$error; ?>
-            <div class="row">
-                <div class="col-lg-12">
-                    <?php print $content ?>
+            <?php if ($heading): ?>
+                <div class="page-header">
+                    <h2><?php echo $heading; ?></h2>
                 </div>
-            </div>
+            <?php endif; ?>
+            <?php print $content ?>
             <hr />
             <footer>
                 <p>&copy; <?php echo APP_NAME ?> <?php echo date("Y"); ?>. All Rights Reserved.</p>

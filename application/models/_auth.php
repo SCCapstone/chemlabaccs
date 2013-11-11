@@ -78,5 +78,34 @@ class _Auth extends CI_Model {
         return NULL;
         
     }
+    
+    public function get_user_theme($id) {
+        
+        $where = array("id" => $id);
+        
+        $query = $this->db->get_where($this->table, $where);
+        
+        if ($query->num_rows() == 1) {
+            return $query->row()->theme;
+        }
+        
+        return NULL;
+        
+    }
+    
+    public function set_user_theme($id, $theme) {
+        
+        $where = array("id" => $id);
+        
+        $data = array(
+            "theme" => $theme
+        );
+        
+        $this->db->where("id", $id);
+        $this->db->update($this->table, $data);
+        
+        return $this->db->affected_rows() == 1;
+        
+    }
 
 }

@@ -62,6 +62,8 @@ $template['active_template'] = 'default';
 $template['default']['template'] = 'template-main';
 $template['default']['regions'] = array(
     'title',
+    'theme',
+    'heading',
     'navbar_signed_in',
     'navbar_sign_in',
     'flash',
