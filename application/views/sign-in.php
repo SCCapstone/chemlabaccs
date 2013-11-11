@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?= APP_NAME ?> | <?= $title ?></title>
+        <title><?php echo APP_NAME ?> | <?php echo $title ?></title>
         <link rel="shortcut icon" href="img/favicon.png">
-        <?= $_styles ?>
-        <?= $_scripts ?>
+        <?php echo $_styles ?>
+        <?php echo $_scripts ?>
         <style type="text/css">
             body {
                 padding-top: 40px;
@@ -50,15 +50,15 @@
         </style>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="<?= base_url() ?>/js/html5shiv.js"></script>
-          <script src="<?= base_url() ?>/js/respond.min.js"></script>
+          <script src="<?php echo base_url() ?>/js/html5shiv.js"></script>
+          <script src="<?php echo base_url() ?>/js/respond.min.js"></script>
         <![endif]-->
     </head>
     <body>
         <div class="container">
-            <?= form_open('users/authenticate', array('class' => 'form-signin')); ?>
+            <?php echo form_open('users/authenticate', array('class' => 'form-signin')); ?>
                 <h2 class="form-signin-heading">Please sign in</h2>
-                <?= $flash ?>
+                <?php echo $flash ?>
                 <?php
                     echo form_input(array(
                         'name' => 'user_name',
@@ -84,7 +84,7 @@
                         'value' => 'Sign in'
                     ));
                 ?>
-            <?= form_close(); ?>
+            <?php echo form_close(); ?>
         </div>
     </body>
 </html>
