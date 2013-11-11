@@ -7,10 +7,12 @@ function hook_bootstrap() {
     # add css
     $CI->template->add_css('bootstrap/css/bootstrap.css');
     $CI->template->add_css('css/style.css');
+    $CI->template->add_css('css/calendrical.css');
     
     # add js
     $CI->template->add_js('js/jquery-2.0.3.min.js');
     $CI->template->add_js('bootstrap/js/bootstrap.min.js');
+    $CI->template->add_js('js/jquery.calendrical.js');
     
     # add to the template
     $CI->template->write_view('navbar_sign_in', 'users/navbar-sign-in');

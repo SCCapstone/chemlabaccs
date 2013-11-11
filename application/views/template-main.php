@@ -9,7 +9,10 @@
         <?= $_scripts ?>
         <style type="text/css">
             body {
-                padding-top: 50px;
+                padding-top: 80px;
+            }
+            div.error {
+                color: #f00;
             }
         </style>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -17,6 +20,15 @@
           <script src="<?= base_url() ?>/js/html5shiv.js"></script>
           <script src="<?= base_url() ?>/js/respond.min.js"></script>
         <![endif]-->
+        <script>
+            $(function() {
+                $('#date').calendricalDate({
+                    usa : true,
+                    separator : "-"
+                }); 
+                $('#time').calendricalTime();
+            });
+        </script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-default navbar-fixed-top">
@@ -51,37 +63,17 @@
                 </div>
             </div>
         </div>
-        <div class="jumbotron">
-            <div class="container">
-                <h2>Do You Need to Fill Out an Accident Report?</h2>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-            </div>
-        </div>
         <div class="container">
             <?= $flash ?>
             <div class="row">
-                <div class="col-lg-4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h2>Heading</h2>
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+                <div class="col-lg-12">
+                    <?php print $content ?>
                 </div>
             </div>
             <hr />
             <footer>
                 <p>&copy; Company 2013</p>
             </footer>
-            <?php print $content ?>
         </div>
     </body>
 </html>
