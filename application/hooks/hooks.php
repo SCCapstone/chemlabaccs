@@ -22,9 +22,9 @@ function hook_bootstrap() {
     $current_theme = $CI->_auth->get_user_theme($CI->auth->get_user_id());
     
     if ($current_theme == 0) {
-        $CI->template->write('theme', 'navbar-inverse');  
+        $CI->template->write('theme', 'navbar-inverse');
     } else {
-        $CI->template->write('theme', '');        
+        $CI->template->write('theme', '');
     }
     
 }
