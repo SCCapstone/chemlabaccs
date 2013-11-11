@@ -75,6 +75,7 @@ $autoload['libraries'] = array(
 */
 
 $autoload['helper'] = array(
+    'language',
     'string',
     'url',
     'time'
@@ -112,7 +113,9 @@ $autoload['config'] = array(
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array(
+    'chemlabaccs'
+);
 
 
 /*

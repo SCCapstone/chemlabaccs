@@ -100,6 +100,7 @@ $prevention = array(
     <div class="col-sm-10">
         <?php echo form_error($description["name"]); ?>
         <?php echo form_textarea($description); ?>
+        <span class="help-block"><?php echo lang('cla_f_description'); ?></span>
     </div>
 </div>
 
@@ -131,6 +132,7 @@ $prevention = array(
     <div class="col-sm-10">
         <?php echo form_error($root["name"]); ?>
         <?php echo form_textarea($root); ?>
+        <span class="help-block"><?php echo lang('cla_f_root'); ?></span>
     </div>
 </div>
 
@@ -139,12 +141,13 @@ $prevention = array(
     <div class="col-sm-10">
         <?php echo form_error($prevention["name"]); ?>
         <?php echo form_textarea($prevention); ?>
+        <span class="help-block"><?php echo lang('cla_f_prevention'); ?></span>
     </div>
 </div>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo form_submit(array("class" => "btn btn-success", "value" => "Save")); ?>
+        <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-pencil"></span> Save')); ?>
     </div>
 </div>
 

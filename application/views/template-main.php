@@ -46,9 +46,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accidents <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><?php echo anchor("accident/add", "Add"); ?></li>
-                                <li><?php echo anchor("accident/all", "View"); ?></li>
-                                <li><?php echo anchor("accident/search", "Search"); ?></li>
+                                <li><?php echo anchor("accident/add", '<span class="glyphicon glyphicon-plus"></span> Add'); ?></li>
+                                <li><?php echo anchor("accident/all", '<span class="glyphicon glyphicon-list"></span> View'); ?></li>
+                                <li><?php echo anchor("accident/search", '<span class="glyphicon glyphicon-search"></span> Search'); ?></li>
                             </ul>
                         </li>
                     </ul>

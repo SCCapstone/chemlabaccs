@@ -106,6 +106,15 @@ class Accident extends CI_Controller {
             
             foreach ($accidents as $acc) {
                 
+                $actions = array(
+                    anchor("accident/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
+                        "class" => "btn btn-default"
+                    )),
+                    anchor("accident/revisions/" . $acc->id, '<span class="glyphicon glyphicon-list-alt"></span> Revisions', array(
+                        "class" => "btn btn-default"
+                    ))
+                );
+                
                 $this->table->add_row(array(
                     date_mysql2human($acc->date),
                     time_mysql2human($acc->time),
@@ -113,7 +122,7 @@ class Accident extends CI_Controller {
                     $acc->room,
                     $acc->severity,
                     $this->_auth->get_user_name($acc->user),
-                    anchor("accident/detail/" . $acc->id, "Details")
+                    implode(' ', $actions)
                 ));
                 
             }
@@ -135,8 +144,17 @@ class Accident extends CI_Controller {
     
     public function detail($id) {
         
+        $id = (int) $id;
+        
         $data = array();
-        $data["details"] = $this->_accidents->detail($id);
+        
+        $details = $this->_accidents->detail($id);
+        
+        if ($details != NULL) {
+            $data["details"] = $details;
+        } else {
+            redirect("accident/all");
+        }
 
         $this->template->set_master_template("template-main");
         $this->template->write("title", "Detailed Accident Report");
