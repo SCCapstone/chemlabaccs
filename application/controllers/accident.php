@@ -9,6 +9,8 @@ class Accident extends CI_Controller {
         
         parent::__construct();
         
+        $this->auth->required();
+        
         $this->form_validation->set_rules('date', 'Date', 'required');
         $this->form_validation->set_rules('time', 'Time', 'required');
         $this->form_validation->set_rules('building', 'Building', 'required');
@@ -21,8 +23,16 @@ class Accident extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         
     }
+    
+    public function index() {
+        
+        
+        
+    }
 
     public function add($action = "") {
+        
+        $error = "";
 
         if ($this->form_validation->run() && $action == "save") {
             
@@ -37,13 +47,21 @@ class Accident extends CI_Controller {
             $new->root = $this->input->post("root");
             $new->prevention = $this->input->post("prevention");
             
-            $this->db->insert("accidents", $new);
+            if ($this->_accidents->add($new)) {
+                $this->flash->success("Report successfully added.");
+                redirect("accident/add");
+            } else {
+                $error = "Error adding report. Please Try again.";
+            }
             
         }
+        
+        $data = array();
+        $data["error"] = $error;
 
         $this->template->set_master_template("template-main");
         $this->template->write("title", "Add Accident Report");
-        $this->template->write_view("content", "accidents/add");
+        $this->template->write_view("content", "accidents/add", $data);
         
         $this->template->render();
             

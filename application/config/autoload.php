@@ -126,6 +126,7 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array(
+    '_accidents',
     '_auth'
 );
 

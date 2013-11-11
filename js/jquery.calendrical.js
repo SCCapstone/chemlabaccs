@@ -108,9 +108,9 @@
             if (printHour == 0) printHour = 12;
 
             if (options.meridiemUpperCase) {
-            	 var half = (hour < 12) ? 'AM' : 'PM';
+            	 var half = (hour < 12) ? ' AM' : ' PM';
             } else {
-            	 var half = (hour < 12) ? 'am' : 'pm';
+            	 var half = (hour < 12) ? ' am' : ' pm';
             }
            
             return printHour + ':' + printMinute + half;
