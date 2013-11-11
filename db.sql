@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 11, 2013 at 12:24 PM
+-- Generation Time: Nov 11, 2013 at 05:29 PM
 -- Server version: 5.5.33-31.1
 -- PHP Version: 5.3.17
 
@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `accidents` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `revision_of` int(10) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
   `building` int(2) NOT NULL,
@@ -36,16 +37,21 @@ CREATE TABLE IF NOT EXISTS `accidents` (
   `severity` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `root` text COLLATE utf8_unicode_ci NOT NULL,
   `prevention` text COLLATE utf8_unicode_ci NOT NULL,
-  `user` int(11) NOT NULL,
+  `user` int(10) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `accidents`
 --
 
-INSERT INTO `accidents` (`id`, `date`, `time`, `building`, `room`, `description`, `severity`, `root`, `prevention`, `user`) VALUES
-(1, '2013-11-11', '13:03:00', 3, '11', 'asdf', 'low', 'qq', 'tt', 1);
+INSERT INTO `accidents` (`id`, `revision_of`, `date`, `time`, `building`, `room`, `description`, `severity`, `root`, `prevention`, `user`, `created`) VALUES
+(1, 1, '2013-11-10', '08:30:00', 2, 'a101', 'something broke', 'medium', 'carelesness', 'don''t be dumb', 1, '2013-11-12 22:03:24'),
+(2, 1, '2013-11-10', '08:30:00', 2, 'a101', 'something broke', 'medium', 'carelesness', 'don''t be dumb', 1, '2013-11-13 22:03:24'),
+(3, 1, '2013-11-10', '08:30:00', 2, 'a101', 'something broke', 'medium', 'carelesness', 'don''t be dumb', 1, '2013-11-15 22:03:24'),
+(4, 4, '2013-12-04', '04:44:00', 1, 'b101', 'a', 'low', 'b', 'c', 1, '2013-12-01 22:45:23'),
+(5, 4, '2013-12-04', '04:44:00', 1, 'b101', 'a', 'low', 'b', 'c', 1, '2013-12-03 22:45:23');
 
 -- --------------------------------------------------------
 
@@ -54,7 +60,7 @@ INSERT INTO `accidents` (`id`, `date`, `time`, `building`, `room`, `description`
 --
 
 CREATE TABLE IF NOT EXISTS `buildings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
@@ -90,10 +96,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('c3b105e6b1409c632a11f06b288c7a33', '65.122.172.164', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36', 1384194099, 'a:4:{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:1;s:14:"AUTH_user_name";s:21:"scribell@email.sc.edu";}'),
-('bb60cb0f384ec8eacff6564d4c767732', '129.252.11.196', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.6 Safari/537.36', 1384188077, 'a:4:{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:14;s:14:"AUTH_user_name";s:12:"vidal@sc.edu";}'),
-('777d8e671d05d270e4071729109660ee', '70.193.11.155', 'Mozilla/5.0 (Linux; Android 4.1.2; DROID RAZR Build/9.8.2O-72_VZW-16) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0', 1384191631, 'a:4:{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:1;s:14:"AUTH_user_name";s:21:"scribell@email.sc.edu";}'),
-('bfa015ecec3eaeca870ca8cddacd520c', '129.252.11.196', 'Mozilla/5.0 (Linux; Android 4.3; Nexus 4 Build/JWR66Y) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.92 Mobile', 1384187886, 'a:4:{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:14;s:14:"AUTH_user_name";s:12:"vidal@sc.edu";}');
+('0c86dd490631f0917f4726f18425af6a', '65.122.172.164', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36', 1384212537, 'a:4:{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:1;s:14:"AUTH_user_name";s:21:"scribell@email.sc.edu";}'),
+('90c829502df46c2e41346475ab5782df', '70.210.19.152', 'Mozilla/5.0 (Linux; Android 4.1.2; DROID RAZR Build/9.8.2O-72_VZW-16) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0', 1384202149, 'a:2:{s:9:"user_data";s:0:"";s:17:"flash:old:_danger";s:33:"You must be signed in to do that.";}');
 
 -- --------------------------------------------------------
 

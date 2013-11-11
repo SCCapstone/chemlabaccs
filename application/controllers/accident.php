@@ -115,6 +115,13 @@ class Accident extends CI_Controller {
         $this->db->join("buildings", "accidents.building = buildings.id");
         $this->db->join("users", "accidents.user = users.id");
         
+        
+        /*
+         * SELECT a.*
+FROM accidents a
+LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id) WHERE b.id IS NULL
+         */
+        
         if ($this->input->post("start_date") && $this->input->post("end_date")) {
             $this->db->where("date >=", date_human2mysql($this->input->post("start_date")));
             $this->db->where("date <=", date_human2mysql($this->input->post("end_date")));
