@@ -110,7 +110,7 @@ class Accident extends CI_Controller {
     public function query() {
         
         $this->db->select("accidents.id, date, time, buildings.name, room,
-            description, severity, root, prevention, users.email");
+            description, severity, root, prevention, users.email, created");
         $this->db->from("accidents");
         $this->db->join("buildings", "accidents.building = buildings.id");
         $this->db->join("users", "accidents.user = users.id");
@@ -168,12 +168,12 @@ class Accident extends CI_Controller {
         }
         
         $this->table->set_heading(
-            "Date",
-            "Time",
+            "Date/Time",
             "Building",
             "Room",
             "Severity",
             "Enter User",
+            "Created On",
             "Actions"
         );
         
@@ -191,12 +191,12 @@ class Accident extends CI_Controller {
             $user = String($acc->email);
 
             $this->table->add_row(array(
-                date_mysql2human($acc->date),
-                time_mysql2human($acc->time),
+                date_mysql2human($acc->date) . " " . time_mysql2human($acc->time),
                 $acc->name,
                 $acc->room,
                 $acc->severity,
                 $user->substring(0, $user->indexOf("@")),
+                date("m/d/Y g:i a", strtotime($acc->created)),
                 implode(' ', $actions)
             ));
 
