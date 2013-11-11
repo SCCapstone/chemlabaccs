@@ -11,8 +11,8 @@ class Accident extends CI_Controller {
         
         $this->auth->required();
         
-        $this->form_validation->set_rules('date', 'Date', 'required');
-        $this->form_validation->set_rules('time', 'Time', 'required');
+        $this->form_validation->set_rules('date', 'Date', 'required|callback_date_check');
+        $this->form_validation->set_rules('time', 'Time', 'required|callback_time_check');
         $this->form_validation->set_rules('building', 'Building', 'required');
         $this->form_validation->set_rules('room', 'Room', 'required');
         $this->form_validation->set_rules('description', 'Description', 'required');
@@ -24,9 +24,25 @@ class Accident extends CI_Controller {
         
     }
     
-    public function index() {
+    public function date_check($date) {
         
+        if (valid_date($date) == false) {
+            $this->form_validation->set_message("date_check", "%s is not valid");
+            return false;
+        }
         
+        return true;
+        
+    }
+    
+    public function time_check($time) {
+        
+        if (valid_time($time) == false) {
+            $this->form_validation->set_message("time_check", "%s is not valid");
+            return false;
+        }
+        
+        return true;
         
     }
 

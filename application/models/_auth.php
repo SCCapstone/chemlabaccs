@@ -48,11 +48,9 @@ class _Auth extends CI_Model {
      */
     public function get_user($user_name) {
         
-        $user_name = String($user_name)->concat('@');
-        
         $this->db->select('*')
             ->from($this->table)
-            ->like('email', $user_name, 'after');
+            ->where('email', $user_name);
         
         $query = $this->db->get(); 
         

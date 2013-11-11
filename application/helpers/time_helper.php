@@ -26,3 +26,21 @@ function time_mysql2human($time) {
     return date("g:i a", strtotime("1970/01/01 " . $time));
     
 }
+
+function valid_date($date) {
+        
+    $date = String($date)->trim();
+
+    list($m, $d, $y) = explode("/", $date);
+
+    return @checkdate($m, $d, $y) == true;
+    
+}
+
+function valid_time($time) {
+    
+    $time = String($time)->trim();
+    
+    return strtotime($time);
+    
+}

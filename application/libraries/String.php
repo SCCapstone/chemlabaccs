@@ -267,7 +267,7 @@ class String {
      */
     public function matches($regex, & $matches = NULL) {
         
-        return preg_match($regex, $this->value, $matches) == 0;
+        return preg_match($regex, $this->value, $matches) == 1;
         
     }
     

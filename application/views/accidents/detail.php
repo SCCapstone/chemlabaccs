@@ -144,7 +144,7 @@ $prevention = array(
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo form_submit(array("class" => "btn btn-primary", "value" => "Save")); ?>
+        <?php echo form_submit(array("class" => "btn btn-success", "value" => "Save")); ?>
     </div>
 </div>
 
