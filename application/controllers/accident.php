@@ -28,8 +28,8 @@ class Accident extends CI_Controller {
             
             $new = new stdClass;
             
-            $new->date = $this->input->post("date");
-            $new->time = $this->input->post("time");
+            $new->date = date_human2mysql($this->input->post("date"));
+            $new->time = time_human2mysql($this->input->post("time"));
             $new->building = $this->input->post("building");
             $new->room = $this->input->post("room");
             $new->description = $this->input->post("description");

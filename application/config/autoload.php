@@ -76,7 +76,8 @@ $autoload['libraries'] = array(
 
 $autoload['helper'] = array(
     'string',
-    'url'
+    'url',
+    'time'
 );
 
 

@@ -31,7 +31,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Dashboard</a></li>
+                        <li><a href="#">Dashboard</a></li>
                         <li><?php echo anchor("accident/add", "Add Accident Report"); ?></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Link <b class="caret"></b></a>
