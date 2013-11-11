@@ -22,11 +22,6 @@
         <![endif]-->
         <script>
             $(function() {
-                $('#date').calendricalDate({
-                    usa: true,
-                    separator: "/"
-                });
-                $('#time').calendricalTime();
             });
         </script>
     </head>

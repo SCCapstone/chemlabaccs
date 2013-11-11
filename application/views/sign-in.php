@@ -65,7 +65,8 @@
                         'id' => 'user_name',
                         'class' => 'form-control',
                         'placeholder' => 'Username',
-                        'autofocus' => 'autofocus'
+                        'autofocus' => 'autofocus',
+                        'type' => 'email'
                     ));
                 ?>
                 <?php

@@ -15,6 +15,8 @@ class Dashboard extends CI_Controller {
     
     public function switch_theme() {
         
+        $this->auth->required();
+        
         $user_id = $this->auth->get_user_id();
         
         $current_theme = $this->_auth->get_user_theme($user_id);

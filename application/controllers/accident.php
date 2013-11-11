@@ -66,7 +66,7 @@ class Accident extends CI_Controller {
             
             if ($this->_accidents->add($new)) {
                 $this->flash->success("Report successfully added.");
-                redirect("accident/add");
+                redirect();
             } else {
                 $data["error"] = "Error adding report. Please Try again.";
             }
@@ -118,7 +118,7 @@ class Accident extends CI_Controller {
                 $this->table->add_row(array(
                     date_mysql2human($acc->date),
                     time_mysql2human($acc->time),
-                    $acc->building,
+                    $acc->name,
                     $acc->room,
                     $acc->severity,
                     $this->_auth->get_user_name($acc->user),

@@ -83,7 +83,7 @@ $prevention = array(
     <label for="<?php echo $building["id"]; ?>" class="col-sm-2 control-label"><?php echo $building["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($building["name"]); ?>
-        <?php echo form_input($building); ?>
+        <?php echo form_dropdown($building["name"], get_buildings(), set_value(CI()->input->post($building["name"]), $details->building), 'class="form-control" id="building"'); ?>
     </div>
 </div>
 

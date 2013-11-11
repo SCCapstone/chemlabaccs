@@ -5,7 +5,8 @@ $date = array(
     "name" => "date",
     "placeholder" => "Date",
     "class" => "form-control",
-    "value" => set_value("date")
+    "value" => set_value("date"),
+    "type" => "date"
 );
 
 $time = array(
@@ -13,15 +14,15 @@ $time = array(
     "name" => "time",
     "placeholder" => "Time",
     "class" => "form-control",
-    "value" => set_value("time")
+    "value" => set_value("time"),
+    "type" => "time"
 );
 
 $building = array(
     "id" => "building",
     "name" => "building",
     "placeholder" => "Building",
-    "class" => "form-control",
-    "value" => set_value("building")
+    "class" => "form-control"
 );
 
 $room = array(
@@ -83,7 +84,7 @@ $prevention = array(
     <label for="<?php echo $building["id"]; ?>" class="col-sm-2 control-label"><?php echo $building["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($building["name"]); ?>
-        <?php echo form_input($building); ?>
+        <?php echo form_dropdown($building["name"], get_buildings(), CI()->input->post($building["name"]), 'class="form-control" id="building"'); ?>
     </div>
 </div>
 

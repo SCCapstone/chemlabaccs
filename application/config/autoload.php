@@ -78,7 +78,7 @@ $autoload['helper'] = array(
     'language',
     'string',
     'url',
-    'time'
+    'chemlabaccs'
 );
 
 
@@ -130,7 +130,8 @@ $autoload['language'] = array(
 
 $autoload['model'] = array(
     '_accidents',
-    '_auth'
+    '_auth',
+    '_buildings'
 );
 
 

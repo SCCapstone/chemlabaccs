@@ -10,7 +10,8 @@ if (!defined('BASEPATH'))
         'name' => 'user_name',
         'id' => 'user_name',
         'class' => 'form-control',
-        'placeholder' => 'Username'
+        'placeholder' => 'Username',
+        'type' => 'email'
     ));
     ?>
 </div>

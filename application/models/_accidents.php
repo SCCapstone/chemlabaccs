@@ -25,7 +25,9 @@ class _Accidents extends CI_Model {
     
     public function all() {
         
-        $query = $this->db->get($this->table);
+        $query = $this->db->query("SELECT a.id, date, time, b.name, room,
+            description, severity, root, prevention, user FROM accidents a,
+            buildings b WHERE a.building = b.id");
         
         if ($query->num_rows() > 0) {
             return $query->result();
