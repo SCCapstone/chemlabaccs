@@ -23,11 +23,15 @@ class _Buildings extends CI_Model {
         
     }
     
-    public function all() {
+    public function all($extra) {
         
         $buildings = array();
         
         $query = $this->db->get($this->table);
+        
+        if ($extra == true) {
+            $buildings[""] = "";
+        }
         
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {

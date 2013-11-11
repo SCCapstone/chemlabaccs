@@ -45,8 +45,8 @@ function valid_time($time) {
     
 }
 
-function get_buildings() {
+function get_buildings($extra = false) {
     
-    return get_instance()->_buildings->all();
+    return get_instance()->_buildings->all($extra);
     
 }
