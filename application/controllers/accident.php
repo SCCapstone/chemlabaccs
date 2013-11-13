@@ -59,6 +59,11 @@ class Accident extends CI_Controller {
             
             $new = new stdClass;
             
+            if ($this->input->post("revision_of")) {
+                $new->revision_of = $this->input->post("revision_of");
+            } else {
+                $new->revision_of = 0;
+            }
             $new->date = date_human2mysql($this->input->post("date"));
             $new->time = time_human2mysql($this->input->post("time"));
             $new->building = $this->input->post("building");
@@ -107,21 +112,34 @@ class Accident extends CI_Controller {
         
     }
     
-    public function query() {
+    public function mine() {
+        
+        $mines = $this->_accidents->mine();
+        
+        if (count($mines) == 0) {            
+            $content = "No results found";            
+        } else {
+            $content = $this->display($mines);
+        }
+        
+        $title = sprintf("My Accident Reports");
+
+        $this->template->write("title", $title);
+        $this->template->write("heading", $title);
+        $this->template->write("content", $content);
+        $this->template->render();
+        
+        
+    }
+    
+    public function results() {
         
         $this->db->select("accidents.id, date, time, buildings.name, room,
             description, severity, root, prevention, users.email, created");
         $this->db->from("accidents");
         $this->db->join("buildings", "accidents.building = buildings.id");
         $this->db->join("users", "accidents.user = users.id");
-        
-        
-        /*
-         * SELECT a.*
-FROM accidents a
-LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id) WHERE b.id IS NULL
-         */
-        
+                
         if ($this->input->post("start_date") && $this->input->post("end_date")) {
             $this->db->where("date >=", date_human2mysql($this->input->post("start_date")));
             $this->db->where("date <=", date_human2mysql($this->input->post("end_date")));
@@ -162,17 +180,33 @@ LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id) WHERE b
             $this->db->like("prevention", $this->input->post("prevention"));
         }
         
-        return $this->db->get();
+        $query = $this->db->get();
+        
+        $accidents = array();
+        
+        foreach ($query->result() as $row) {
+            $accidents[] = $row;
+        }
+        
+        if (count($accidents) == 0) {            
+            $content = "No results found";            
+        } else {
+            $content = $this->display($accidents, array("show_revisions" => false));
+        }
+
+        $this->template->write("title", "Search Results");
+        $this->template->write("heading", "Search Results");
+        $this->template->write("content", $content);
+        $this->template->render();
         
     }
     
-    public function results() {
+    private function display($accidents, $show = array()) {
         
-        $query = $this->query();
-        
-        if ($query->num_rows() == 0) {            
-            $content = "No results found";            
-        }
+        $show = array_merge(array(
+            "show_detail" => true,
+            "show_revisions" => true,
+        ), $show);
         
         $this->table->set_heading(
             "Date/Time",
@@ -184,16 +218,21 @@ LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id) WHERE b
             "Actions"
         );
         
-        foreach ($query->result() as $acc) {
-                
-            $actions = array(
-                anchor("accident/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
+        foreach ($accidents as $acc) {
+            
+            $actions = array();
+            
+            if ($show["show_detail"]) {
+                $actions[] = anchor("accident/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
                     "class" => "btn btn-default"
-                )),
-                anchor("accident/revisions/" . $acc->id, '<span class="glyphicon glyphicon-list-alt"></span> Revisions', array(
+                ));
+            }
+            
+            if ($show["show_revisions"]) {
+                $actions[] = anchor("accident/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions', array(
                     "class" => "btn btn-default"
-                ))
-            );
+                ));
+            }
             
             $user = String($acc->email);
 
@@ -209,12 +248,26 @@ LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id) WHERE b
 
         }
         
-        $content = $this->table->generate();
+        return $this->table->generate();        
+        
+    }
+    
+    public function revisions($id) {
+        
+        $revisions = $this->_accidents->revisions($id);
+        
+        if (count($revisions) == 0) {            
+            $content = "No results found";            
+        } else {
+            $content = $this->display($revisions, array("show_revisions" => false));
+        }
+        
+        $title = sprintf("Revisions for Accident Report ID:%d", $revisions[0]->id);
 
-        $this->template->write("title", "Search Results");
-        $this->template->write("heading", "Search Results");
+        $this->template->write("title", $title);
+        $this->template->write("heading", $title);
         $this->template->write("content", $content);
-        $this->template->render();
+        $this->template->render();        
         
     }
     

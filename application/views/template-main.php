@@ -45,6 +45,12 @@
                                 <li><?php echo anchor("accident/search", '<span class="glyphicon glyphicon-search"></span> Search'); ?></li>
                             </ul>
                         </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporting <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><?php echo anchor("accident/mine", '<span class="glyphicon glyphicon-user"></span> My Reports'); ?></li>
+                            </ul>
+                        </li>
                     </ul>
                     <?php if (CI()->auth->is_authenticated()): ?>
                         <?php echo $navbar_signed_in ?>
