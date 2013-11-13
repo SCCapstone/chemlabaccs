@@ -58,6 +58,13 @@ if ($_SERVER['HTTP_HOST'] == 'mscribellito.com') {
     $db['default']['password'] = '5=]#EK2-v4uS';
     $db['default']['database'] = 'mscribel_csce490db';
     
+} else if ($_SERVER['SERVER_ADMIN'] == 'mscribellito@gmail.com') {
+
+    $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'cla';
+    $db['default']['password'] = 'p@$sW0rd#';
+    $db['default']['database'] = 'chemlabaccs';
+    
 } else {
 
     $db['default']['hostname'] = 'localhost';
