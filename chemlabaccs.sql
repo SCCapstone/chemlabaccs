@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.5
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 11, 2013 at 05:29 PM
--- Server version: 5.5.33-31.1
--- PHP Version: 5.3.17
+-- Host: 127.0.0.1
+-- Generation Time: Nov 14, 2013 at 12:49 AM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `mscribel_csce490db`
+-- Database: `chemlabaccs`
 --
+CREATE DATABASE IF NOT EXISTS `chemlabaccs` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `chemlabaccs`;
 
 -- --------------------------------------------------------
 
@@ -40,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `accidents` (
   `user` int(10) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `accidents`
@@ -51,7 +53,8 @@ INSERT INTO `accidents` (`id`, `revision_of`, `date`, `time`, `building`, `room`
 (2, 1, '2013-11-10', '08:30:00', 2, 'a101', 'something broke', 'medium', 'carelesness', 'don''t be dumb', 1, '2013-11-13 22:03:24'),
 (3, 1, '2013-11-10', '08:30:00', 2, 'a101', 'something broke', 'medium', 'carelesness', 'don''t be dumb', 1, '2013-11-15 22:03:24'),
 (4, 4, '2013-12-04', '04:44:00', 1, 'b101', 'a', 'low', 'b', 'c', 1, '2013-12-01 22:45:23'),
-(5, 4, '2013-12-04', '04:44:00', 1, 'b101', 'a', 'low', 'b', 'c', 1, '2013-12-03 22:45:23');
+(5, 4, '2013-12-04', '04:44:00', 1, 'b101', 'a', 'low', 'b', 'c', 1, '2013-12-03 22:45:23'),
+(6, 6, '2013-11-13', '04:35:00', 1, '458', 'asdf', 'low', 'qwerty', 'tttt', 1, '2013-11-13 21:36:55');
 
 -- --------------------------------------------------------
 
@@ -96,8 +99,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('0c86dd490631f0917f4726f18425af6a', '65.122.172.164', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36', 1384212537, 'a:4:{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:1;s:14:"AUTH_user_name";s:21:"scribell@email.sc.edu";}'),
-('90c829502df46c2e41346475ab5782df', '70.210.19.152', 'Mozilla/5.0 (Linux; Android 4.1.2; DROID RAZR Build/9.8.2O-72_VZW-16) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0', 1384202149, 'a:2:{s:9:"user_data";s:0:"";s:17:"flash:old:_danger";s:33:"You must be signed in to do that.";}');
+('df35af530751da274664c553ae91535a', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36', 1384386293, 'a:3:{s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:1;s:14:"AUTH_user_name";s:21:"scribell@email.sc.edu";}'),
+('c951c0e3e76a23739240475bd555565e', '10.30.27.125', 'Mozilla/5.0 (Linux; Android 4.1.2; DROID RAZR Build/9.8.2O-72_VZW-16) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0', 1384382455, '');
 
 -- --------------------------------------------------------
 
