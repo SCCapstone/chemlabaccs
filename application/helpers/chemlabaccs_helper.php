@@ -28,18 +28,18 @@ function time_mysql2human($time) {
 }
 
 function valid_date($date) {
-        
-    $date = String($date)->trim()->replace("-", "/");
+    
+    $date = trim($date);
 
-    list($y, $m, $d) = explode("/", $date);
+    list($m, $d, $y) = explode("/", $date);
 
-    return @checkdate($m, $d, $y) == true;
+    return checkdate($m, $d, $y);
     
 }
 
 function valid_time($time) {
     
-    $time = String($time)->trim();
+    $time = trim($time);
     
     return strtotime($time);
     
