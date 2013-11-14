@@ -22,6 +22,10 @@
         <![endif]-->
         <script>
             $(function() {
+                $("#date").calendricalDate({
+                    usa : true
+		}).attr("type", "text"); 
+                $("#time").calendricalTime().attr("type", "text");
             });
         </script>
     </head>
