@@ -54,8 +54,6 @@ class Accident extends CI_Controller {
         $this->form_validation->set_rules('severity', 'Severity', 'required');
         $this->form_validation->set_rules('root', 'Root', 'required');
         $this->form_validation->set_rules('prevention', 'Prevention', 'required');
-        
-        print_r($_POST);
 
         if ($this->form_validation->run() && $action == "save") {
             
