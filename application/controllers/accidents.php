@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Accident extends CI_Controller {
+class Accidents extends CI_Controller {
     
     public function __construct() {
         
@@ -101,7 +101,7 @@ class Accident extends CI_Controller {
         if ($details != NULL) {
             $data["details"] = $details;
         } else {
-            redirect("accident/all");
+            redirect("dashboard");
         }
 
         $this->template->write("title", "Detailed Accident Report");
@@ -119,7 +119,7 @@ class Accident extends CI_Controller {
         if (count($mines) == 0) {            
             $content = "No results found";            
         } else {
-            $content = $this->display($mines);
+            $content = $this->display($mines, array("show_report#" => true));
         }
         
         $title = sprintf("My Accident Reports");
@@ -139,7 +139,7 @@ class Accident extends CI_Controller {
         if (count($search) == 0) {            
             $content = "No results found";            
         } else {
-            $content = $this->display($search);
+            $content = $this->display($search, array("show_report#" => true));
         }
 
         $this->template->write("title", "Search Results");
@@ -152,11 +152,12 @@ class Accident extends CI_Controller {
     private function display($accidents, $show = array()) {
         
         $show = array_merge(array(
+            "show_report#" => false,
             "show_detail" => true,
             "show_revisions" => true,
         ), $show);
-        
-        $this->table->set_heading(
+		
+        $headings = array(
             "Date/Time",
             "Building",
             "Room",
@@ -165,34 +166,46 @@ class Accident extends CI_Controller {
             "Created On",
             "Actions"
         );
+			
+        if ($show["show_report#"]) {
+                array_unshift($headings, "Report #");
+        }
+        
+        $this->table->set_heading($headings);
         
         foreach ($accidents as $acc) {
             
             $actions = array();
             
             if ($show["show_detail"]) {
-                $actions[] = anchor("accident/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
+                $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
                     "class" => "btn btn-default"
                 ));
             }
             
             if ($show["show_revisions"]) {
-                $actions[] = anchor("accident/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions', array(
+                $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions', array(
                     "class" => "btn btn-default"
                 ));
             }
             
             $user = String($acc->email);
-
-            $this->table->add_row(array(
+			
+            $row = array(
                 date_mysql2human($acc->date) . " " . time_mysql2human($acc->time),
                 $acc->name,
                 $acc->room,
-                $acc->severity,
+                severity_scale($acc->severity),
                 $user->substring(0, $user->indexOf("@")),
                 date("m/d/Y g:i a", strtotime($acc->created)),
                 implode(' ', $actions)
-            ));
+            );
+			
+            if ($show["show_report#"]) {
+                array_unshift($row, sprintf("%04d", $acc->revision_of));
+            }
+
+            $this->table->add_row($row);
 
         }
         
@@ -210,7 +223,7 @@ class Accident extends CI_Controller {
             $content = $this->display($revisions, array("show_revisions" => false));
         }
         
-        $title = sprintf("Revisions for Accident Report ID:%d", $revisions[0]->id);
+        $title = sprintf("Revisions for Accident Report ID:%d", $revisions[0]->revision_of);
 
         $this->template->write("title", $title);
         $this->template->write("heading", $title);

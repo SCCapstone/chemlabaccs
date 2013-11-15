@@ -64,12 +64,12 @@ if ($_SERVER['HTTP_HOST'] == 'mscribellito.com') {
     $db['default']['username'] = 'cla';
     $db['default']['password'] = 'p@$sW0rd#';
     $db['default']['database'] = 'chemlabaccs';
-    
+	
 } else {
 
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
-    $db['default']['password'] = '';
+    $db['default']['password'] = '$95st@ng';
     $db['default']['database'] = 'chemlabaccs';
     
 }

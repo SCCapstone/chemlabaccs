@@ -80,7 +80,7 @@ $prevention = array(
 
 ?>
 
-<?php echo form_open("accident/results", array("class" => "form-horizontal", "role" => "form")); ?>
+<?php echo form_open("accidents/results", array("class" => "form-horizontal", "role" => "form")); ?>
 
 <div class="form-group">
     <label for="<?php echo $start_date["id"]; ?>" class="col-sm-2 control-label"><?php echo $start_date["placeholder"]; ?></label>
@@ -143,7 +143,7 @@ $prevention = array(
     <label class="col-sm-2 control-label">Severity</label>
     <div class="col-sm-10">
         <?php echo form_error("severity"); ?>
-        <?php foreach(array("low", "medium", "high") as $severity): ?>
+        <?php $i = 0; foreach(array("low", "medium", "high") as $severity): ?>
         <?php
         
         $selected = "";
@@ -155,7 +155,7 @@ $prevention = array(
         <div class="checkbox">
             <label>
                 <input type="checkbox" name="severity[]" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-                <?php echo $severity; ?>
+                <?php echo severity_scale($severity); ?>
             </label>
         </div>
         <?php endforeach; ?>

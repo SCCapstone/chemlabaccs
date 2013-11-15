@@ -50,3 +50,25 @@ function get_buildings($extra = false) {
     return get_instance()->_buildings->all($extra);
     
 }
+
+function severity_scale($severity) {
+    
+    $rating = 0;
+    
+    switch ($severity) {
+        case "low":
+            $rating = 1;
+            break;
+        case "medium":
+            $rating = 2;
+            break;
+        case "high":
+            $rating = 3;
+            break;
+    }
+    
+    $scale = str_repeat(FULL_RATING, $rating) . str_repeat(EMPTY_RATING, NUM_RATINGS - $rating);
+    
+    return '<span title="' . $severity . '">' . $scale . '</span>';
+    
+}

@@ -45,14 +45,14 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accidents <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><?php echo anchor("accident/add", '<span class="glyphicon glyphicon-plus"></span> Add'); ?></li>
-                                <li><?php echo anchor("accident/search", '<span class="glyphicon glyphicon-search"></span> Search'); ?></li>
+                                <li><?php echo anchor("accidents/add", '<span class="glyphicon glyphicon-plus"></span> Add'); ?></li>
+                                <li><?php echo anchor("accidents/search", '<span class="glyphicon glyphicon-search"></span> Search'); ?></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporting <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><?php echo anchor("accident/mine", '<span class="glyphicon glyphicon-user"></span> My Reports'); ?></li>
+                                <li><?php echo anchor("accidents/mine", '<span class="glyphicon glyphicon-user"></span> My Reports'); ?></li>
                             </ul>
                         </li>
                     </ul>

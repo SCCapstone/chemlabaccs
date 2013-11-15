@@ -89,7 +89,7 @@ class _Accidents extends CI_Model {
             FROM accidents a
             JOIN buildings ON a.building = buildings.id
             JOIN users ON a.user = users.id
-            WHERE revision_of = %d", $id);
+            WHERE revision_of = %d ORDER BY created DESC", $id);
         
         $query = $this->db->query($sql);
         
@@ -153,7 +153,25 @@ class _Accidents extends CI_Model {
             $this->db->like("prevention", $this->input->post("prevention"));
         }
         
-        $query = $this->db->get();
+        $where = new String($this->db->_compile_select());
+        $this->db->_reset_select();
+        
+        $add = false;
+        if ($where->indexOf("WHERE") > -1) {
+            $add = true;
+            $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a.`");            
+        }
+        
+        $sql = sprintf("SELECT a.id, a.revision_of, a.`date`, a.`time`, buildings.name, a.room, a.description,
+            a.severity, a.root, a.prevention, users.email, a.created
+            FROM accidents a
+            JOIN buildings ON a.building = buildings.id
+            JOIN users ON a.user = users.id
+            LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id)
+            WHERE b.id IS NULL %s
+            ORDER BY a.created DESC", $add ? "AND " . $where : "");
+        
+        $query = $this->db->query($sql);
         
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {

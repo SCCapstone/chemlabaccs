@@ -61,9 +61,9 @@ $prevention = array(
 
 ?>
 
-<?php echo form_open("accident/add/save", array("class" => "form-horizontal", "role" => "form")); ?>
+<?php echo form_open("accidents/add/save", array("class" => "form-horizontal", "role" => "form")); ?>
 
-<?php echo form_hidden("revision_of", $details->id); ?>
+<?php echo form_hidden("revision_of", $details->revision_of); ?>
 
 <div class="form-group">
     <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
@@ -110,7 +110,7 @@ $prevention = array(
     <label class="col-sm-2 control-label">Severity</label>
     <div class="col-sm-10">
         <?php echo form_error("severity"); ?>
-        <?php foreach(array("low", "medium", "high") as $severity): ?>
+        <?php $i = 0; foreach(array("low", "medium", "high") as $severity): ?>
         <?php
         
         $selected = "";
@@ -122,7 +122,7 @@ $prevention = array(
         <div class="radio">
             <label>
                 <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-                <?php echo $severity; ?>
+                <?php echo severity_scale($severity); ?>
             </label>
         </div>
         <?php endforeach; ?>

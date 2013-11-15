@@ -1,6 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 define("APP_NAME", "ChemLabAccs");
+define("FULL_RATING", '<span class="glyphicon glyphicon-star"></span>');
+define("EMPTY_RATING", '<span class="glyphicon glyphicon-star-empty"></span>');
+define("NUM_RATINGS", 3);
 
 $config['table_users'] = 'users';
 $config['table_accidents'] = 'accidents';
