@@ -104,7 +104,7 @@ class Accidents extends CI_Controller {
         
         $title = sprintf('<span class="label label-default">#%s</span> Accident Report Details', format_accident_report_number($details->revision_of));
 
-        $this->template->write("title", $title);
+        $this->template->write("title", 'Accident Report Details');
         $this->template->write("heading", $title);
         $this->template->write_view("content", "accidents/detail", $data);
         
@@ -141,7 +141,7 @@ class Accidents extends CI_Controller {
         
         $title = sprintf('<span class="label label-default">#%s</span> Accident Report Revisions', format_accident_report_number($revisions[0]->revision_of));
 
-        $this->template->write("title", $title);
+        $this->template->write("title", 'Accident Report Revisions');
         $this->template->write("heading", $title);
         $this->template->write("content", $content);
         $this->template->render();        
