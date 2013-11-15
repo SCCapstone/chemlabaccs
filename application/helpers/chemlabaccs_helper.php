@@ -120,7 +120,7 @@ function display_accidents($accidents, $show = array()) {
         }
 
         if ($show["show_revisions"]) {
-            $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions', array(
+            $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions (' . $acc->count . ')', array(
                 "class" => "btn btn-default"
             ));
         }

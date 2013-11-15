@@ -12,6 +12,6 @@
     <div class="col-md-4">
         <h2>My Accident Reports</h2>
         <p>View accident reports you've submitted.</p>
-        <p><?php echo anchor("accidents/mine", '<span class="glyphicon glyphicon-list"></span> Go', array("class" => "btn btn-primary", "role" => "button")); ?></p>
+        <p><?php echo anchor("reports/mine", '<span class="glyphicon glyphicon-list"></span> Go', array("class" => "btn btn-primary", "role" => "button")); ?></p>
     </div>
 </div>

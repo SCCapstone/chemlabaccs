@@ -22,10 +22,26 @@
         <![endif]-->
         <script>
             $(function() {
-                $("#date, #start_date, #end_date").calendricalDate({
-                    usa : true
-		}).attr("type", "text"); 
-                $("#time, #start_time, #end_time").calendricalTime().attr("type", "text");
+
+                function easyDateTimeInputs() {
+
+                    if ($(window).width() > 768) {
+
+                        $("#date, #start_date, #end_date").calendricalDate({
+                            usa: true
+                        }).attr("type", "text");
+                        $("#time, #start_time, #end_time").calendricalTime().attr("type", "text");
+
+                    }
+
+                }
+                
+                easyDateTimeInputs();
+                
+                $(window).resize(function() {
+                    easyDateTimeInputs();
+                });
+
             });
         </script>
     </head>
@@ -43,20 +59,20 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <?php if (CI()->auth->is_authenticated()): ?>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accidents <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><?php echo anchor("accidents/add", '<span class="glyphicon glyphicon-plus"></span> Add'); ?></li>
-                                <li><?php echo anchor("accidents/search", '<span class="glyphicon glyphicon-search"></span> Search'); ?></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporting <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><?php echo anchor("reports/mine", '<span class="glyphicon glyphicon-book"></span> My Reports'); ?></li>
-                                <li><?php echo anchor("reports/user", '<span class="glyphicon glyphicon-book"></span> Reports By User'); ?></li>
-                            </ul>
-                        </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accidents <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><?php echo anchor("accidents/add", '<span class="glyphicon glyphicon-plus"></span> Add'); ?></li>
+                                    <li><?php echo anchor("accidents/search", '<span class="glyphicon glyphicon-search"></span> Search'); ?></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporting <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><?php echo anchor("reports/mine", '<span class="glyphicon glyphicon-book"></span> My Reports'); ?></li>
+                                    <li><?php echo anchor("reports/user", '<span class="glyphicon glyphicon-book"></span> Reports By User'); ?></li>
+                                </ul>
+                            </li>
                         <?php endif; ?>
                     </ul>
                     <?php if (CI()->auth->is_authenticated()): ?>

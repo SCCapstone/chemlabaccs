@@ -56,9 +56,11 @@ class Accidents extends CI_Controller {
             $new = new stdClass;
             
             if ($this->input->post("revision_of")) {
-                $new->revision_of = $this->input->post("revision_of");
+                $new->revision_of = (int) $this->input->post("revision_of");
+                $new->user = (int) $this->input->post("user");
             } else {
                 $new->revision_of = 0;
+                $new->user = $this->auth->get_user_id();
             }
             $new->date = date_human2mysql($this->input->post("date"));
             $new->time = time_human2mysql($this->input->post("time"));
@@ -71,7 +73,7 @@ class Accidents extends CI_Controller {
             
             if ($this->_accidents->add($new)) {
                 $this->flash->success("Report successfully added.");
-                redirect();
+                redirect("dashboard/home");
             } else {
                 $data["error"] = "Error adding report. Please Try again.";
             }
@@ -139,7 +141,10 @@ class Accidents extends CI_Controller {
             $content = display_accidents($revisions, array("show_revisions" => false));
         }
         
-        $title = sprintf('<span class="label label-default">#%s</span> Accident Report Revisions', format_accident_report_number($revisions[0]->revision_of));
+        $title = sprintf('<span class="label label-default">#%s</span> Accident Report Revisions (%d Total)',
+                format_accident_report_number($revisions[0]->revision_of),
+                count($revisions)
+                );
 
         $this->template->write("title", 'Accident Report Revisions');
         $this->template->write("heading", $title);

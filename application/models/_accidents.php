@@ -25,8 +25,6 @@ class _Accidents extends CI_Model {
     
     public function add($record) {
         
-        $record->user = $this->auth->get_user_id();
-        
         $this->db->insert($this->table, $record);
         
         $success = $this->db->affected_rows() == 1;
@@ -59,7 +57,7 @@ class _Accidents extends CI_Model {
         
         $mines = array();
         
-        $sql = sprintf("SELECT a1.*, users.email, buildings.name "
+        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count "
                 . "FROM accidents a1 "
                 . "JOIN buildings ON a1.building = buildings.id "
                 . "JOIN users ON a1.user = users.id "
@@ -160,7 +158,7 @@ class _Accidents extends CI_Model {
             $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a1.`");            
         }
         
-        $sql = sprintf("SELECT a1.*, users.email, buildings.name "
+        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count "
                 . "FROM accidents a1 "
                 . "JOIN buildings ON a1.building = buildings.id "
                 . "JOIN users ON a1.user = users.id "

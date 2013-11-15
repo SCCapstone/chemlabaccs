@@ -64,6 +64,7 @@ $prevention = array(
 <?php echo form_open("accidents/add/save", array("class" => "form-horizontal", "role" => "form")); ?>
 
 <?php echo form_hidden("revision_of", $details->revision_of); ?>
+<?php echo form_hidden("user", $details->user); ?>
 
 <div class="form-group">
     <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
