@@ -1,4 +1,5 @@
-div.navbar-header {
-    padding-left: 40px;
-    background: url(/chemlabaccs/img/flask32.png) center left no-repeat;
+a.navbar-brand {
+    display: inline-block;
+    padding-left: 50px;
+    background: url(/chemlabaccs/img/flask32.png) 10px center no-repeat;
 }

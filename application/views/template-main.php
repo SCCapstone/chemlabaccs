@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo APP_NAME ?> | <?php echo $title ?></title>
-        <link rel="shortcut icon" href="img/favicon.png">
+        <link rel="shortcut icon" href="<?php echo base_url("img/favicon.png") ?>">
         <?php echo $_styles ?>
         <?php echo $_scripts ?>
         <style type="text/css">
@@ -17,8 +17,8 @@
         </style>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="<?php echo base_url() ?>/js/html5shiv.js"></script>
-          <script src="<?php echo base_url() ?>/js/respond.min.js"></script>
+          <script src="<?php echo base_url("/js/html5shiv.js") ?>"></script>
+          <script src="<?php echo base_url("/js/respond.min.js") ?>"></script>
         <![endif]-->
         <script>
             $(function() {
