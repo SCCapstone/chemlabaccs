@@ -58,6 +58,7 @@ class Accidents extends CI_Controller {
             if ($this->input->post("revision_of")) {
                 $new->revision_of = (int) $this->input->post("revision_of");
                 $new->user = (int) $this->input->post("user");
+                $new->modified_by = $this->auth->get_user_id();
             } else {
                 $new->revision_of = 0;
                 $new->user = $this->auth->get_user_id();
@@ -121,7 +122,7 @@ class Accidents extends CI_Controller {
         if (count($search) == 0) {            
             $content = "No results found";            
         } else {
-            $content = display_accidents($search, array("show_report#" => true));
+            $content = generate_accident_listing($search, array("show_report#" => true));
         }
 
         $this->template->write("title", "Search Results");
@@ -138,7 +139,7 @@ class Accidents extends CI_Controller {
         if (count($revisions) == 0) {            
             $content = "No results found";            
         } else {
-            $content = display_accidents($revisions, array("show_revisions" => false));
+            $content = generate_accident_listing($revisions, array("show_revisions" => false));
         }
         
         $title = sprintf('<span class="label label-default">#%s</span> Accident Report Revisions (%d Total)',

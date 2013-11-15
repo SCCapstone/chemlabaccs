@@ -57,7 +57,8 @@ class _Accidents extends CI_Model {
         
         $mines = array();
         
-        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count "
+        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count, "
+                . "(SELECT users.email FROM users WHERE users.id = a1.modified_by) AS modified "
                 . "FROM accidents a1 "
                 . "JOIN buildings ON a1.building = buildings.id "
                 . "JOIN users ON a1.user = users.id "
@@ -80,7 +81,8 @@ class _Accidents extends CI_Model {
         
         $revisions = array();
         
-        $sql = sprintf("SELECT a.*, buildings.name, users.email "
+        $sql = sprintf("SELECT a.*, buildings.name, users.email, "
+                . "(SELECT users.email FROM users WHERE users.id = a.modified_by) AS modified "
                 . "FROM accidents a "
                 . "JOIN buildings ON a.building = buildings.id "
                 . "JOIN users ON a.user = users.id "
@@ -158,7 +160,8 @@ class _Accidents extends CI_Model {
             $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a1.`");            
         }
         
-        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count "
+        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count, "
+                . "(SELECT users.email FROM users WHERE users.id = a1.modified_by) AS modified "
                 . "FROM accidents a1 "
                 . "JOIN buildings ON a1.building = buildings.id "
                 . "JOIN users ON a1.user = users.id "

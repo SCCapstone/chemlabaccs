@@ -24,7 +24,7 @@ class Reports extends CI_Controller {
         if (count($mines) == 0) {            
             $content = "No results found";            
         } else {
-            $content = display_accidents($mines, array("show_report#" => true));
+            $content = generate_accident_listing($mines, array("show_report#" => true));
         }
         
         $title = sprintf("My Accident Reports");
@@ -43,7 +43,7 @@ class Reports extends CI_Controller {
         if (count($mines) == 0) {            
             $content = "No results found";            
         } else {
-            $content = display_accidents($mines, array("show_report#" => true));
+            $content = generate_accident_listing($mines, array("show_report#" => true));
         }
         
         $title = sprintf("My Accident Reports");

@@ -79,7 +79,7 @@ function format_accident_report_number($number) {
     
 }
     
-function display_accidents($accidents, $show = array()) {
+function generate_accident_listing($accidents, $show = array()) {
     
     $CI =& get_instance();
 
@@ -98,7 +98,8 @@ function display_accidents($accidents, $show = array()) {
         "Building",
         "Room",
         "Severity",
-        "Enter User",
+        "Entered By",
+        "Modified By",
         "Created On",
         "Actions"
     );
@@ -118,14 +119,19 @@ function display_accidents($accidents, $show = array()) {
                 "class" => "btn btn-default"
             ));
         }
+        
+        if (isset($acc->count)) {
 
-        if ($show["show_revisions"]) {
-            $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions (' . $acc->count . ')', array(
-                "class" => "btn btn-default"
-            ));
+            if ($show["show_revisions"] && $acc->count - 1 > 0) {
+                $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions (' . ($acc->count - 1) . ')', array(
+                    "class" => "btn btn-default"
+                ));
+            }
+        
         }
 
         $user = String($acc->email);
+        $modified = String($acc->modified);
 
         $row = array(
             date_mysql2human($acc->date) . " " . time_mysql2human($acc->time),
@@ -133,6 +139,7 @@ function display_accidents($accidents, $show = array()) {
             $acc->room,
             severity_scale($acc->severity),
             $user->substring(0, $user->indexOf("@")),
+            (!$modified->equals("")) ? $modified->substring(0, $modified->indexOf("@")) : "-",
             date("m/d/Y g:i a", strtotime($acc->created)),
             implode(' ', $actions)
         );
