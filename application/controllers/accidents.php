@@ -15,7 +15,7 @@ class Accidents extends CI_Controller {
         
     }
     
-    private function date_check($date) {
+    public function date_check($date) {
         
         if (valid_date($date) == false) {
             $this->form_validation->set_message("date_check", "%s is not valid");
@@ -26,7 +26,7 @@ class Accidents extends CI_Controller {
         
     }
     
-    private function time_check($time) {
+    public function time_check($time) {
         
         if (valid_time($time) == false) {
             $this->form_validation->set_message("time_check", "%s is not valid");

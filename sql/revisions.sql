@@ -1,0 +1,1 @@
+SELECT * FROM accidents a1 WHERE created >= ALL(SELECT created FROM accidents a2 WHERE a2.revision_of = a1.revision_of)

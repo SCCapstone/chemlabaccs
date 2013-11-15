@@ -59,14 +59,12 @@ class _Accidents extends CI_Model {
         
         $mines = array();
         
-        $sql = sprintf("SELECT a.id, a.revision_of, a.`date`, a.`time`, buildings.name, a.room, a.description,
-            a.severity, a.root, a.prevention, users.email, a.created
-            FROM accidents a
-            JOIN buildings ON a.building = buildings.id
-            JOIN users ON a.user = users.id
-            LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id)
-            WHERE b.id IS NULL AND a.user = %d
-            ORDER BY a.created DESC", $this->auth->get_user_id());
+        $sql = sprintf("SELECT a1.*, users.email, buildings.name "
+                . "FROM accidents a1 "
+                . "JOIN buildings ON a1.building = buildings.id "
+                . "JOIN users ON a1.user = users.id "
+                . "WHERE a1.created >= ALL(SELECT a2.created FROM accidents a2 WHERE a2.revision_of = a1.revision_of) "
+                . "AND a1.user = %d ORDER BY a1.created DESC", $this->auth->get_user_id());
         
         $query = $this->db->query($sql);
         
@@ -84,12 +82,12 @@ class _Accidents extends CI_Model {
         
         $revisions = array();
         
-        $sql = sprintf("SELECT a.id, a.revision_of, a.`date`, a.`time`, buildings.name, a.room, a.description,
-            a.severity, a.root, a.prevention, users.email, a.created
-            FROM accidents a
-            JOIN buildings ON a.building = buildings.id
-            JOIN users ON a.user = users.id
-            WHERE revision_of = %d ORDER BY created DESC", $id);
+        $sql = sprintf("SELECT a.*, buildings.name, users.email "
+                . "FROM accidents a "
+                . "JOIN buildings ON a.building = buildings.id "
+                . "JOIN users ON a.user = users.id "
+                . "WHERE revision_of = %d "
+                . "ORDER BY created DESC", $id);
         
         $query = $this->db->query($sql);
         
@@ -159,19 +157,19 @@ class _Accidents extends CI_Model {
         $add = false;
         if ($where->indexOf("WHERE") > -1) {
             $add = true;
-            $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a.`");            
+            $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a1.`");            
         }
         
-        $sql = sprintf("SELECT a.id, a.revision_of, a.`date`, a.`time`, buildings.name, a.room, a.description,
-            a.severity, a.root, a.prevention, users.email, a.created
-            FROM accidents a
-            JOIN buildings ON a.building = buildings.id
-            JOIN users ON a.user = users.id
-            LEFT JOIN accidents b ON (a.revision_of = b.revision_of AND a.id < b.id)
-            WHERE b.id IS NULL %s
-            ORDER BY a.created DESC", $add ? "AND " . $where : "");
+        $sql = sprintf("SELECT a1.*, users.email, buildings.name "
+                . "FROM accidents a1 "
+                . "JOIN buildings ON a1.building = buildings.id "
+                . "JOIN users ON a1.user = users.id "
+                . "WHERE a1.created >= ALL(SELECT a2.created FROM accidents a2 WHERE a2.revision_of = a1.revision_of) "
+                . "%s ORDER BY a1.created DESC", $add ? "AND " . $where : "");
         
         $query = $this->db->query($sql);
+        
+        #die($this->db->last_query());
         
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
