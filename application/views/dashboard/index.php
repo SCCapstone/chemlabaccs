@@ -1,17 +1,5 @@
-<div class="row">
-    <div class="col-md-4">
-        <h2>Add Accident Report</h2>
-        <p>Add an accident report.</p>
-        <p><?php echo anchor("accidents/add", '<span class="glyphicon glyphicon-plus"></span> Go', array("class" => "btn btn-primary", "role" => "button")); ?></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Search Accident Reports</h2>
-        <p>Search for accident reports.</p>
-        <p><?php echo anchor("accidents/search", '<span class="glyphicon glyphicon-search"></span> Go', array("class" => "btn btn-primary", "role" => "button")); ?></p>
-    </div>
-    <div class="col-md-4">
-        <h2>My Accident Reports</h2>
-        <p>View accident reports you've submitted.</p>
-        <p><?php echo anchor("accidents/mine", '<span class="glyphicon glyphicon-list"></span> Go', array("class" => "btn btn-primary", "role" => "button")); ?></p>
-    </div>
+<div class="jumbotron">
+    <h1>Reporting Made Easy</h1>
+    <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+    <p><?php echo anchor("dashboard/home", "Get Started &raquo;", array("class" => "btn btn-lg btn-primary")); ?></p>
 </div>

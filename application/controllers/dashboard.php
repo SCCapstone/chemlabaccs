@@ -6,9 +6,23 @@ if (!defined('BASEPATH'))
 class Dashboard extends CI_Controller {
 
     public function index() {
+        
+        if ($this->auth->is_authenticated()) {
+            redirect("dashboard/home");
+        }
 
         $this->template->write("title", "Dashboard");
         $this->template->write_view("content", "dashboard/index");
+        $this->template->render();
+        
+    }
+
+    public function home() {
+        
+        $this->auth->required();
+
+        $this->template->write("title", "Dashboard");
+        $this->template->write_view("content", "dashboard/home");
         $this->template->render();
         
     }

@@ -149,7 +149,9 @@ $prevention = array(
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-pencil"></span> Save')); ?>
+        <div class="well">
+            <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-pencil"></span> Save')); ?>
+        </div>
     </div>
 </div>
 

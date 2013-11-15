@@ -1,6 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-define("APP_NAME", "ChemLabAccs");
+define("APP_NAME", "CLAR");
+define("APP_DESC", "Chemisty Lab Accident Reporting");
 define("FULL_RATING", '<span class="glyphicon glyphicon-star"></span>');
 define("EMPTY_RATING", '<span class="glyphicon glyphicon-star-empty"></span>');
 define("NUM_RATINGS", 3);

@@ -141,7 +141,7 @@ class Auth {
             if ($uri != '') {
                 redirect($uri);
             }
-            redirect();
+            redirect("users/signin");
         }
         
     }

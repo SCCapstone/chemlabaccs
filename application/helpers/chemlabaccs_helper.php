@@ -69,6 +69,88 @@ function severity_scale($severity) {
     
     $scale = str_repeat(FULL_RATING, $rating) . str_repeat(EMPTY_RATING, NUM_RATINGS - $rating);
     
-    return '<span title="' . $severity . '">' . $scale . '</span>';
+    return '<span title="' . ucfirst($severity) . ' severity">' . $scale . '</span>';
+    
+}
+
+function format_accident_report_number($number) {
+    
+    return sprintf("%04d", $number);
+    
+}
+    
+function display_accidents($accidents, $show = array()) {
+    
+    $CI =& get_instance();
+
+    $show = array_merge(array(
+        "show_report#" => false,
+        "show_detail" => true,
+        "show_revisions" => true,
+    ), $show);
+
+    $CI->table->set_template(array (
+        "table_open" => '<table class="table table-striped">'
+    ));
+
+    $headings = array(
+        "Date &amp; Time",
+        "Building",
+        "Room",
+        "Severity",
+        "Enter User",
+        "Created On",
+        "Actions"
+    );
+
+    if ($show["show_report#"]) {
+        array_unshift($headings, "Report #");
+    }
+
+    $CI->table->set_heading($headings);
+
+    foreach ($accidents as $acc) {
+
+        $actions = array();
+
+        if ($show["show_detail"]) {
+            $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
+                "class" => "btn btn-default"
+            ));
+        }
+
+        if ($show["show_revisions"]) {
+            $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions', array(
+                "class" => "btn btn-default"
+            ));
+        }
+
+        $user = String($acc->email);
+
+        $row = array(
+            date_mysql2human($acc->date) . " " . time_mysql2human($acc->time),
+            $acc->name,
+            $acc->room,
+            severity_scale($acc->severity),
+            $user->substring(0, $user->indexOf("@")),
+            date("m/d/Y g:i a", strtotime($acc->created)),
+            implode(' ', $actions)
+        );
+
+        if ($show["show_report#"]) {
+            array_unshift($row, '<span class="badge">' . format_accident_report_number($acc->revision_of) . '</span>');
+        }
+
+        $CI->table->add_row($row);
+
+    }
+
+    return $CI->table->generate();        
+
+}
+
+function span($text, $class) {
+    
+    return sprintf('<span class="%s">%s</span>', $class, $text);
     
 }

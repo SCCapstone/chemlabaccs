@@ -22,10 +22,10 @@
         <![endif]-->
         <script>
             $(function() {
-                $("#date").calendricalDate({
+                $("#date, #start_date, #end_date").calendricalDate({
                     usa : true
 		}).attr("type", "text"); 
-                $("#time").calendricalTime().attr("type", "text");
+                $("#time, #start_time, #end_time").calendricalTime().attr("type", "text");
             });
         </script>
     </head>
@@ -38,10 +38,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <?php echo anchor('', APP_NAME, array('class' => 'navbar-brand')); ?>
+                    <?php echo anchor('', APP_NAME, array('class' => 'navbar-brand', 'title' => APP_DESC)); ?>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <?php if (CI()->auth->is_authenticated()): ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accidents <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -52,9 +53,11 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporting <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><?php echo anchor("accidents/mine", '<span class="glyphicon glyphicon-user"></span> My Reports'); ?></li>
+                                <li><?php echo anchor("reports/mine", '<span class="glyphicon glyphicon-book"></span> My Reports'); ?></li>
+                                <li><?php echo anchor("reports/user", '<span class="glyphicon glyphicon-book"></span> Reports By User'); ?></li>
                             </ul>
                         </li>
+                        <?php endif; ?>
                     </ul>
                     <?php if (CI()->auth->is_authenticated()): ?>
                         <?php echo $navbar_signed_in ?>
@@ -75,7 +78,7 @@
             <?php print $content ?>
             <hr />
             <footer>
-                <p>&copy; <?php echo APP_NAME ?> <?php echo date("Y"); ?>. All Rights Reserved.</p>
+                <p>&copy; <?php echo APP_NAME ?> <em>(<?php echo APP_DESC; ?>)</em> <?php echo date("Y"); ?>. All Rights Reserved.</p>
             </footer>
         </div>
     </body>
