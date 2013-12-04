@@ -70,6 +70,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporting <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><?php echo anchor("reports/mine", '<span class="glyphicon glyphicon-book"></span> My Reports'); ?></li>
+                                    <li><?php echo anchor("reports/export", '<span class="glyphicon glyphicon-th"></span> Export to CSV'); ?></li>
                                     <li><?php # echo anchor("reports/user", '<span class="glyphicon glyphicon-book"></span> Reports By User'); ?></li>
                                 </ul>
                             </li>

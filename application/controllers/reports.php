@@ -54,5 +54,40 @@ class Reports extends CI_Controller {
         $this->template->render();
         
     }
+    
+    public function export() {
+        
+        $csv = new CSVWriter();
+        
+        $this->db->select("*")
+                ->from("accidents")
+                ->order_by("revision_of", "ASC")
+                ->order_by("created", "DESC");
+        
+        $query = $this->db->get();
+        
+        $csv->addRecord(array(
+            "ID",
+            "Revision Of",
+            "Date",
+            "Time",
+            "Building",
+            "Room",
+            "Description",
+            "Severity",
+            "Root",
+            "Prevention",
+            "User",
+            "Modified By",
+            "Created"
+        ));
+        
+        foreach ($query->result() as $row) {
+            $csv->addRecord((array) $row);
+        }
+        
+        $csv->download();
+        
+    }
 
 }
