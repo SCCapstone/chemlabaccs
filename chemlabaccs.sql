@@ -74,10 +74,10 @@ CREATE TABLE IF NOT EXISTS `buildings` (
 --
 
 INSERT INTO `buildings` (`id`, `name`) VALUES
-(1, 'building 1'),
-(2, 'building 2'),
-(3, 'building 3'),
-(4, 'building 4');
+(1, 'Jones Physical Science Center'),
+(2, 'Graduate Science Center'),
+(3, 'Coker Life Science Building'),
+(4, 'Earth and Water Sciences Building');
 
 -- --------------------------------------------------------
 
