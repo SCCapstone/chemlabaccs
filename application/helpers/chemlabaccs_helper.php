@@ -161,3 +161,7 @@ function span($text, $class) {
     return sprintf('<span class="%s">%s</span>', $class, $text);
     
 }
+
+function get_reports() {
+
+}

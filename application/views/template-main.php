@@ -37,7 +37,7 @@
                 }
                 
                 easyDateTimeInputs();
-                
+                1
                 $(window).resize(function() {
                     easyDateTimeInputs();
                 });
@@ -64,6 +64,7 @@
                                 <ul class="dropdown-menu">
                                     <li><?php echo anchor("accidents/add", '<span class="glyphicon glyphicon-plus"></span> Add'); ?></li>
                                     <li><?php echo anchor("accidents/search", '<span class="glyphicon glyphicon-search"></span> Search'); ?></li>
+									<li><?php echo anchor("charts", '<span class="glyphicon glyphicon-stats"></span> Data'); ?></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -74,6 +75,24 @@
                                     <li><?php # echo anchor("reports/user", '<span class="glyphicon glyphicon-book"></span> Reports By User'); ?></li>
                                 </ul>
                             </li>
+                        <?php else: ?>
+							<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accidents <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><?php echo anchor("users/signin", '<span class="glyphicon glyphicon-plus"></span> Add - <p style="color:red;display:inline">Sign in</p>'); ?></li>
+                                    <li><?php echo anchor("users/signin", '<span class="glyphicon glyphicon-search"></span> Search - <p style="color:red;display:inline">Sign in</p>'); ?></li>
+									<li><?php echo anchor("charts", '<span class="glyphicon glyphicon-stats"></span> Data'); ?></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporting <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><?php echo anchor("users/signin", '<span class="glyphicon glyphicon-book"></span> My Reports - <p style="color:red;display:inline">Sign in</p>'); ?></li>
+                                    <li><?php echo anchor("users/signin", '<span class="glyphicon glyphicon-th"></span> Export to CSV - <p style="color:red;display:inline">Sign in</p>'); ?></li>
+                                    <li><?php # echo anchor("reports/user", '<span class="glyphicon glyphicon-book"></span> Reports By User'); ?></li>
+                                </ul>
+                            </li>
+						
                         <?php endif; ?>
                     </ul>
                     <?php if (CI()->auth->is_authenticated()): ?>
@@ -94,7 +113,7 @@
             <?php endif; ?>
             <?php print $content ?>
             <hr />
-            <footer>
+            <footer style="clear:both">
                 <p>&copy; <?php echo APP_NAME ?> <em>(<?php echo APP_DESC; ?>)</em> <?php echo date("Y"); ?>. All Rights Reserved.</p>
             </footer>
         </div>

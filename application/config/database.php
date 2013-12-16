@@ -69,7 +69,7 @@ if ($_SERVER['HTTP_HOST'] == 'mscribellito.com') {
 
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
-    $db['default']['password'] = '$95st@ng';
+    $db['default']['password'] = '';
     $db['default']['database'] = 'chemlabaccs';
     
 }
