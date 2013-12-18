@@ -11,19 +11,15 @@ class Charts extends CI_Controller {
 	
 	public function index()
 	{
-		$data = get_buildings(true);
-		foreach ($data as $columnName => $columnData) 
+		$buildings = get_buildings(true);
+		$reports = get_latest_reports($this->db);
+		$building_count = find_building_count($reports, $buildings);
+	    
+		for($i = 1; $i < count($buildings); $i++)
 		{
-			//echo 'Column name: ' . $columnName . ' Column data: ' . $columnData . '<br />';
+			$data = array($building_count[$i],$building_count[$i],$building_count[$i]);
+			$series_data[] = array('name' => $buildings[$i], 'data' => $data);
 		}
-		
-		$i = 1;
-		//need to get data from database instead of hard coding it
-		$series_data[] = array('name' => $data['1'], 'data' => array(8,7,4));
-		$series_data[] = array('name' => $data['2'], 'data' => array(5,4,3));
-		$series_data[] = array('name' => $data['3'], 'data' => array(1,0,2));
-		$series_data[] = array('name' => $data['4'], 'data' => array(9,4,7));
-		
 		
 		$title = "Anonymous Data";
 		$this->view_data['series_data'] = json_encode($series_data);

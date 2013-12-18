@@ -162,6 +162,42 @@ function span($text, $class) {
     
 }
 
-function get_reports() {
+function get_latest_reports($db) {
+	$count = 0;
+	$sql = 'SELECT * FROM accidents WHERE `id` <=> `revision_of`';
+	$original_ids = $db->query($sql);
+	
+	foreach($original_ids->result() as $data)
+	{
+		$sql = 'SELECT * FROM accidents WHERE id = ( SELECT MAX(id) FROM accidents WHERE revision_of <=> ' . $data->id . ' )';
+		$results[$count] = $db->query($sql)->result();
+		$count++;
+	}
+	return $results;
+}
 
+function initialize_building_count($buildings)
+{
+	$data = array();
+	for($i = 1; $i < count($buildings); $i++)
+	{
+		$data[$i] = 0;
+	}
+	return $data;
+}
+
+function find_building_count($reports, $buildings)
+{
+	$building_count = initialize_building_count($buildings);
+	foreach ($reports as $report) 
+	{
+		for($i = 1; $i < count($buildings); $i++)
+		{
+			if($report[0]->building == $i)
+			{
+				$building_count[$i]++;
+			}
+		}
+	}
+	return $building_count;
 }
