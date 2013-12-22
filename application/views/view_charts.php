@@ -9,11 +9,7 @@
 	<script type="text/javascript" src="http://localhost/chemlabaccs/highcharts/Highcharts-3.0.7/js/highcharts.js"></script>
 	
 	<style type="text/css">
-		Div#bar {
-			width: 45%;
-			float: left;
-		}
-		Div#pie {
+		Div.graph {
 			width: 45%;
 			float: left;
 		}
@@ -23,7 +19,7 @@
 		jQuery(document).ready(function()
 		{
 			console.log("Creating Graphs");
-			$('#bar').highcharts({
+			$('#accPerBuild').highcharts({
 				chart: {
 					type: 'column'
 				},
@@ -35,14 +31,55 @@
 				},
 				yAxis: {
 					title: {
-						text: 'Accidents per Month'
+						text: 'Total Accidents'
 					}
 				},
 				series: <?php echo $series_data;?>
 			});
 			
 			
-			$('#pie').highcharts({
+			$('#accPerRate').highcharts({
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false
+			},
+			title: {
+				text: 'Accidents per severity'
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						color: '#000000',
+						connectorColor: '#000000',
+						format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+					}
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: 'Percent with specified severity',
+				data: <?php $count = 0;
+							echo '[ ';
+							foreach($severity_data as $severity) {
+								echo '[\'' . $severity['name'] . '\', ' . $severity['data'] . ']'; 
+								if($count != count($time_data)-1)
+								{
+									$count++;
+									echo ', ';
+								}
+							} echo '] ';?>
+			}]
+			});
+			
+			
+			$('#accPerTime').highcharts({
 			chart: {
 				plotBackgroundColor: null,
 				plotBorderWidth: null,
@@ -68,20 +105,17 @@
 			},
 			series: [{
 				type: 'pie',
-				name: 'Accidents Percent',
-				data: [
-					['Noon-2',   45.0],
-					['8-10',       26.8],
-					{
-						name: '10-noon',
-						y: 12.8,
-						sliced: true,
-						selected: true
-					},
-					['2-4',    8.5],
-					['4-6',     6.2],
-					['Others',   0.7]
-				]
+				name: 'Percent occuring within time range',
+				data: <?php $count = 0;
+							echo '[ ';
+							foreach($time_data as $time) {
+								echo '[\'' . $time['name'] . '\', ' . $time['data'] . ']'; 
+								if($count != count($time_data)-1)
+								{
+									$count++;
+									echo ', ';
+								}
+							} echo '] ';?>
 			}]
 			});
 		});
@@ -89,10 +123,13 @@
 </head>
 
 <body>
-	<div id="bar">
+	<div class="graph" id="accPerBuild">
 	</div>
 	
-	<div id="pie">
+	<div class="graph" id="accPerRate">
+	</div>
+	
+	<div class="graph" id="accPerTime">
 	</div>
 </body>
 

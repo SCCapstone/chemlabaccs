@@ -162,6 +162,7 @@ function span($text, $class) {
     
 }
 
+//return reports that have not been revised, and the lastest revision for those that have been revised
 function get_latest_reports($db) {
 	$count = 0;
 	$sql = 'SELECT * FROM accidents WHERE `id` <=> `revision_of`';
@@ -176,6 +177,7 @@ function get_latest_reports($db) {
 	return $results;
 }
 
+//create an array for each building with the building counts set to 0
 function initialize_building_count($buildings)
 {
 	$data = array();
@@ -186,6 +188,7 @@ function initialize_building_count($buildings)
 	return $data;
 }
 
+//find the total number of accidents that occur in each building
 function find_building_count($reports, $buildings)
 {
 	$building_count = initialize_building_count($buildings);
@@ -200,4 +203,75 @@ function find_building_count($reports, $buildings)
 		}
 	}
 	return $building_count;
+}
+
+//create an array for each time period with each time count starting at 0
+function initialize_time_count()
+{
+	$data = array();
+	//change 6 to a variable for the number of time periods measured
+	for($i = 0; $i < 6; $i++)
+		$data[$i] = 0;
+	return $data;
+}
+
+//find the percent of each accident that occur in each 4 hour block
+function find_time_percents($reports)
+{
+	$data = initialize_time_count();
+	foreach($reports as $report)
+	{
+		$hour = substr($report[0]->time, 0, 2);
+		//change 6 to a variable for the number of time periods measured
+		for($i = 1; $i <= 6; $i++)
+		{
+			//change 4 to a variable for 24 divided by the number of time periods measured
+			if($hour >= ($i-1) * 4 && $hour < $i*4)
+			{
+				$data[$i-1]++;
+				break;
+			}
+		}
+	}
+	$index = 0;
+	foreach($data as $time)
+	{
+		$data[$index] = $time / count($reports) * 100;
+		$index++;
+	}
+	return $data;
+}
+
+function initialize_severity_count()
+{
+	$data = array();
+	//change 3 to a variable for the number of severity ratings measured
+	for($i = 0; $i < 3; $i++)
+		$data[$i] = 0;
+	return $data;
+}
+
+//returns the percent of the number of accidents that occur for each level of severity
+function find_severity_percents($reports)
+{
+	$data = initialize_severity_count();
+	foreach($reports as $report)
+	{
+		$severity = $report[0]->severity;
+		if($severity == "low")
+			$data[0]++;
+		else if($severity == "medium")
+			$data[1]++;
+		else if($severity == "high")
+			$data[2]++;
+	}
+	
+	$index = 0;
+	foreach($data as $sev)
+	{
+		//change 3 to a variable for the number of severity ratings measured
+		$data[$index] = $sev / 3 * 100;
+		$index++;
+	}
+	return $data;
 }
