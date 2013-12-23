@@ -242,6 +242,7 @@ function find_time_percents($reports)
 	return $data;
 }
 
+//create an array to hold the number of accidents for each severity level, and start each count at 0
 function initialize_severity_count()
 {
 	$data = array();
@@ -272,6 +273,50 @@ function find_severity_percents($reports)
 		//change 3 to a variable for the number of severity ratings measured
 		$data[$index] = $sev / 3 * 100;
 		$index++;
+	}
+	return $data;
+}
+
+//create an array to hold the number of accidents that occur per month, and set each count to 0
+function initialize_month_count()
+{
+	$data = array();
+	for($i = 0; $i < 12; $i++)
+		$data[$i] = 0;
+	return $data;
+}
+
+//returns the number of accidents that have occurred in each month for a specified year
+//specified year is -1 when getting accidents for each month from all time
+function find_month_count($reports, $accident_year)
+{
+	$data = initialize_month_count();
+	foreach($reports as $report)
+	{
+		$month = substr($report[0]->date, 5, 2);
+		$year = substr($report[0]->date, 0, 4);
+		if($year == $accident_year || $accident_year == -1)
+		{
+			$data[$month-1]++;
+		}
+	}
+	return $data;
+}
+
+//returns the number of accidents that have occurred in each month for a specified severity level
+//data returned is for the current year
+function find_month_sev_count($reports, $severity)
+{
+	$data = initialize_month_count();
+	foreach($reports as $report)
+	{
+		$month = substr($report[0]->date, 5, 2);
+		$year = substr($report[0]->date, 0, 4);
+		$sev = $report[0]->severity;
+		if($year == date('Y') && $sev == $severity)
+		{
+			$data[$month-1]++;
+		}
 	}
 	return $data;
 }

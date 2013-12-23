@@ -13,6 +13,12 @@
 			width: 45%;
 			float: left;
 		}
+		Div#accPerMonth {
+			width: 90%;
+		}
+		Div#accRateMonth {
+			width: 90%;
+		}
 	</style>
 	
 	<script type="text/javascript">	
@@ -78,6 +84,52 @@
 			}]
 			});
 			
+			$('#accPerMonth').highcharts({
+				chart: {
+					type: 'column'
+				},
+				title: {
+					text: 'Accidents Per Month'
+				},
+				xAxis: {
+					categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+				},
+				yAxis: {
+					title: {
+						text: 'Total Accidents'
+					}
+				},
+				series: <?php echo $month_data;?>
+			});
+			
+			$('#accRateMonth').highcharts({
+            title: {
+                text: 'Accidents Severity Per Month',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'Accidents in <?php echo date('Y');?>'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: <?php echo $sev_month_data;?>
+        });
+			
 			
 			$('#accPerTime').highcharts({
 			chart: {
@@ -123,13 +175,19 @@
 </head>
 
 <body>
+	<div class="graph" id="accPerMonth">
+	</div>
+	
 	<div class="graph" id="accPerBuild">
 	</div>
 	
-	<div class="graph" id="accPerRate">
+	<div class="graph" id="accPerTime">
 	</div>
 	
-	<div class="graph" id="accPerTime">
+	<div class="graph" id="accRateMonth">
+	</div>
+	
+	<div class="graph" id="accPerRate">
 	</div>
 </body>
 
