@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// Using Highcharts
+
 class Charts extends CI_Controller {
 
 	function Charts()
