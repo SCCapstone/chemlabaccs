@@ -17,3 +17,20 @@ join_date date NOT NULL,
 primary_admin int(10) NOT NULL,
 Primary Key(id)
 );
+
+
+CREATE TABLE `section`(
+	section_id int(10) NOT NULL,
+	institute_id int(10) NOT NULL,
+	building_id int(10) NOT NULL,
+	room_num varchar(10)
+	section_date date NOT NULL,
+	Primary Key(section_id)
+	);
+	
+
+CREATE TABLE `lab_user`(
+	user_id int(10) NOT NULL,
+	section_id int(10) NOT NULL,
+	Primary Key(user_id, section_id)
+	);
