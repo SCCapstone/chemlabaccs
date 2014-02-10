@@ -32,7 +32,8 @@ CREATE TABLE `section`(
 CREATE TABLE `lab_user`(
 	user_id int(10) NOT NULL,
 	section_id int(10) NOT NULL,
-	Primary Key(user_id, section_id)
+	FOREIGN KEY (`user_id`) REFERENCES users(`id`),
+	FOREIGN KEY (`section_id`) REFERENCES section(`section_id`)
 	);
 
 CREATE TABLE `users` (
