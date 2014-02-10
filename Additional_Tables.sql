@@ -34,3 +34,15 @@ CREATE TABLE `lab_user`(
 	section_id int(10) NOT NULL,
 	Primary Key(user_id, section_id)
 	);
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `email` varchar(254) NOT NULL,
+  `password_hash` varchar(40) NOT NULL,
+  `salt` varchar(32) NOT NULL,
+  `theme` int(1) NOT NULL DEFAULT '0',
+  `userlvl` varchar(32) NOT NULL,
+  `institute_id` int(10) NOT NULL,
+  FOREIGN KEY (`institute_id`) REFERENCES institution(`id`),
+  PRIMARY KEY (`id`) 
+);
