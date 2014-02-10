@@ -35,7 +35,7 @@ CREATE TABLE `lab_user`(
 	Primary Key(user_id, section_id)
 	);
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `email` varchar(254) NOT NULL,
   `password_hash` varchar(40) NOT NULL,
