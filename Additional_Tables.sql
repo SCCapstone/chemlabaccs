@@ -25,9 +25,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `accidents`
 --
-
+-- Accident id will be generated and post by CI now
 CREATE TABLE IF NOT EXISTS `accidents` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `revision_of` int(10) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
