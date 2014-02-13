@@ -51,25 +51,20 @@ if (!defined('BASEPATH'))
 $active_group = 'default';
 $active_record = TRUE;
 
-if ($_SERVER['HTTP_HOST'] == 'mscribellito.com') {
+// Database info for Deployed, "live site"
+if ($_SERVER['HTTP_HOST'] == 'chemlabaccs.zzl.org') {
 
     $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'mscribel_csce490';
-    $db['default']['password'] = '5=]#EK2-v4uS';
-    $db['default']['database'] = 'mscribel_csce490db';
-    
-} else if ($_SERVER['SERVER_ADMIN'] == 'mscribellito@gmail.com') {
+    $db['default']['username'] = '900368_cieplows';
+    $db['default']['password'] = 'G@mec0ck';
+    $db['default']['database'] = 'chemlabaccs_zzl_db1';
 
-    $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'cla';
-    $db['default']['password'] = 'p@$sW0rd#';
-    $db['default']['database'] = 'chemlabaccs';
-	
+// Change this to your local database info!
 } else {
 
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
-    $db['default']['password'] = '';
+    $db['default']['password'] = '';   // your local root password
     $db['default']['database'] = 'chemlabaccs';
     
 }
