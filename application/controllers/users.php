@@ -43,5 +43,49 @@ class Users extends CI_Controller {
         redirect();
         
     }
+    
+    
+     public function register($action = "") {
+         
+        $data = array();
+        $data["error"] = NULL;
+        
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
+    
+        
+         if ($this->form_validation->run() && $action == "save") {
+            
+            $new = new stdClass;
+            
+            $new->email = $this->input->post("email");
+            $new->password = $this->input->post("password");
+            $new->passwordconf = $this->input->post("passwordconf");
+            $new->userlvl = 0;          // these will be hard coded...
+            $new->institutionid = 0;    // ...for now...
+            
+            
+            if ($this->_users->register($new)) {
+                $this->flash->success("New Account successfully created.");
+                redirect("dashboard/home");
+            } else {
+                $data["error"] = "Error with registration. Please Try again.";
+            }
+             
+         }
+         
+        $title = "Register as new user";
+
+        $this->template->write("title", $title);
+        $this->template->write("heading", $title);
+        $this->template->write_view("content", "view_register", $data);
+        
+        $this->template->render();
+        
+        
+        
+        
+     }
 
 }
