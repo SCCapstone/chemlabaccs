@@ -120,12 +120,12 @@ class Accidents extends CI_Controller {
             //Need to verify if SSL is enabled in the php.ini file ( /xampp/php/php.ini)
 
                 $this->load->library('email');       
-                $this->email->from('<NEW GMAIL ACCOUNT>@gmail.com', '<User who created Report>');
+                $this->email->from('labaccidentnotificationsystem@gmail.com', 'Lab Accident Notification');
             //  $list = array('xxx@gmail.com'); <To include multiple receipients>
             //  $this->email->to($list);
-                $this->email->to('alexan84@email.sc.edu');  
+                $this->email->to('alexan84@email.sc.edu');  //Need to edit -- I wouldn't like the notifications
                 $this->email->subject('Lab Accident Notification');  
-                $this->email->message('It is working!');
+                $this->email->message('New Accident to report');
                 $this->email->send();
                 echo $this->email->print_debugger();
             // End of modifiction by Davis
