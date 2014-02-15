@@ -114,6 +114,22 @@ class Accidents extends CI_Controller {
            
             /*************************************************************************************/
              
+            //Modified by Davis
+            //Adding Email to Admin functionality
+            //Need to make new gmail account per site name
+            //Need to verify if SSL is enabled in the php.ini file ( /xampp/php/php.ini)
+
+                $this->load->library('email');       
+                $this->email->from('<NEW GMAIL ACCOUNT>@gmail.com', '<User who created Report>');
+            //  $list = array('xxx@gmail.com'); <To include multiple receipients>
+            //  $this->email->to($list);
+                $this->email->to('alexan84@email.sc.edu');  
+                $this->email->subject('Lab Accident Notification');  
+                $this->email->message('It is working!');
+                $this->email->send();
+                echo $this->email->print_debugger();
+            // End of modifiction by Davis
+                
                 $this->flash->success("Report successfully added.");
                 redirect("dashboard/home");
             } else {
