@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2014 at 07:01 AM
+-- Generation Time: Feb 15, 2014 at 02:20 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `accidents`
 --
--- Accident id will be generated and post by CI now
+
 CREATE TABLE IF NOT EXISTS `accidents` (
   `id` int(10) NOT NULL,
   `revision_of` int(10) NOT NULL,
@@ -41,20 +41,15 @@ CREATE TABLE IF NOT EXISTS `accidents` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accidents`
 --
 
 INSERT INTO `accidents` (`id`, `revision_of`, `date`, `time`, `building`, `room`, `description`, `severity`, `root`, `prevention`, `user`, `modified_by`, `created`) VALUES
-(1, 1, '2013-11-15', '00:15:00', 2, '123', 'Something broke', 'low', 'Careless', 'be more careful', 1, 0, '2013-11-15 21:19:08'),
-(2, 1, '2013-11-15', '00:15:00', 2, '123', 'Something broke', 'high', 'careless', 'be more careful!!!', 1, 1, '2013-11-15 21:29:36'),
-(3, 3, '2013-11-12', '00:30:00', 3, 'abc123', 'asdf', 'medium', 'ttt', 'qq', 1, 0, '2013-11-15 21:32:34'),
-(4, 4, '2013-11-10', '00:45:00', 1, '1', 'a', 'high', 'b', 'c', 1, 0, '2013-11-15 21:43:54'),
-(5, 4, '2013-11-10', '00:45:00', 1, '1', 'aaaaaaaaaa', 'high', 'bbbbbbbbbbbbbbb', 'cccccccccccccccccc', 1, 1, '2013-11-15 21:44:50'),
-(7, 4, '2013-11-10', '00:45:00', 1, '1', 'aaaaaaaaaa', 'high', 'bbbbbbbbbbbbbbb1', 'cccccccccccccccccc', 1, 14, '2013-11-16 01:09:37'),
-(8, 8, '2014-01-25', '00:30:00', 1, '2', 'asdf', 'high', 'The Roots', 'Jam', 15, 0, '2014-01-26 04:16:12');
+(3380163, 3380163, '2014-02-14', '00:45:00', 3, '900', 'A', 'high', 'B', 'C', 15, 0, '2014-02-14 23:20:03'),
+(5547652, 5547652, '2014-02-14', '00:30:00', 2, '433', 'Something happened ', 'high', 'fire ', 'run ', 15, 0, '2014-02-14 23:18:47');
 
 -- --------------------------------------------------------
 
@@ -141,11 +136,23 @@ CREATE TABLE IF NOT EXISTS `lab_user` (
 
 CREATE TABLE IF NOT EXISTS `photos` (
   `id` int(10) NOT NULL,
-  `user_id` int(10) DEFAULT NULL,
-  `photo_abs_url` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  `user_id` int(10) NOT NULL,
+  `accident_id` int(10) NOT NULL,
+  `photo_abs_url` varchar(250) NOT NULL,
+  `thumb_abs_url` varchar(250) NOT NULL,
+  `comment` varchar(240) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `photos`
+--
+
+INSERT INTO `photos` (`id`, `user_id`, `accident_id`, `photo_abs_url`, `thumb_abs_url`, `comment`) VALUES
+(2615471, 15, 3380163, 'accident_photos/13924200073_chemlabaccs.1392420006.jpg', 'accident_photos/thumbs/thumb_13924200073_chemlabaccs.1392420006.jpg', 'll'),
+(5192924, 15, 3380163, 'accident_photos/13924200040_chemlabaccs.1392420003.jpg', 'accident_photos/thumbs/thumb_13924200040_chemlabaccs.1392420003.jpg', 'll'),
+(6017136, 15, 3380163, 'accident_photos/13924200051_chemlabaccs.1392420004.jpg', 'accident_photos/thumbs/thumb_13924200051_chemlabaccs.1392420004.jpg', 'll'),
+(7954638, 15, 3380163, 'accident_photos/13924200062_chemlabaccs.1392420005.jpg', 'accident_photos/thumbs/thumb_13924200062_chemlabaccs.1392420005.jpg', 'l');
 
 -- --------------------------------------------------------
 
@@ -184,9 +191,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('9eabcce86b96b19ff556ebd869f3e8e8', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0', 1392098475, 'a:4:
-
-{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:15;s:14:"AUTH_user_name";s:21:"cieplows@email.sc.edu";}');
+('fcb5a1e3f1b925386a73b5903efdee1e', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0', 1392425598, 'a:4:{s:9:"user_data";s:0:"";s:18:"AUTH_authenticated";b:1;s:12:"AUTH_user_id";i:15;s:14:"AUTH_user_name";s:21:"cieplows@email.sc.edu";}');
 
 -- --------------------------------------------------------
 
@@ -213,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `email`, `password_hash`, `salt`, `theme`, `userlvl`, `institution_id`) VALUES
 (1, 'scribell@email.sc.edu', '314ad9e71da8e7406c3087c755af0cd17c62914d', '9812fe5cf3626343d6d43028ff410de1', 0, '', 1),
 (14, 'vidal@sc.edu', 'c6b8d74a1ebebe7d3d577bc4b3bc154dbbc52f8b', '6f082771030027d09eecacef346e4516', 1, '', 1),
-(15, 'cieplows@email.sc.edu', '80736686f02e465441dec03bdb48073bb08bf756', '2a0454ec5ab734d2686656e009ef371c', 0, '', 1),
+(15, 'cieplows@email.sc.edu', '80736686f02e465441dec03bdb48073bb08bf756', '2a0454ec5ab734d2686656e009ef371c', 1, '', 1),
 (16, 'carrow@email.sc.edu', 'b9f5768a43390e7aeefff801dd7729c370e50e41', '1f80d69cb28ab0916868089dde525e93', 0, '', 1),
 (17, 'hamodm@email.sc.edu', 'b6c05b414a10e665798527c129bd9f101212202c', 'cba162aac634b02913386be6b4c08dca', 0, '', 1);
 
@@ -228,23 +233,11 @@ ALTER TABLE `buildings`
   ADD CONSTRAINT `buildings_ibfk_1` FOREIGN KEY (`institution_id`) REFERENCES `institution` (`id`);
 
 --
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`accident_id`) REFERENCES `accidents` (`id`);
-
---
 -- Constraints for table `lab_user`
 --
 ALTER TABLE `lab_user`
   ADD CONSTRAINT `lab_user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `lab_user_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`);
-
---
--- Constraints for table `photos`
---
-ALTER TABLE `photos`
-  ADD CONSTRAINT `photos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `section`
