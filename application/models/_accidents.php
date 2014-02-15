@@ -22,18 +22,24 @@ class _Accidents extends CI_Model {
         $this->table = $this->config->item('table_accidents');
         
     }
+ 
     
-    public function add($record) {
+    public function add($record,$accidentid) {
         
         $this->db->insert($this->table, $record);
         
         $success = $this->db->affected_rows() == 1;
         
-        if ($record->revision_of == 0 && $success) {
+       /* if ($record->revision_of == 0 && $success) {
             $insert_id = $this->db->insert_id();
             $this->db->where("id", $insert_id);
             $this->db->update($this->table, array("revision_of" => $insert_id));
-        }
+        }*/
+        
+  
+        
+        
+        
         
         return $success;
         
