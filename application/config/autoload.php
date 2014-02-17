@@ -61,7 +61,8 @@ $autoload['libraries'] = array(
 	'session',
 	'String',
 	'table',
-        'template'
+        'template',
+        'database'
 );
 
 
@@ -75,6 +76,7 @@ $autoload['libraries'] = array(
 */
 
 $autoload['helper'] = array(
+    'form',
     'language',
     'string',
     'url',
