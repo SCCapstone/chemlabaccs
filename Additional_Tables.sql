@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password_hash` varchar(40) NOT NULL,
   `salt` varchar(32) NOT NULL,
   `theme` int(1) NOT NULL DEFAULT '0',
-  `userlvl` varchar(32) NOT NULL,
+  `userlvl` int(1) NOT NULL,
   `institution_id` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `institute_id` (`institution_id`)
