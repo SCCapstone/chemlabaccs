@@ -32,6 +32,7 @@ class _Auth extends CI_Model {
     public function create_user($user) {
         
         unset($user->password);
+        unset($user->passwordconf);
         
         $this->db->insert($this->table, $user);
         

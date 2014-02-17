@@ -4,6 +4,18 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Users extends CI_Controller {
+    
+    public function __construct() {
+        
+        parent::__construct();
+        
+       // $this->auth->required();
+        
+        $this->table->set_template(array (
+            "table_open" => '<table class="table table-striped">'
+        ));
+        
+    }
 
     public function index() {
 
@@ -45,47 +57,66 @@ class Users extends CI_Controller {
     }
     
     
-     public function register($action = "") {
+     public function register() {
          
-        $data = array();
-        $data["error"] = NULL;
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+         
+        $view_data = array();
+        $view_data["error"] = NULL;
         
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
+        $this->form_validation->set_rules('passwordconf', 'Password Confirmation', 'required|matches[password]');
+        $this->form_validation->set_rules('level', 'Account Type', 'required');
     
-        
-         if ($this->form_validation->run() && $action == "save") {
+        // has not been run or there are validation errors
+         if ($this->form_validation->run() == FALSE) {
+            $title = "Register as new user";
+            $this->template->write("title", $title);
+            $this->template->write("heading", $title);
+            $this->template->write_view("content", "view_register", $view_data);
+            $this->template->render();
+              //echo "if";
+            // $this->load->view('view_register');
+         }
+         
+         // everything good - process the form
+         else {
+             
+             $newUser = new stdClass;
+             
+            $newUser->email = $this->input->post("email");
+            $newUser->password = $this->input->post("password");
+            $newUser->passwordconf = $this->input->post("passwordconf");
             
-            $new = new stdClass;
+            if ($this->input->post("level") == 'admin') {
+                $newUser->userlvl = 0;  // admin level
+            }
+            else {
+                $newUser->userlvl = 9;  // basic user level
+            }
+                
+            $newUser->institution_id = 1;    // ...for now...
             
-            $new->email = $this->input->post("email");
-            $new->password = $this->input->post("password");
-            $new->passwordconf = $this->input->post("passwordconf");
-            $new->userlvl = 0;          // these will be hard coded...
-            $new->institutionid = 0;    // ...for now...
-            
-            
-            if ($this->_users->register($new)) {
-                $this->flash->success("New Account successfully created.");
-                redirect("dashboard/home");
-            } else {
+            $auth = new Auth();
+
+            if($auth->create_user($newUser)) {
+                $this->flash->success("New Account successfully created.  You may now log-in above!");
+                redirect(dashboard/home);
+            }
+            else {
                 $data["error"] = "Error with registration. Please Try again.";
+                redirect(users/register);
             }
              
          }
-         
-        $title = "Register as new user";
-
-        $this->template->write("title", $title);
-        $this->template->write("heading", $title);
-        $this->template->write_view("content", "view_register", $data);
+       
         
-        $this->template->render();
-        
-        
+       
         
         
      }
+     
+     
 
 }

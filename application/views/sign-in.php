@@ -57,7 +57,7 @@
     <body>
         <div class="container">
             <?php echo form_open('users/authenticate', array('class' => 'form-signin')); ?>
-                <h2 class="form-signin-heading">Please sign in</h2>
+                <h2 class="form-signin-heading">Please sign-in or register now.</h2>
                 <?php echo $flash ?>
                 <?php
                     echo form_input(array(
@@ -81,10 +81,15 @@
                     echo form_submit(array(
                         'name' => 'sign-in',
                         'id' => 'sign-in',
-                        'class' => 'btn btn-lg btn-primary btn-block',
-                        'value' => 'Sign in'
+                        'class' => 'btn btn-lg btn-success btn-block',
+                        'value' => 'Sign In'                     
                     ));
                 ?>
+        
+                
+                <?php echo anchor("users/register", "Register", array("class" => "btn btn-lg btn-primary btn-block")); ?>
+                       
+                
             <?php echo form_close(); ?>
         </div>
     </body>
