@@ -18,15 +18,22 @@ class CommentHandler {
     public function __construct($params)
     {
         $this->CI = &get_instance();
-        $params[$accidentid];
-        $this->getComment();
-        $this->$userID = $this->auth->get_user_id();
+        $this->accidentid=$params['accidentid'];
+        //$params['commentid'];
+        //$this->$userID = $this->auth->get_user_id();
         $this->table = 'comments';
+        
+          if($params['cmd']=='print')
+        {
+              return $this->printComments();
+        }
+        
+        else return $this->moveToDB ($comment);
+        
     }
     
     private function getComment ()
     {
-        
         $accidentid = $this->accidentid;
         $comment = $_POST['comment'];
         if(!empty($comment))
@@ -52,4 +59,35 @@ class CommentHandler {
         $this->CI->db->insert($this->table, $commentData);
     }
     
+    
+    
+    private function loadComments()
+    {
+        $this->CI->load->database();
+        $sql = "SELECT * FROM comments WHERE accident_id=19492";
+        $query = $this->CI->db->query($sql);    
+        return $query;
+    }
+    
+    
+    private function printComments()
+    {
+        $query = $this->loadComments();
+            echo "<h5><b>Accident Comments</b></h5>";
+        foreach ($query->result() as $comment) {
+         echo  '<div id="commentbox" style="padding-top:20px; padding-bottom:15px; margin-top:10px; height:100px;background-color:#f5f5f5; border:1px solid #dddddd;">
+         <dl class="dl-horizontal">  <dt>Cooperd2</dt> <dt>'.$comment->comment_date.'<Date</d><dd>'.$comment->message.'</dd></dl></div>';  
+            
+        }
+        
+     
+       
+        
+        
+        
+    }
+    
+    
 }
+
+
