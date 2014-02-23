@@ -95,8 +95,6 @@ function generate_accident_listing($accidents, $show = array()) {
 
     $headings = array(
         "Date &amp; Time",
-        "Building",
-        "Room",
         "Severity",
         "Entered By",
         "Modified By",
@@ -135,8 +133,6 @@ function generate_accident_listing($accidents, $show = array()) {
 
         $row = array(
             date_mysql2human($acc->date) . " " . time_mysql2human($acc->time),
-            $acc->name,
-            $acc->room,
             severity_scale($acc->severity),
             $user->substring(0, $user->indexOf("@")),
             (!$modified->equals("")) ? $modified->substring(0, $modified->indexOf("@")) : "-",

@@ -71,8 +71,6 @@ class Reports extends CI_Controller {
             "Revision Of",
             "Date",
             "Time",
-            "Building",
-            "Room",
             "Description",
             "Severity",
             "Root",
