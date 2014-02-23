@@ -64,8 +64,6 @@ class Accidents extends CI_Controller {
 
         $this->form_validation->set_rules('date', 'Date', 'required|callback_date_check');
         $this->form_validation->set_rules('time', 'Time', 'required|callback_time_check');
-        $this->form_validation->set_rules('building', 'Building', 'required');
-        $this->form_validation->set_rules('room', 'Room', 'required');
         $this->form_validation->set_rules('description', 'Description', 'required');
         $this->form_validation->set_rules('severity', 'Severity', 'required');
         $this->form_validation->set_rules('root', 'Root', 'required');
@@ -85,8 +83,6 @@ class Accidents extends CI_Controller {
             }
             $new->date = date_human2mysql($this->input->post("date"));
             $new->time = time_human2mysql($this->input->post("time"));
-            $new->building = $this->input->post("building");
-            $new->room = $this->input->post("room");
             $new->description = $this->input->post("description");
             $new->severity = $this->input->post("severity");
             $new->root = $this->input->post("root");
@@ -120,14 +116,14 @@ class Accidents extends CI_Controller {
             //Need to verify if SSL is enabled in the php.ini file ( /xampp/php/php.ini)
 
                 $this->load->library('email');       
-                $this->email->from('labaccidentnotificationsystem@gmail.com', 'Lab Accident Notification');
+                $this->email->from('accidentreport@chemlabaccs.com', 'LARS Notification');
             //  $list = array('xxx@gmail.com'); <To include multiple receipients>
             //  $this->email->to($list);
-                $this->email->to('alexan84@email.sc.edu');  //Need to edit -- I wouldn't like the notifications
+                $this->email->to('cieplows@email.sc.edu');  //Need to edit -- I wouldn't like the notifications
                 $this->email->subject('Lab Accident Notification');  
                 $this->email->message('New Accident to report');
                 $this->email->send();
-                echo $this->email->print_debugger();
+              //  echo $this->email->print_debugger();
             // End of modifiction by Davis
                 
                 $this->flash->success("Report successfully added.");

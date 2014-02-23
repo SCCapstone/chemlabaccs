@@ -125,21 +125,6 @@ $time = array(
     "value" => set_value("time", time_mysql2human($details->time))
 );
 
-$building = array(
-    "id" => "building",
-    "name" => "building",
-    "placeholder" => "Building",
-    "class" => "form-control",
-    "value" => set_value("building", $details->building)
-);
-
-$room = array(
-    "id" => "room",
-    "name" => "room",
-    "placeholder" => "Room",
-    "class" => "form-control",
-    "value" => set_value("room", $details->room)
-);
 
 $description = array(
     "id" => "description",
@@ -202,21 +187,6 @@ $prevention = array(
     </div>
 </div>
 
-<div class="form-group">
-    <label for="<?php echo $building["id"]; ?>" class="col-sm-2 control-label"><?php echo $building["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($building["name"]); ?>
-        <?php echo form_dropdown($building["name"], get_buildings(), set_value(CI()->input->post($building["name"]), $details->building), 'class="form-control" id="building"'); ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="<?php echo $room["id"]; ?>" class="col-sm-2 control-label"><?php echo $room["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($room["name"]); ?>
-        <?php echo form_input($room); ?>
-    </div>
-</div>
 
 <div class="form-group">
     <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
@@ -297,17 +267,6 @@ $prevention = array(
         </div>
     </div>
 
-    <!-----Building Information--->
-
-    <div class="panel panel-default" id = "building_info">
-        <div class="panel-heading"><h4>Building Information</h4></div>
-        <div class="panel-body">
-            <b> Building Name:  </b> <?php echo $building['value']; ?>
-            <p></p>
-            <b>Room Number:</b> <?php echo $room['value']; ?>
-            <p></p>
-        </div>
-    </div>
 
     <!---- Accident Details---->
 
