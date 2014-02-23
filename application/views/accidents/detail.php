@@ -1,47 +1,48 @@
+
 <script type="text/javascript">
-    function stateChange()
-    {
-        $("#comment_container_box").removeClass("has-error");
-        var x=document.getElementById("comment_content");
-
-        $("#post_button").removeClass("hidden");
-            
-    }
-
-
-    $(function()
-    {
+      $(function() {
+        
         $("#post_button").click(function(){
-
             // The content in the comment box
+            
             var comCon = $("#comment_content").val();
+              var block = '<a href="#" class="list-group-item"><h5 class="list-group-item-heading"><b>Cooperd2</b><small>      - Seconds ago</small></h5><p class="list-group-item-text"></p>'+comCon+'</a>';
+              var newblock = document.createElement('a');
+            
+              newblock.setAttribute("class", "list-group-item")
+              newblock.innerHTML= '<h5 class="list-group-item-heading"><b><?php echo $details->id;?></b><small>      - Seconds ago</small></h5><p class="list-group-item-text"></p>'+comCon;
+             var refid = $("#refid").val();
+            
+                var post_data = {
+        'comment_content': comCon,'id': refid };
 
-            // alert($("#comment_content"));
 
-            // Serializing the comment content for posting with Ajax
-            var dataString = 'comment_content='+comCon;
+
+            // Serializing the comment content for posting comments 
 
             if(!comCon)
             {
-                $('#notifyModal').modal('show'); 
-                //alert("This comment box cannot");
-                //$("#comment_container_box").addClass("has-error");
+              // If the comment box is empty, then a modal notification is displayed.  
+             $('#notifyModal').modal('show'); 
             }
 
 
 
             else{
-                $("#comment_confirmation").show();
-                $("#comment_confirmation").fadeIn(600).html();
-
+            
 
                 $.ajax({
-                    type: "POST",
-                    url: "../../libraries/Routecontroller.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(html){
+                     type: "POST",
+                     url: "<?php echo base_url(); ?>accidents/comment",
+                    data: post_data,
+                   
+                    success: function(){
+            alert("ok!");
+             document.getElementById('comment_content').value=' ';
+             var commentlist = document.getElementById('comment_list');
+             commentlist.insertBefore(newblock,commentlist.childNodes[0])
 
+             
 
                     }
                 });
@@ -401,11 +402,13 @@ $prevention = array(
 
     <!-----------------------------------------------Comments Area--------------------------------------------------------------------->
     <div class="comment_container_box" id ="comment_container_box" style="width:auto;padding:15px; background-color:#f5f5f5; border:1px solid #dddddd;">
+      
         <form method="post" name="form" action="">
             <textarea class="form-control" rows="1" placeholder="What would you like to say?" id ="comment_content" onfocus="stateChange()" required></textarea>
 
     </div>
-    <input type="submit" class="btn btn-primary hidden" id="post_button" value="Post" style="margin-top:10px; float:right;  margin-bottom:10px;" />
+    <input type="submit" class="btn btn-primary" id="post_button" value="Post" style="margin-top:10px; float:right;  margin-bottom:10px;" />
+    <input type="hidden" id="refid" name="refid" value="<?php echo $details->id ?>" />
 </form>
 <div class="horizontal_spacer" style="min-height:50px;"></div>
 <?php
@@ -414,6 +417,6 @@ $accidentid = $details->id;
 $params = array('accidentid' => $accidentid,
     'cmd' => 'print');
 
-$this->load->library('commenthandler', $params);
+$this->load->library('commentmodule', $params);
 ?>  
 </div>
