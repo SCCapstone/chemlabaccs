@@ -7,12 +7,12 @@
  */
 
 $config['useragent'] = 'CodeIgniter';
-$config['protocol'] = 'smtp';
-//$config['mailpath'] = '/usr/sbin/sendmail';
-$config['smtp_host'] = 'ssl://smtp.googlemail.com';
-$config['smtp_user'] = 'labaccidentnotificationsystem@gmail.com';
+$config['protocol'] = 'sendmail';
+$config['mailpath'] = '/usr/sbin/sendmail';
+$config['smtp_host'] = 'relay-hosting.secureserver.net';
+$config['smtp_user'] = 'accidentreport@chemlabaccs.com';
 $config['smtp_pass'] = 'chemlabaccs';
-$config['smtp_port'] = 465; 
+$config['smtp_port'] = 25; 
 $config['smtp_timeout'] = 5;
 $config['wordwrap'] = TRUE;
 $config['wrapchars'] = 76;
