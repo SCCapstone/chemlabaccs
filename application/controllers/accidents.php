@@ -33,22 +33,7 @@ class Accidents extends CI_Controller {
 
         return true;
     }
-    
-    
-    
-    
-    
-   public function comment()
-    {
-        echo "working"." "."Accident Id: ".$_POST['accidentid'];
-        
-        // 
-        // $this->load->library(commenthandler);
-    }
-    
-    
-    
-    
+
     public function add($action = "") {
 
         /*         * *********************************************************************************** */
@@ -88,7 +73,7 @@ class Accidents extends CI_Controller {
             $new->root = $this->input->post("root");
             $new->prevention = $this->input->post("prevention");
             $new->id = $accident_id;
-            $new->revision_of=$accident_id;
+            $new->revision_of = $accident_id;
 
             /*************************************************************************************/
             /*************************************************************************************/
@@ -97,25 +82,24 @@ class Accidents extends CI_Controller {
             // Used the CI string class to generate a user id so we can pass it to photohandler
             // So each photos is related to a a accident report
             $userid = $this->auth->get_user_id();
-            $params = array('userid'=>$userid,'accidentid'=>$accident_id);
+            $params = array('userid' => $userid, 'accidentid' => $accident_id);
             //$params = array($userid, $accident_id);
             $this->input->post("filefield");
             $this->input->post("dynamic_comment");
-           /*************************************************************************************/
-            if ($this->_accidents->add($new,$accident_id)) {
-              // Move the photos and photo descriptions to the database.
-             // Optional descriptions are sent by $this->input->post("dynamic_comment");
-               $this->load->library('photohandler', $params);
-               
-           
-            /*************************************************************************************/
-             
-            //Modified by Davis
-            //Adding Email to Admin functionality
-            //Need to make new gmail account per site name
-            //Need to verify if SSL is enabled in the php.ini file ( /xampp/php/php.ini)
+            /*             * ********************************************************************************** */
+            if ($this->_accidents->add($new, $accident_id)) {
+                // Move the photos and photo descriptions to the database.
+                // Optional descriptions are sent by $this->input->post("dynamic_comment");
+                $this->load->library('photohandler', $params);
 
-                $this->load->library('email');       
+
+                /*                 * ********************************************************************************** */
+                //Modified by Davis
+                //Adding Email to Admin functionality
+                //Need to make new gmail account per site name
+                //Need to verify if SSL is enabled in the php.ini file ( /xampp/php/php.ini)
+
+                $this->load->library('email');
                 $this->email->from('accidentreport@chemlabaccs.com', 'LARS Notification');
             //  $list = array('xxx@gmail.com'); <To include multiple receipients>
             //  $this->email->to($list);
@@ -142,6 +126,8 @@ class Accidents extends CI_Controller {
         $this->template->render();
     }
 
+    /*     * ********************************************************************************** */
+
     public function detail($id) {
 
         $id = (int) $id;
@@ -165,6 +151,8 @@ class Accidents extends CI_Controller {
         $this->template->render();
     }
 
+    /*     * ********************************************************************************** */
+
     public function results() {
 
         $search = $this->_accidents->search();
@@ -180,6 +168,8 @@ class Accidents extends CI_Controller {
         $this->template->write("content", $content);
         $this->template->render();
     }
+
+    /*     * ********************************************************************************** */
 
     public function revisions($id) {
 
@@ -200,6 +190,8 @@ class Accidents extends CI_Controller {
         $this->template->render();
     }
 
+    /*     * ********************************************************************************** */
+
     public function search($action = "") {
 
         $data = array();
@@ -211,4 +203,16 @@ class Accidents extends CI_Controller {
         $this->template->render();
     }
 
+    /************************************************************************************** */
+   // Created by D.Cooper 2/23/2014
+    // Add a comment for an accident report 
+    public function comment() {
+        $id = $_POST['id'];
+        $comment = $_POST['comment_content'];
+        $userid = $this->auth->get_user_id();
+        $params = array('accidentid'=>$id,'comment'=>$comment,'userid'=>$userid);
+        $this->load->library('commenthandler',$params);
+    }
+
+    /*     * ********************************************************************************** */
 }
