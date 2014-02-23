@@ -74,7 +74,7 @@ class Users extends CI_Controller {
             $title = "Register as new user";
             $this->template->write("title", $title);
             $this->template->write("heading", $title);
-            $this->template->write_view("content", "view_register", $view_data);
+            $this->template->write_view("content", "register/view_register", $view_data);
             $this->template->render();
               //echo "if";
             // $this->load->view('view_register');
@@ -83,30 +83,45 @@ class Users extends CI_Controller {
          // everything good - process the form
          else {
              
-             $newUser = new stdClass;
+            $newUser = new stdClass;
              
             $newUser->email = $this->input->post("email");
             $newUser->password = $this->input->post("password");
             $newUser->passwordconf = $this->input->post("passwordconf");
             
             if ($this->input->post("level") == 'admin') {
-                $newUser->userlvl = 0;  // admin level
+                $newUser->userlvl = 1;  // admin level
             }
             else {
                 $newUser->userlvl = 9;  // basic user level
             }
                 
-            $newUser->institution_id = 1;    // ...for now...
+           
             
             $auth = new Auth();
 
+            // if new user is created successfully
             if($auth->create_user($newUser)) {
-                $this->flash->success("New Account successfully created.  You may now log-in above!");
-                redirect(dashboard/home);
-            }
+                
+                // if student account was created
+                if($newUser->userlvl == 9) {
+                    $this->flash->success("New Account successfully created! You may now sign-in and join a Section.");
+                    redirect('users/signin');
+                    
+                    
+                    
+                }
+                
+                // if admin account was created
+                elseif ($newUser->userlvl == 1) {
+                    $this->flash->success("New Admin account successfully created.");
+                    redirect('user/pickInstitution');
+                }
+            }  
+            
             else {
                 $data["error"] = "Error with registration. Please Try again.";
-                redirect(users/register);
+                redirect('users/register');
             }
              
          }
@@ -115,6 +130,38 @@ class Users extends CI_Controller {
        
         
         
+     }
+     
+     public function joinSection() {
+         
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+         
+        $view_data = array();
+        $view_data["error"] = NULL;
+         
+        
+        $this->form_validation->set_rules('sectionID', 'Section ID #', 'required');
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         $title = "Join a Section";
+         $this->template->write("title", $title);
+         $this->template->write("heading", $title);
+         $this->template->write_view("content", "register/joinSection", $view_data);
+         $this->template->render();
+         
+         
      }
      
      
