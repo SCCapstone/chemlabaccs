@@ -63,10 +63,9 @@ class _Accidents extends CI_Model {
         
         $mines = array();
         
-        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count, "
+        $sql = sprintf("SELECT a1.*, users.email, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count, "
                 . "(SELECT users.email FROM users WHERE users.id = a1.modified_by) AS modified "
                 . "FROM accidents a1 "
-                . "JOIN buildings ON a1.building = buildings.id "
                 . "JOIN users ON a1.user = users.id "
                 . "WHERE a1.created >= ALL(SELECT a2.created FROM accidents a2 WHERE a2.revision_of = a1.revision_of) "
                 . "AND a1.user = %d ORDER BY a1.created DESC", $this->auth->get_user_id());
@@ -111,10 +110,9 @@ class _Accidents extends CI_Model {
         
         $results = array();
         
-        $this->db->select("accidents.id, revision_of, date, time, buildings.name, room,
+        $this->db->select("accidents.id, revision_of, date, time,
             description, severity, root, prevention, users.email, created");
         $this->db->from("accidents");
-        $this->db->join("buildings", "accidents.building = buildings.id");
         $this->db->join("users", "accidents.user = users.id");
                 
         if ($this->input->post("start_date") && $this->input->post("end_date")) {
@@ -127,13 +125,6 @@ class _Accidents extends CI_Model {
             $this->db->where("time <=", time_human2mysql($this->input->post("end_time")));
         }
         
-        if ($this->input->post("building")) {
-            $this->db->where("building", $this->input->post("building"));
-        }
-        
-        if ($this->input->post("room")) {
-            $this->db->where("room", $this->input->post("room"));
-        }
         
         if ($this->input->post("description")) {
             $this->db->like("description", $this->input->post("description"));
@@ -166,10 +157,9 @@ class _Accidents extends CI_Model {
             $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a1.`");            
         }
         
-        $sql = sprintf("SELECT a1.*, users.email, buildings.name, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count, "
+        $sql = sprintf("SELECT a1.*, users.email, (SELECT COUNT(*) FROM accidents WHERE revision_of = a1.revision_of) AS count, "
                 . "(SELECT users.email FROM users WHERE users.id = a1.modified_by) AS modified "
                 . "FROM accidents a1 "
-                . "JOIN buildings ON a1.building = buildings.id "
                 . "JOIN users ON a1.user = users.id "
                 . "WHERE a1.created >= ALL(SELECT a2.created FROM accidents a2 WHERE a2.revision_of = a1.revision_of) "
                 . "%s ORDER BY a1.created DESC", $add ? "AND " . $where : "");

@@ -17,20 +17,6 @@ $time = array(
     "type" => "time"
 );
 
-$building = array(
-    "id" => "building",
-    "name" => "building",
-    "placeholder" => "Building",
-    "class" => "form-control"
-);
-
-$room = array(
-    "id" => "room",
-    "name" => "room",
-    "placeholder" => "Room",
-    "class" => "form-control",
-    "value" => set_value("room")
-);
 
 $description = array(
     "id" => "description",
@@ -261,21 +247,7 @@ background-color:#fff;
     </div>
 </div>
 
-<div class="form-group">
-    <label for="<?php echo $building["id"]; ?>" class="col-sm-2 control-label"><?php echo $building["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($building["name"]); ?>
-        <?php echo form_dropdown($building["name"], get_buildings(true), CI()->input->post($building["name"]), 'class="form-control" id="building"'); ?>
-    </div>
-</div>
 
-<div class="form-group">
-    <label for="<?php echo $room["id"]; ?>" class="col-sm-2 control-label"><?php echo $room["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($room["name"]); ?>
-        <?php echo form_input($room); ?>
-    </div>
-</div>
 
 <div class="form-group">
     <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
