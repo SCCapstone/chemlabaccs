@@ -8,12 +8,99 @@
         <?php echo $_styles ?>
         <?php echo $_scripts ?>
         <style type="text/css">
-            body {
-                padding-top: 80px;
-            }
-            div.error {
-                color: #f00;
-            }
+           body {
+	padding-top: 80px;
+}
+div.error {
+	color: #f00;
+}
+/* 
+    Document   : chemlab.css
+    Created on : Feb 21, 2014, 5:14:44 PM
+    Author     : IAWS_BUSINESS
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.modal-content {
+	width: 642;
+	min-width: 642px;
+	padding: 0px;
+}
+.modal-dialog {
+	min-width: 642px;
+}
+.modal-body {
+	padding: 0px !important;
+}
+.dropdown-menu {
+	left: -90px;
+}
+.img-thumbnail {
+	cursor: pointer;
+}
+pre {
+	height: 75px;
+}
+.dl-horizontal dt {
+	text-align: center;
+}
+.modal-content {
+	width: 642;
+	min-width: 642px;
+	padding: 0px;
+}
+.modal-dialog {
+	min-width: 642px;
+}
+.modal-body {
+	padding: 0px !important;
+}
+.dropdown-menu {
+	left: -90px;
+}
+.img-thumbnail {
+	cursor: pointer;
+}
+pre {
+	height: 75px;
+}
+.dl-horizontal dt {
+	text-align: center;
+}
+textarea.form-control {
+	height: auto;
+}
+textarea.form-control:focus {
+}
+.comment_container {
+	max-width: 820px;
+	padding-left: 15px;
+}
+.container_content {
+	max-width: 860px;
+}
+.list-group-item {
+	min-height: 80px;
+	padding: 15px;
+}
+#image-description {
+	font-size: 15px !important;
+}
+  #photoview{
+        max-width: 815px;
+        margin:0 auto;
+        margin-bottom:50px;
+        height:auto;
+        width:auto !important;
+
+        padding-left:15px;
+    }
+    .equamargins{
+        width: 90% !important;
+    }
+   
+</style>
         </style>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
