@@ -47,6 +47,7 @@ class Accidents extends CI_Controller {
         $data = array();
         $data["error"] = NULL;
 
+        $this->form_validation->set_rules('section', 'Section', 'required');
         $this->form_validation->set_rules('date', 'Date', 'required|callback_date_check');
         $this->form_validation->set_rules('time', 'Time', 'required|callback_time_check');
         $this->form_validation->set_rules('description', 'Description', 'required');
@@ -66,6 +67,7 @@ class Accidents extends CI_Controller {
                 $new->revision_of = 0;
                 $new->user = $this->auth->get_user_id();
             }
+            $new->section_id = $this->input->post("section");
             $new->date = date_human2mysql($this->input->post("date"));
             $new->time = time_human2mysql($this->input->post("time"));
             $new->description = $this->input->post("description");

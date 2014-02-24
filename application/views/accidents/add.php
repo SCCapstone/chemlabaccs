@@ -1,4 +1,14 @@
 <?php
+
+$sections = get_sections();
+
+$section = array(
+    "id" => "section",
+    "name" => "section",
+    "placeholder" => "Section",
+    "class" => "form-control"
+    );
+
 $date = array(
     "id" => "date",
     "name" => "date",
@@ -232,6 +242,14 @@ background-color:#fff;
 <?php echo form_open_multipart("accidents/add/save", array("class" => "form-horizontal formcs", "role" => "form","encytype" =>"multipart/form-data")); ?>
 
 <div class="form-group">
+    <label for="<?php echo $section["id"]; ?>" class="col-sm-2 control-label"><?php echo $section["placeholder"]; ?></label>
+    <div class="col-sm-10">
+        <?php echo form_error($section["name"]); ?>
+        <?php echo form_dropdown($section["name"], $sections, CI()->input->post($section["name"]), 'class="form-control" id="section"'); ?>
+    </div>
+</div>
+
+<div class="form-group">
     <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($date["name"]); ?>
@@ -330,8 +348,9 @@ background-color:#fff;
             </script>
 
         </div>
-        <span style="float: right;"> <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-plus"></span> Add Report')); ?></span>
-
+        <div class="row">
+            <span style="float: right;"> <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-plus"></span> Add Report')); ?></span>
+        </div>
 
 
 <?php echo form_close(); ?>

@@ -33,5 +33,31 @@ class _Section extends CI_Model {
         
     }
     
+    public function get_sections() {
+        
+        $auth = new Auth();
+        
+        $userid = $auth->get_user_id();
+        
+        $result = array();
+        
+        $sectionQ = $this->db->get('section');
+        $userLabQ = $this->db->get('lab_user');
+        
+        if ($sectionQ->num_rows() > 0 and $userLabQ->num_rows() > 0) {
+            foreach ($sectionQ->result() as $secRow) {
+                foreach ($userLabQ->result() as $usRow) {
+                    if ($secRow->id == $usRow->section_id) {
+                        $result[$secRow->id] = $secRow->name;
+                    }
+                }
+    
+            }
+        }
+        
+        return $result;
+        
+    }
+    
     
 }

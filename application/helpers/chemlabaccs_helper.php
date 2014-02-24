@@ -51,6 +51,23 @@ function get_buildings($extra = false) {
     
 }
 
+function get_sections() {
+        /*
+        $auth = new Auth();
+        
+        $userid = $auth->get_user_id();
+        
+        //$sqlSectionIDs = "SELECT section_id FROM lab_user WHERE user_id = " . $userid;
+        
+        $sectionids = $this->db->query('SELECT name FROM section');
+        */
+       // $this->load->model('_section');
+     
+       // return $this->_section->get_sections();
+        return get_instance()->_section->get_sections();
+    
+}
+
 function severity_scale($severity) {
     
     $rating = 0;
