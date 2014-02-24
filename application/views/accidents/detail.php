@@ -6,11 +6,10 @@
             // The content in the comment box
             
             var comCon = $("#comment_content").val();
-              var block = '<a href="#" class="list-group-item"><h5 class="list-group-item-heading"><b>Cooperd2</b><small>      - Seconds ago</small></h5><p class="list-group-item-text"></p>'+comCon+'</a>';
               var newblock = document.createElement('a');
             
               newblock.setAttribute("class", "list-group-item")
-              newblock.innerHTML= '<h5 class="list-group-item-heading"><b><?php echo $details->id;?></b><small>      - Seconds ago</small></h5><p class="list-group-item-text"></p>'+comCon;
+              newblock.innerHTML= '<h5 class="list-group-item-heading"><b><?php echo $details->id; ?></b><small>      - Just Now</small></h5><p class="list-group-item-text"></p>'+comCon;
              var refid = $("#refid").val();
             
                 var post_data = {
@@ -37,7 +36,6 @@
                     data: post_data,
                    
                     success: function(){
-            alert("ok!");
              document.getElementById('comment_content').value=' ';
              var commentlist = document.getElementById('comment_list');
              commentlist.insertBefore(newblock,commentlist.childNodes[0])
@@ -54,17 +52,22 @@
 
 <script>
     $(document).ready(function(){
+        // This function appends accident photos and their descrpitions to a modal component.  
        
         var showbox = document.getElementById('modal-body');
 
         $(".img-thumbnail").click(function(){
-    
+            
             var data = $(this).attr('data');
+            var image_description = $(this).attr('data-description');
             var thumb_data = $(".img-thumbnail");
+            var comment = document.getElementById('image-description');
             // thumb_data = document.getElementById("photobox").getAttribute("data");
             //var img = document.createElement("img");
             // img.src = thumbdata;
             showbox.innerHTML="<img src="+data+">";
+            comment.innerHTML=image_description;
+            
 
             $('#myModal').modal('show'); 
             //showbox.innerHTML="";
@@ -85,30 +88,6 @@
 </script>
 
 
-<style>
-    textarea.form-control {
-        height: 35px;
-    }
-
-    textarea.form-control:focus {
-        height: 70px;
-    }
-
-
-    .comment_container{
-        max-width:820px;
-        padding-left:15px;
-    }
-    .container_content{
-        max-width:860px;
-
-    }
-    .list-group-item{
-        min-height:80px;
-        padding:15px;
-    }
-</style>
-
 <?php
 $date = array(
     "id" => "date",
@@ -126,6 +105,11 @@ $time = array(
     "value" => set_value("time", time_mysql2human($details->time))
 );
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 57e11cd6e9b036fe072fcbc1368ac72fa935ad57
 
 $description = array(
     "id" => "description",
@@ -157,7 +141,13 @@ $prevention = array(
 
 
 
+<style>
 
+  
+
+
+
+</style>
 <?php
 /*
   $params = array($details->id);
@@ -175,25 +165,29 @@ $prevention = array(
 <div class="form-group ">
     <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
     <div class="col-sm-10">
-        <?php echo form_error($date["name"]); ?>
-        <?php echo form_input($date); ?>
+<?php echo form_error($date["name"]); ?>
+<?php echo form_input($date); ?>
     </div>
 </div>
 
 <div class="form-group">
     <label for="<?php echo $time["id"]; ?>" class="col-sm-2 control-label"><?php echo $time["placeholder"]; ?></label>
     <div class="col-sm-10">
-        <?php echo form_error($time["name"]); ?>
-        <?php echo form_input($time); ?>
+<?php echo form_error($time["name"]); ?>
+<?php echo form_input($time); ?>
     </div>
 </div>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 57e11cd6e9b036fe072fcbc1368ac72fa935ad57
 
 <div class="form-group">
     <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
     <div class="col-sm-10">
-        <?php echo form_error($description["name"]); ?>
-        <?php echo form_textarea($description); ?>
+<?php echo form_error($description["name"]); ?>
+<?php echo form_textarea($description); ?>
         <span class="help-block"><?php echo lang('cla_f_description'); ?></span>
     </div>
 </div>
@@ -201,24 +195,22 @@ $prevention = array(
 <div class="form-group">
     <label class="col-sm-2 control-label">Severity</label>
     <div class="col-sm-10">
-        <?php echo form_error("severity"); ?>
-        <?php
-        $i = 0;
-        foreach (array("low", "medium", "high") as $severity):
-            ?>
-            <?php
-            $selected = "";
-            if ($this->input->post("severity") == $severity || $details->severity == $severity) {
-                $selected = 'checked="checked"';
-            }
-            ?>
+<?php echo form_error("severity"); ?>
+<?php $i = 0;
+foreach (array("low", "medium", "high") as $severity): ?>
+    <?php
+    $selected = "";
+    if ($this->input->post("severity") == $severity || $details->severity == $severity) {
+        $selected = 'checked="checked"';
+    }
+    ?>
             <div class="radio">
                 <label>
                     <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-    <?php echo severity_scale($severity); ?>
+            <?php echo severity_scale($severity); ?>
                 </label>
             </div>
-<?php endforeach; ?>
+        <?php endforeach; ?>
     </div>
 </div>
 
@@ -234,7 +226,7 @@ $prevention = array(
 <div class="form-group">
     <label for="<?php echo $prevention["id"]; ?>" class="col-sm-2 control-label"><?php echo $prevention["placeholder"]; ?></label>
     <div class="col-sm-10">
-        <?php echo form_error($prevention["name"]); ?>
+<?php echo form_error($prevention["name"]); ?>
 <?php echo form_textarea($prevention); ?>
         <span class="help-block"><?php echo lang('cla_f_prevention'); ?></span>
     </div>
@@ -254,7 +246,7 @@ $prevention = array(
 <?php echo form_close(); ?>
 
 
-<!-----------------Demo---------------------->
+<!-----------------Detailed View---------------------->
 <div class ="container formcs container_content">
     <!-------Time Information ----->
     <div class="panel panel-default" id = "time_info">
@@ -268,6 +260,10 @@ $prevention = array(
         </div>
     </div>
 
+<<<<<<< HEAD
+    <!-----Building Information--->
+=======
+>>>>>>> 57e11cd6e9b036fe072fcbc1368ac72fa935ad57
 
     <!---- Accident Details---->
 
@@ -286,9 +282,8 @@ $prevention = array(
     </div>
 
     <div class =" panel panel-default" id="photos">
-        <div class="panel-heading"><h4> Accident Photos</h4></div>
+        <div class="panel-heading"><h4>Accident Photos</h4></div>
         <div class="panel-body">
-
 
             <?php
             $params = array($details->id);
@@ -334,18 +329,18 @@ $prevention = array(
             <div class="modal-body" id="modal-body">
             </div>
             <div class="modal-footer">
-                <div class="content hidden" id="image-description" style="float:left;">Our Description here.  This will go under the photos</div>
+                <div class="content" id="image-description" style="float:left;">Our Description here.  This will go under the photos</div>
                 <div class="hidden"> <textarea class="form-control" rows="3" placeholder="" value="Our Description here.  This will go under the photos"></textarea> <br/><input class="btn btn-primary" type="submit" value="Submit Changes" ></div><br/>
                 <!----------------------------------------------------Toggle Edit Button------------------------------------------------------------------->
 
                 <!-- Single button -->
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle hidden" data-toggle="dropdown">
 
                         <span class="glyphicon glyphicon-cog"></span><span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" id="edit-description"><span class="glyphicon glyphicon-pencil" ></span>  Edit Description</a></li>
+                        <li><a href="#" id="edit-description"><span class="" ></span>  Edit Description</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Remove Photo</a></li>
                     </ul>
