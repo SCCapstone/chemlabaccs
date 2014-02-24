@@ -59,5 +59,13 @@ class _Section extends CI_Model {
         
     }
     
+    public function createSection($newSec) {
+        
+        $this->db->insert('section', $newSec);
+        
+        return $this->db->affected_rows() == 1;
+        
+    }
+    
     
 }
