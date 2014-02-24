@@ -20,7 +20,7 @@ $sectionPassword = array(
 
 
 
-<?php echo form_open_multipart("users/register", array("class" => "form-horizontal", "role" => "form","encytype" =>"multipart/form-data")); ?>
+<?php echo form_open_multipart("users/joinSection", array("class" => "form-horizontal", "role" => "form","encytype" =>"multipart/form-data")); ?>
 
  <div>
         <div class="well">

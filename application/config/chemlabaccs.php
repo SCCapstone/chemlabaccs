@@ -9,6 +9,7 @@ define("NUM_RATINGS", 3);
 $config['table_users'] = 'users';
 $config['table_accidents'] = 'accidents';
 $config['table_buildings'] = 'buildings';
+$config['table_lab_user'] = 'lab_user';
 
 function CI() {
     return get_instance();

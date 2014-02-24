@@ -5,6 +5,8 @@ if (!defined('BASEPATH'))
 
 class Users extends CI_Controller {
     
+    private $CI = NULL;
+    
     public function __construct() {
         
         parent::__construct();
@@ -14,6 +16,8 @@ class Users extends CI_Controller {
         $this->table->set_template(array (
             "table_open" => '<table class="table table-striped">'
         ));
+        
+        $this->CI = & get_instance();
         
     }
 
@@ -133,7 +137,7 @@ class Users extends CI_Controller {
      }
      
      public function joinSection() {
-         
+       
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
          
         $view_data = array();
@@ -141,25 +145,36 @@ class Users extends CI_Controller {
          
         
         $this->form_validation->set_rules('sectionID', 'Section ID #', 'required');
+        $this->form_validation->set_rules('sectionPassword', 'Section Password', 'required');
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-         $title = "Join a Section";
-         $this->template->write("title", $title);
-         $this->template->write("heading", $title);
-         $this->template->write_view("content", "register/joinSection", $view_data);
-         $this->template->render();
+        if ($this->form_validation->run() == FALSE) {
+            $title = "Join a Section";
+            $this->template->write("title", $title);
+            $this->template->write("heading", $title);
+            $this->template->write_view("content", "register/joinSection", $view_data);
+            $this->template->render();
+         }
+          else {
+             
+            $userSection = new stdClass;
+             
+            $userSection->section_id = $this->input->post("sectionID");
+            $userSection->user_id = CI()->auth->get_user_id();
+            
+            $this->load->model('_section');
+            
+            if($this->_section->join_section($userSection)) {
+                $this->flash->success("You have successfully joined the section!");
+                redirect('dashboard/home');
+            }
+            else {
+                $this->flash->danger("Problem joining section. Please try again.");
+                redirect('users/joinSection');
+            }
+            
+          }
+         
          
          
      }
