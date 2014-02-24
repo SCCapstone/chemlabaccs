@@ -133,7 +133,8 @@ $autoload['language'] = array(
 $autoload['model'] = array(
     '_accidents',
     '_auth',
-    '_buildings'
+    '_buildings',
+    '_section'
 );
 
 
