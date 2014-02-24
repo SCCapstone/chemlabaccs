@@ -119,7 +119,7 @@ class Users extends CI_Controller {
                 // if admin account was created
                 elseif ($newUser->userlvl == 1) {
                     $this->flash->success("New Admin account successfully created! You may now sign-in and create a Section.");
-                    redirect('user/signin');
+                    redirect('users/signin');
                 }
             }  
             
