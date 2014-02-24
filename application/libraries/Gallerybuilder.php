@@ -54,13 +54,19 @@ class Gallerybuilder {
         $html.='<div class="">'; 
         $i = 0;
         foreach ($query->result() as $photo) {
-
-            $html.='<img src=../../' . $photo->thumb_abs_url . ' class ="img-thumbnail" width="200px" height="200px" description="' . $photo->comment . '">';
+         
+            $html.='<img src=../../' . $photo->thumb_abs_url . ' class ="img-thumbnail" id="photobox" data = "../../'.$photo->photo_abs_url.'" width="195px" height="200px" data-description="'. $photo->comment . '">';
             $i++;
         }
         $html.="</div></div>";
 
+        if($size<1)
+		{
+			echo "<b>No Photos.</b>";
+		}
+		else{
         echo $html;
+		}
         }
 
 }
