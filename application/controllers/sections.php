@@ -58,7 +58,7 @@ class Sections extends CI_Controller {
             $newSec->institution_id = 1;    // for now
             
             
-            $this->load->model(_section);
+            $this->load->model('_section');
             
             if($this->_section->createSection($newSec)) {
                 
