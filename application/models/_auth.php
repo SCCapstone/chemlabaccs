@@ -109,4 +109,18 @@ class _Auth extends CI_Model {
         
     }
 
+    public function get_level($id) {
+        
+        $where = array("id" => $id);
+        
+        $query = $this->db->get_where($this->table, $where);
+        
+        if ($query->num_rows == 1) {
+            $level = String($query->row()->userlvl);
+            return $level;
+        }
+        
+        return NULL;
+    }
+    
 }

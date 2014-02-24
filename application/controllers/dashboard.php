@@ -20,10 +20,19 @@ class Dashboard extends CI_Controller {
     public function home() {
         
         $this->auth->required();
-
-        $this->template->write("title", "Dashboard");
-        $this->template->write_view("content", "dashboard/home");
-        $this->template->render();
+        
+        $auth = new Auth();
+        
+        if($auth->getLevel() == '9') {
+            $this->template->write("title", "Dashboard");
+            $this->template->write_view("content", "dashboard/home");
+            $this->template->render();
+        }
+        else {
+            $this->template->write("title", "Admin Dashboard");
+            $this->template->write_view("content", "dashboard/adminHome");
+            $this->template->render();
+        }
         
     }
     

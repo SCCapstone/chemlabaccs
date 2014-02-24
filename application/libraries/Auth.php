@@ -19,7 +19,7 @@ class Auth {
      * Authentication library construct
      */
     public function __construct() {
-
+       
         // get CI object
         $this->CI = & get_instance();
         
@@ -66,7 +66,7 @@ class Auth {
      * @return boolean
      */
     public function create_user($user) {
-        
+             
         // generate the salt
         $user->salt = random_string('unique');
         // hash the password and salt together
@@ -145,7 +145,11 @@ class Auth {
         }
         
     }
-
+    
+    public function getLevel() {
+        return $this->CI->_auth->get_level($this->CI->session->userdata(self::KEY_USER_ID));
+    }
+    
 }
 
 /* End of file Auth.php */
