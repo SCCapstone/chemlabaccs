@@ -55,9 +55,19 @@ function get_userID() {
     
     $auth = new Auth();
         
-    $userid = $auth->get_user_id();
+    $userID = $auth->get_user_id();
     
     return $userID;    
+}
+
+function get_email() {
+    
+    $auth = new Auth();
+    
+    $email = $auth->get_user_name();
+    
+    return $email;
+    
 }
 
 function get_sections() {
