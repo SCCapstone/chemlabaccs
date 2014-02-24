@@ -46,5 +46,58 @@
           </div>
         </div>
     </div>    
+    
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Your Sections</h3>
+          </div>
+          <div class="panel-body">
+              <div class="col-md-6">
+                  <b>Name</b> <br>
+                <?php 
+
+               $row = $this->_section->get_sections();
+
+                      foreach($row as $sec) {
+                         echo $sec . '<br />';
+                      } 
+
+
+                       ?> 
+              </div>
+              
+              <div class="col-md-2">
+                  <b>ID</b> <br>
+                <?php 
+
+               $row = $this->_section->get_sections_ids();
+
+                      foreach($row as $sec) {
+                         echo $sec . '<br />';
+                      } 
+
+
+                       ?> 
+              </div>
+              
+              <div class="col-md-3">
+                  <b>Password</b> <br>
+                <?php 
+
+               $row = $this->_section->get_sections_pass();
+
+                      foreach($row as $sec) {
+                         echo $sec . '<br />';
+                      } 
+
+
+                       ?> 
+              </div>
+
+          </div>
+        </div>
+    </div> 
+    
 </div> 
      

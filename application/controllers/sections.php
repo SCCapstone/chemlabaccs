@@ -62,6 +62,15 @@ class Sections extends CI_Controller {
             
             if($this->_section->createSection($newSec)) {
                 
+                $userSection = new stdClass;
+             
+                $userSection->section_id = $newSec->id;
+                $userSection->user_id = CI()->auth->get_user_id();
+
+                $this->load->model('_section');
+
+                $this->_section->join_section($userSection);
+                
                 $this->load->library('email');
                 $this->email->from('accidentreport@chemlabaccs.com', 'LARS Notification');
                 $this->email->to(get_email());  

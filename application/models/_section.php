@@ -47,8 +47,60 @@ class _Section extends CI_Model {
         if ($sectionQ->num_rows() > 0 and $userLabQ->num_rows() > 0) {
             foreach ($sectionQ->result() as $secRow) {
                 foreach ($userLabQ->result() as $usRow) {
-                    if ($secRow->id == $usRow->section_id) {
+                    if ($secRow->id == $usRow->section_id and $usRow->user_id == $userid) {
                         $result[$secRow->id] = $secRow->name;
+                    }
+                }
+    
+            }
+        }
+        
+        return $result;
+        
+    }
+    
+    public function get_sections_ids() {
+        
+        $auth = new Auth();
+        
+        $userid = $auth->get_user_id();
+        
+        $result = array();
+        
+        $sectionQ = $this->db->get('section');
+        $userLabQ = $this->db->get('lab_user');
+        
+        if ($sectionQ->num_rows() > 0 and $userLabQ->num_rows() > 0) {
+            foreach ($sectionQ->result() as $secRow) {
+                foreach ($userLabQ->result() as $usRow) {
+                    if ($secRow->id == $usRow->section_id and $usRow->user_id == $userid) {
+                        $result[$secRow->id] = $secRow->id;
+                    }
+                }
+    
+            }
+        }
+        
+        return $result;
+        
+    }
+    
+    public function get_sections_pass() {
+        
+        $auth = new Auth();
+        
+        $userid = $auth->get_user_id();
+        
+        $result = array();
+        
+        $sectionQ = $this->db->get('section');
+        $userLabQ = $this->db->get('lab_user');
+        
+        if ($sectionQ->num_rows() > 0 and $userLabQ->num_rows() > 0) {
+            foreach ($sectionQ->result() as $secRow) {
+                foreach ($userLabQ->result() as $usRow) {
+                    if ($secRow->id == $usRow->section_id and $usRow->user_id == $userid) {
+                        $result[$secRow->id] = $secRow->password;
                     }
                 }
     

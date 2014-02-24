@@ -76,6 +76,14 @@ function get_sections() {
     
 }
 
+function get_sections_ids() {
+    return get_instance()->_section->get_sections_ids();
+}
+
+function get_sections_pass() {
+    return get_instance()->_section->get_sections_pass();
+}
+
 function get_terms() {
     return array("Fall", "Spring", "Summer 1", "Summer 2", "Summer 3", "Other");
 }
