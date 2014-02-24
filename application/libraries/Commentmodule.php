@@ -27,6 +27,20 @@ class Commentmodule {
         $query = $this->CI->db->query($sql);
         return $query;
     }
+    
+/********************************************************************************/
+    private function getUser($userid){
+       $this->CI->load->database();
+        $sql = "SELECT * FROM users WHERE id=$userid";
+        $query = $this->CI->db->query($sql);
+        $row= $query->row();
+        $email = $row->email;
+        $email = array_shift(explode('@', $email));
+        return $email;
+    
+    }
+/********************************************************************************/
+
 
     private function loadModule() {
         $now = time();
@@ -35,7 +49,7 @@ class Commentmodule {
         echo '<div class="list-group" id="comment_list">';
         foreach ($query->result() as $comment) {
             echo '<a href="#" class="list-group-item">';
-            echo '<h5 class="list-group-item-heading"><b>Cooperd2</b><small>      - '. timespan($comment->comment_time, $now).' ago</small></h5>';
+            echo '<h5 class="list-group-item-heading"><b>'.$this->getUser($comment->user_id).'</b><small>      - '. timespan($comment->comment_time, $now).' ago</small></h5>';
             echo '<p class="list-group-item-text">' . $comment->message . '</p> </a>';
 
             // echo  '<div id="commentbox" style="padding-top:20px; padding-bottom:15px; margin-top:10px; height:100px;background-color:#f5f5f5; border:1px solid #dddddd;">
