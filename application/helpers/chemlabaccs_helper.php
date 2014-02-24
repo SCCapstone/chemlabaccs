@@ -70,6 +70,18 @@ function get_email() {
     
 }
 
+function get_admin($sectionID) {
+    
+    return get_instance()->_auth->get_admin($sectionID);
+    
+}
+
+function get_email_id($id) {
+    
+    return get_instance()->_auth->get_user_email($id);
+    
+}
+
 function get_sections() {
 
         return get_instance()->_section->get_sections();

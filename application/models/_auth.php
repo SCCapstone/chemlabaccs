@@ -80,6 +80,36 @@ class _Auth extends CI_Model {
         
     }
     
+    public function get_user_email($id) {
+        
+        $users = $this->db->get('users');
+        
+        if ($users->num_rows() > 0) {
+            foreach ($users->result() as $usrRow) {
+                if($usrRow->id == $id) {
+                    return $usrRow->email;
+                }
+            }
+        }
+        
+        return "";
+    }
+    
+        public function get_admin($secid) {
+        
+        $sections = $this->db->get('section');
+        
+        if ($sections->num_rows() > 0) {
+            foreach ($sections->result() as $secRow) {
+                if($secRow->id == $secid) {
+                    return $secRow->admin_id;
+                }
+            }
+        }
+        
+        return "";
+    }
+    
     public function get_user_theme($id) {
         
         $where = array("id" => $id);

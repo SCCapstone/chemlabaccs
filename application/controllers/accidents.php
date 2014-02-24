@@ -67,11 +67,20 @@ class Accidents extends CI_Controller {
                 $new->revision_of = 0;
                 $new->user = $this->auth->get_user_id();
             }
-            $new->section_id = $this->input->post("section");
-            $new->date = date_human2mysql($this->input->post("date"));
-            $new->time = time_human2mysql($this->input->post("time"));
-            $new->description = $this->input->post("description");
+            $secid = $this->input->post("section");
+            $new->section_id = $secid;
+            
+            $date = date_human2mysql($this->input->post("date"));
+            $new->date = $date;
+            
+            $time = time_human2mysql($this->input->post("time"));
+            $new->time = $time;
+            
+            $description = $this->input->post("description");
+            $new->description = $description;
+            
             $new->severity = $this->input->post("severity");
+            
             $new->root = $this->input->post("root");
             $new->prevention = $this->input->post("prevention");
             $new->id = $accident_id;
@@ -105,13 +114,15 @@ class Accidents extends CI_Controller {
                 $this->email->from('accidentreport@chemlabaccs.com', 'LARS Notification');
             //  $list = array('xxx@gmail.com'); <To include multiple receipients>
             //  $this->email->to($list);
-                $this->email->to('cieplows@email.sc.edu');  //Need to edit -- I wouldn't like the notifications
+                $secAdmin = get_admin($secid);
+                $adminemail = get_email_id($secAdmin);
+                $this->email->to($adminemail); 
                 $this->email->subject('Lab Accident Notification');  
-                $this->email->message('New Accident to report');
+                $this->email->message("New Accident to Report in Section " . $secid . "<br><br>Date: " . $date . "<br>Time: " . $time . "<br>Description: " . $description);
                 $this->email->send();
               //  echo $this->email->print_debugger();
             // End of modifiction by Davis
-                
+               // $adminofsec = implode("", $secAdmin);
                 $this->flash->success("Report successfully added.");
                 redirect("dashboard/home");
             } else {

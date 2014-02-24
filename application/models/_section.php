@@ -111,6 +111,20 @@ class _Section extends CI_Model {
         
     }
     
+    public function get_admin($sectionID) {
+         
+        $where = array("id" => $sectionID);
+        
+        $query = $this->db->get_where('section', $where);
+        
+        if ($query->num_rows() == 1) {
+            return $query->admin_id;
+        }
+        
+        return NULL;
+        
+    }
+    
     public function createSection($newSec) {
         
         $this->db->insert('section', $newSec);
