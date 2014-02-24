@@ -21,7 +21,7 @@ class Photohandler {
     const THUMBDIR = "accident_photos/thumbs/";
 
     public function __construct($params) {
-        /*         * **************************************************************************** */
+   /****************************************************************************** */
         // Instantiate a new instance of CI and sets it to a class variable 
 
         $this->CI = & get_instance();
@@ -30,6 +30,7 @@ class Photohandler {
         $this->table = "photos";
         /*         * **************************************************************************** */
 
+        if(!empty($_FILES["filefield"]["name"][0]))
         return $this->createPhoto();
 
 
@@ -119,7 +120,7 @@ class Photohandler {
             //$fname = $_FILES["filefield"]["name"][$key]; //chemlabaccs.timestamp
             $photoname = "chemlabaccs." . time();
            // $_FILES["filefield"]["name"][$key]=$photoname;
-            $comment = $_POST["dymanic_comment"][$key];
+            $comment = "Some Comment Here...";
             $fsize = $_FILES["filefield"]["size"][$key];
             $temp_file = $_FILES["filefield"]["tmp_name"][$key];
             $fext = end(explode(".", $_FILES["filefield"]["name"][$key]));
@@ -131,22 +132,27 @@ class Photohandler {
 
             if ($this->isValid($fext) && $this->validSize($fsize)) {
                 // Do the work 
-                switch ($fext) {
-
-                    case "jpg" || "jpeg" :
+             
+                    if($fext=="jpg" ||$fext== "jpeg")
+                    {
                         $upload = $_FILES["filefield"]["tmp_name"][$key];
                         $uploadsrc = imagecreatefromjpeg($upload);
-                        break;
+                    }
 
-                    case"png":
+                   else if($fext=="png")
+                    {
                         $upload = $_FILES["filefield"]["tmp_name"][$key];
                         $uploadsrc = imagecreatefrompng($upload);
-                        break;
+                    }
 
-                    case "gif":
+                    else if($fext = "gif"){
                         $upload = $_FILES["filefield"]["tmp_name"][$key];
                         $uploadsrc = imagecreatefromgif($upload);
-                        break;
+                    }
+                    else
+                        {
+                        $ignore = true;
+                       }
                 } // End of Switch 1 
                 //
                 //
@@ -158,7 +164,8 @@ class Photohandler {
                 if ($width > $width_new) {
                     $height_new = ($height / $width) * $width_new;
                     $temp_img = imagecreatetruecolor($width_new, $height_new);
-                } else {
+                } 
+                else {
                     $temp_img = imagecreatetruecolor($width, $height);
                     $height_new = $height;
                 }
@@ -179,32 +186,29 @@ class Photohandler {
                 //$thumbpath = "accident_photos/thumbs/" . "thumb" . time() . $key . $_FILES['filefield']['name'][$key];
                  $thumbpath = "accident_photos/thumbs/" . "thumb_" . time() . $key ."_". $photoname.".jpg";
 
-
+                 /************************************************************************************/
                 imagejpeg($temp_img, $photopath, 100);
                 imagejpeg($temp_thumb, $thumbpath, 100);
-
+        
                 imagedestroy($uploadsrc);
                 imagedestroy($temp_img);
                 imagedestroy($temp_thumb);
 
-                if ($photopath && $thumbpath) {
-                    $previewphotos = '<img src=' . $thumbpath . ' class="img-thumbnail"/>';
-                }
-
+              
                 // Move photo to DB
-               
+               // redirect($fext);
+                if($temp_img)
                 $this->movetoDB($photopath, $thumbpath,$comment);
-            }
-            /*             * ********************************************************* */
+                
+            } // Enfo of for
+            /*********************************************************************** */
 
             // If file size is too large, then resize using the image manipuation class
-        }// End of ForEach
+        }// End of Function Create Photo
         //$photo=  $CI->load->library('image_lib');
-    }
+    
 
     /*     * ************************************************************************* */
-    // This function provides us with information concerning the error and displays 
-    // errors to the user. 
 }
 
-/* End of file Someclass.php */
+/* End of  Class File */
