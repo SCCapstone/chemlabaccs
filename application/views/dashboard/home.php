@@ -31,6 +31,7 @@
       </div>
       <div class="panel-body">
           <p> <?php echo anchor("users/joinSection", '<span class="glyphicon glyphicon-ok"></span> Join a Section', array("class" => "btn btn-success", "role" => "button")); ?> With Section ID & Password.</p>
+          <p> <?php echo anchor('users/signout', '<span class="glyphicon glyphicon-user"></span> Sign Out', array("class" => "btn btn-warning", "role" => "button")); ?></p>
       </div>
     </div>
 </div>    
