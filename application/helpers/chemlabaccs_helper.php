@@ -51,20 +51,34 @@ function get_buildings($extra = false) {
     
 }
 
+function get_userID() {
+    
+    $auth = new Auth();
+        
+    $userid = $auth->get_user_id();
+    
+    return $userID;    
+}
+
 function get_sections() {
-        /*
-        $auth = new Auth();
-        
-        $userid = $auth->get_user_id();
-        
-        //$sqlSectionIDs = "SELECT section_id FROM lab_user WHERE user_id = " . $userid;
-        
-        $sectionids = $this->db->query('SELECT name FROM section');
-        */
-       // $this->load->model('_section');
-     
-       // return $this->_section->get_sections();
+
         return get_instance()->_section->get_sections();
+    
+}
+
+function get_terms() {
+    return array("Fall", "Spring", "Summer 1", "Summer 2", "Summer 3", "Other");
+}
+
+function get_years() {
+    
+    $years = range(date("Y") - 1, date("Y") + 1);
+    
+    foreach($years as $year) {
+        $year_list[$year] = $year;
+    }
+    
+    return $year_list;
     
 }
 
