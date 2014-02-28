@@ -105,12 +105,6 @@ $time = array(
     "value" => set_value("time", time_mysql2human($details->time))
 );
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 57e11cd6e9b036fe072fcbc1368ac72fa935ad57
-
 $description = array(
     "id" => "description",
     "name" => "description",
@@ -178,10 +172,6 @@ $prevention = array(
     </div>
 </div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 57e11cd6e9b036fe072fcbc1368ac72fa935ad57
 
 <div class="form-group">
     <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
@@ -260,10 +250,7 @@ foreach (array("low", "medium", "high") as $severity): ?>
         </div>
     </div>
 
-<<<<<<< HEAD
     <!-----Building Information--->
-=======
->>>>>>> 57e11cd6e9b036fe072fcbc1368ac72fa935ad57
 
     <!---- Accident Details---->
 
