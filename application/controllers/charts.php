@@ -13,18 +13,20 @@ class Charts extends CI_Controller {
 	
 	public function index()
 	{
-		$buildings = get_buildings(true);
+		//$section = get_sections();
 		$reports = get_latest_reports($this->db);
-		$building_count = find_building_count($reports, $buildings);
+		//$section_count = find_section_count($reports, $section);
 	    $severity_percents = find_severity_percents($reports);
 		$time_percents = find_time_percents($reports);
 		
-		for($i = 1; $i < count($buildings); $i++)
+	/*	for($i = 1; $i < count($section); $i++)
 		{
-			$data = array($building_count[$i],$building_count[$i],$building_count[$i]);
-			$series_data[] = array('name' => $buildings[$i], 'data' => $data);
+			$data = array($section_count[$i],$section_count[$i],$section_count[$i]);
+			$series_data[] = array('name' => $section[$i], 'data' => $data);
 		}
-		
+	*/	
+                $series_data[] = array('name' => $time_percents, 'data' => $severity_percents); //test
+                
 		$count = 1;
 		$star = ' star';
 		foreach($severity_percents as $sev)
@@ -52,7 +54,9 @@ class Charts extends CI_Controller {
 		$month_count = find_month_count($reports, date("Y"));
 		$month_data[] = array('name' => date("Y"), 'data' => $month_count);
 		for($i = 0; $i < count($month_count); $i++)
-			$month_count[$i] += $two_previous_month_count[$i] + $previous_month_count[$i];
+                { 
+                    $month_count[$i] += $two_previous_month_count[$i] + $previous_month_count[$i]; 
+                }
 		$month_data[] = array('name' => 'Last 3 Years', 'data' => $month_count);
 		
 		$s1_month_count = find_month_sev_count($reports, 'low');
