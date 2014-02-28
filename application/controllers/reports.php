@@ -67,7 +67,8 @@ class Reports extends CI_Controller {
         $query = $this->db->get();
         
         $csv->addRecord(array(
-            "ID",
+            "Accident ID",
+            "Section ID",
             "Revision Of",
             "Date",
             "Time",
@@ -75,7 +76,7 @@ class Reports extends CI_Controller {
             "Severity",
             "Root",
             "Prevention",
-            "User",
+            "User ID",
             "Modified By",
             "Created"
         ));
