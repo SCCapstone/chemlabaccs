@@ -44,13 +44,13 @@ function valid_time($time) {
     return strtotime($time);
     
 }
-
+/*
 function get_buildings($extra = false) {
     
     return get_instance()->_buildings->all($extra);
     
 }
-
+*/
 function get_userID() {
     
     $auth = new Auth();
@@ -234,11 +234,11 @@ function get_latest_reports($db) {
 	return $results;
 }
 
-//create an array for each building with the building counts set to 0
-function initialize_building_count($buildings)
+//create an array for each section with the section counts set to 0
+function initialize_section_count($section)
 {
 	$data = array();
-	for($i = 1; $i < count($buildings); $i++)
+	for($i = 1; $i < count($section); $i++)
 	{
 		$data[$i] = 0;
 	}
@@ -246,20 +246,20 @@ function initialize_building_count($buildings)
 }
 
 //find the total number of accidents that occur in each building
-function find_building_count($reports, $buildings)
+function find_section_count($reports, $section)
 {
-	$building_count = initialize_building_count($buildings);
+	$section_count = initialize_section_count($section);
 	foreach ($reports as $report) 
 	{
-		for($i = 1; $i < count($buildings); $i++)
+		for($i = 1; $i < count($section); $i++)
 		{
-			if($report[0]->building == $i)
+			if($report[0]->_section == $i)
 			{
-				$building_count[$i]++;
+				$section_count[$i]++;
 			}
 		}
 	}
-	return $building_count;
+	return $section_count;
 }
 
 //create an array for each time period with each time count starting at 0

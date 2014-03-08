@@ -119,8 +119,11 @@ $time = array(
     "value" => set_value("time", time_mysql2human($details->time))
 );
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 96aa2f5d3bfbb82d3d8e0bd86a7e80b6ddecfc81
 $description = array(
     "id" => "description",
     "name" => "description",
@@ -178,6 +181,11 @@ $prevention = array(
   <label for="<?php echo $time["id"]; ?>" class="col-sm-2 control-label"><?php echo $time["placeholder"]; ?></label>
   <div class="col-sm-10"> <?php echo form_error($time["name"]); ?> <?php echo form_input($time); ?> </div>
 </div>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 96aa2f5d3bfbb82d3d8e0bd86a7e80b6ddecfc81
 <div class="form-group">
   <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
   <div class="col-sm-10"> <?php echo form_error($description["name"]); ?> <?php echo form_textarea($description); ?> <span class="help-block"><?php echo lang('cla_f_description'); ?></span> </div>
@@ -224,10 +232,30 @@ foreach (array("low", "medium", "high") as $severity): ?>
     <div class="panel-heading">
       <h4>Time</h4>
     </div>
+<<<<<<< HEAD
     <div class="panel-body"> <b> Date: </b> <?php echo $date['value']; ?>
       <p></p>
       <b>Time:</b> <?php echo $time['value']; ?>
       <p></p>
+=======
+
+    <!-----Building Information--->
+
+    <!---- Accident Details---->
+
+    <div class="panel panel-default" id = "accident_info">
+        <div class="panel-heading"><h4>Accident Details</h4></div>
+        <div class="panel-body">
+            <b>Description: </b> <?php echo $description['value']; ?>
+            <p></p>
+            <b>Severity:</b> <?php echo severity_scale($severity); ?>
+            <p></p>
+            <b>Root Cause:</b> <?php echo $root['value']; ?>
+            <p></p>
+            <b>Prevention:</b> <?php echo $prevention['value']; ?>
+            <p></p>
+        </div>
+>>>>>>> 96aa2f5d3bfbb82d3d8e0bd86a7e80b6ddecfc81
     </div>
   </div>
   
