@@ -19,7 +19,7 @@
  *
  */
 
-if ($_SERVER['HTTP_HOST'] == 'mscribellito.com') {
+if ($_SERVER['HTTP_HOST'] == 'chemlabaccs.com') {
     define('ENVIRONMENT', 'production');
 } else {
     define('ENVIRONMENT', 'development');
@@ -197,6 +197,16 @@ if (defined('ENVIRONMENT'))
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
 
+ /*
+ * -------------------------------------------------------------------
+ *  Set Time Zone
+ * -------------------------------------------------------------------
+ */
+        if( ! ini_get('date.timezone') )
+        {
+            date_default_timezone_set('America/New_York');
+        } 
+        
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
