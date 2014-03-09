@@ -402,7 +402,7 @@ foreach (array("low", "medium", "high") as $severity): ?>
       </div>
     </div>
   </div>
-
+</div>
 <!------------------------------------------------------Modal Assets------------------------------------------------------------------->
 <div class="comment_container container_content container">
   <h5><b>Accident Comments</b></h5>
