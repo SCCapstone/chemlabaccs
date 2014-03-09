@@ -143,6 +143,8 @@ function format_accident_report_number($number) {
 function generate_accident_listing($accidents, $show = array()) {
     
     $CI =& get_instance();
+    
+    $CI->load->model('_section');
 
     $show = array_merge(array(
         "show_report#" => false,
@@ -155,6 +157,7 @@ function generate_accident_listing($accidents, $show = array()) {
     ));
 
     $headings = array(
+        "Section",
         "Date &amp; Time",
         "Severity",
         "Entered By",
@@ -172,6 +175,8 @@ function generate_accident_listing($accidents, $show = array()) {
     foreach ($accidents as $acc) {
 
         $actions = array();
+        
+        $sectionInfo = $CI->_section->detail($acc->section_id);
 
         if ($show["show_detail"]) {
             $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
@@ -193,11 +198,12 @@ function generate_accident_listing($accidents, $show = array()) {
         $modified = String($acc->modified);
 
         $row = array(
+            $sectionInfo->name,
             date_mysql2human($acc->date) . " " . time_mysql2human($acc->time),
             severity_scale($acc->severity),
             $user->substring(0, $user->indexOf("@")),
             (!$modified->equals("")) ? $modified->substring(0, $modified->indexOf("@")) : "-",
-            date("m/d/Y g:i a", strtotime($acc->created)),
+            date("m/d/Y", strtotime($acc->created)),
             implode(' ', $actions)
         );
 

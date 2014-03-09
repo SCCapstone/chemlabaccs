@@ -1,5 +1,14 @@
 <?php
 
+$sections = get_sections();
+
+$section = array(
+    "id" => "section",
+    "name" => "section",
+    "placeholder" => "Section",
+    "class" => "form-control"
+    );
+
 $start_date = array(
     "id" => "start_date",
     "name" => "start_date",
@@ -37,36 +46,17 @@ $end_time = array(
 );
 
 
-$description = array(
-    "id" => "description",
-    "name" => "description",
-    "placeholder" => "Description",
-    "class" => "form-control",
-    "rows" => 3,
-    "value" => set_value("description")
-);
-
-$root = array(
-    "id" => "root",
-    "name" => "root",
-    "placeholder" => "Root",
-    "class" => "form-control",
-    "rows" => 3,
-    "value" => set_value("root")
-);
-
-$prevention = array(
-    "id" => "prevention",
-    "name" => "prevention",
-    "placeholder" => "Prevention",
-    "class" => "form-control",
-    "rows" => 3,
-    "value" => set_value("prevention")
-);
-
 ?>
 
 <?php echo form_open("accidents/results", array("class" => "form-horizontal", "role" => "form")); ?>
+
+<div class="form-group">
+    <label for="<?php echo $section["id"]; ?>" class="col-sm-2 control-label"><?php echo $section["placeholder"]; ?></label>
+    <div class="col-sm-10">
+        <?php echo form_error($section["name"]); ?>
+        <?php echo form_dropdown($section["name"], $sections, CI()->input->post($section["name"]), 'class="form-control" id="section"'); ?>
+    </div>
+</div>
 
 <div class="form-group">
     <label for="<?php echo $start_date["id"]; ?>" class="col-sm-2 control-label"><?php echo $start_date["placeholder"]; ?></label>
@@ -102,15 +92,6 @@ $prevention = array(
 
 
 <div class="form-group">
-    <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($description["name"]); ?>
-        <?php echo form_textarea($description); ?>
-        <span class="help-block"><?php echo lang('cla_f_description'); ?></span>
-    </div>
-</div>
-
-<div class="form-group">
     <label class="col-sm-2 control-label">Severity</label>
     <div class="col-sm-10">
         <?php echo form_error("severity"); ?>
@@ -133,23 +114,6 @@ $prevention = array(
     </div>
 </div>
 
-<div class="form-group">
-    <label for="<?php echo $root["id"]; ?>" class="col-sm-2 control-label"><?php echo $root["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($root["name"]); ?>
-        <?php echo form_textarea($root); ?>
-        <span class="help-block"><?php echo lang('cla_f_root'); ?></span>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="<?php echo $prevention["id"]; ?>" class="col-sm-2 control-label"><?php echo $prevention["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($prevention["name"]); ?>
-        <?php echo form_textarea($prevention); ?>
-        <span class="help-block"><?php echo lang('cla_f_prevention'); ?></span>
-    </div>
-</div>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
