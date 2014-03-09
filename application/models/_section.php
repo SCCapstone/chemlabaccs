@@ -133,5 +133,19 @@ class _Section extends CI_Model {
         
     }
     
+    public function detail($id) {
+        
+        $where = array("id" => $id);
+        
+        $query = $this->db->get_where('section', $where);
+        
+        if ($query->num_rows() == 1) {
+            return $query->row();
+        }
+        
+        return NULL;
+        
+    }
+    
     
 }

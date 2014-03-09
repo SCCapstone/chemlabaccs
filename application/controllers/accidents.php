@@ -148,9 +148,12 @@ class Accidents extends CI_Controller {
         $data = array();
 
         $details = $this->_accidents->detail($id);
+        
+        $sectionInfo = $this->_section->detail($details->section_id);
 
         if ($details != NULL) {
             $data["details"] = $details;
+            $data["sectionInfo"] = $sectionInfo;
         } else {
             redirect("dashboard");
         }

@@ -103,6 +103,55 @@ return false;
     });
 </script>
 <?php
+
+$sectionid = array(
+    "id" => "sectionid",
+    "name" => "sectionid",
+    "placeholder" => "Section ID #",
+    "class" => "form-control",
+    "value" => set_value("sectionid", $details->section_id)
+);
+
+$sectionName = array(
+    "id" => "sectionName",
+    "name" => "sectionName",
+    "placeholder" => "Section Name",
+    "class" => "form-control",
+    "value" => set_value("Name", $sectionInfo->name)
+);
+
+$term = array(
+    "id" => "term",
+    "name" => "term",
+    "placeholder" => "Term",
+    "class" => "form-control",
+    "value" => set_value("term", $sectionInfo->Term)
+);
+
+$year = array(
+    "id" => "year",
+    "name" => "year",
+    "placeholder" => "Year",
+    "class" => "form-control",
+    "value" => set_value("year", $sectionInfo->Year)
+);
+
+$building = array(
+    "id" => "building",
+    "name" => "building",
+    "placeholder" => "building",
+    "class" => "form-control",
+    "value" => set_value("building", $sectionInfo->building_name)
+);
+
+$room = array(
+    "id" => "room",
+    "name" => "room",
+    "placeholder" => "room",
+    "class" => "form-control",
+    "value" => set_value("roomg", $sectionInfo->room_num)
+);
+
 $date = array(
     "id" => "date",
     "name" => "date",
@@ -220,7 +269,35 @@ foreach (array("low", "medium", "high") as $severity): ?>
 <!-----------------Detailed View---------------------->
 <div class ="container formcs container_content detail_form">
 <div class="row mar20 text-right"><button type="button" class="btn btn-default btn-sm edit_btn"><span class="glyphicon glyphicon-pencil"></span> Edit</button></div> 
-  <!-------Time Information ----->
+  
+
+<!-------Section Information ----->
+  <div class="panel panel-default" id = "section_info">
+    <div class="panel-heading">
+      <h4>General</h4>
+    </div>
+      
+    <div class="panel-body">
+      <b> Section ID #: </b> <?php echo $sectionid['value']; ?>
+      <p></p>
+      <b>Section Name: </b> <?php echo $sectionName['value']; ?>
+      <p></p>
+      <p></p>
+      <b>Term: </b> <?php echo $term['value']; ?> - <?php echo $year['value']; ?>
+      <p></p>
+      <p></p>
+      <b>Building: </b> <?php echo $building['value']; ?>
+      <p></p>
+      <p></p>
+      <b>Room: </b> <?php echo $room['value']; ?>
+      <p></p>
+
+    </div>
+  </div>
+
+
+
+<!-------Time Information ----->
   <div class="panel panel-default" id = "time_info">
     <div class="panel-heading">
       <h4>Time</h4>
@@ -236,8 +313,8 @@ foreach (array("low", "medium", "high") as $severity): ?>
 
 
   
+    </div>
   </div>
-      </div>
   
  
   
@@ -249,11 +326,11 @@ foreach (array("low", "medium", "high") as $severity): ?>
     </div>
     <div class="panel-body"> <b>Description: </b> <?php echo $description['value']; ?>
       <p></p>
-      <b>Severity:</b> <?php echo severity_scale($severity); ?>
+      <b>Severity:  </b> <?php echo severity_scale($severity); ?>
       <p></p>
-      <b>Root Cause:</b> <?php echo $root['value']; ?>
+      <b>Root Cause:  </b> <?php echo $root['value']; ?>
       <p></p>
-      <b>Prevention:</b> <?php echo $prevention['value']; ?>
+      <b>Prevention:  </b> <?php echo $prevention['value']; ?>
       <p></p>
     </div>
   </div>
