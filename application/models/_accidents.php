@@ -114,7 +114,11 @@ class _Accidents extends CI_Model {
             description, severity, root, prevention, users.email, created");
         $this->db->from("accidents");
         $this->db->join("users", "accidents.user = users.id");
-                
+        
+        if ($this->input->post("section")) {
+            $this->db->where("section_id", $this->input->post("section"));
+        }
+        
         if ($this->input->post("start_date") && $this->input->post("end_date")) {
             $this->db->where("date >=", date_human2mysql($this->input->post("start_date")));
             $this->db->where("date <=", date_human2mysql($this->input->post("end_date")));

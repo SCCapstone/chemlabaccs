@@ -174,7 +174,7 @@ class Accidents extends CI_Controller {
         $search = $this->_accidents->search();
 
         if (count($search) == 0) {
-            $content = "No results found";
+            $content = "No results found for specified criteria.";
         } else {
             $content = generate_accident_listing($search, array("show_report#" => true));
         }
