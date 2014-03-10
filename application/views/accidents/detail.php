@@ -326,7 +326,7 @@ foreach (array("low", "medium", "high") as $severity): ?>
     </div>
     <div class="panel-body"> <b>Description: </b> <?php echo $description['value']; ?>
       <p></p>
-      <b>Severity:  </b> <?php echo severity_scale($severity); ?>
+      <b>Severity:  </b> <?php echo $severity; ?>
       <p></p>
       <b>Root Cause:  </b> <?php echo $root['value']; ?>
       <p></p>

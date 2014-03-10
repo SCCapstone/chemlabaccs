@@ -95,7 +95,7 @@ $end_time = array(
     <label class="col-sm-2 control-label">Severity</label>
     <div class="col-sm-10">
         <?php echo form_error("severity"); ?>
-        <?php $i = 0; foreach(array("low", "medium", "high") as $severity): ?>
+        <?php $i = 0; foreach(array("Low", "Medium", "High") as $severity): ?>
         <?php
         
         $selected = "";
@@ -107,7 +107,7 @@ $end_time = array(
         <div class="checkbox">
             <label>
                 <input type="checkbox" name="severity[]" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-                <?php echo severity_scale($severity); ?>
+                <?php echo $severity; ?>
             </label>
         </div>
         <?php endforeach; ?>

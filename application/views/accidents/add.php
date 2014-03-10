@@ -281,7 +281,7 @@ background-color:#fff;
     <div class="col-sm-10">
         <?php echo form_error("severity"); ?>
         <?php $i = 0;
-        foreach (array("low", "medium", "high") as $severity):
+        foreach (array("Low", "Medium", "High") as $severity):
             ?>
             <?php
             $selected = "";
@@ -292,7 +292,7 @@ background-color:#fff;
             <div class="radio">
                 <label>
                     <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-    <?php echo severity_scale($severity); ?>
+    <?php echo $severity; ?>
                 </label>
             </div>
 <?php endforeach; ?>
