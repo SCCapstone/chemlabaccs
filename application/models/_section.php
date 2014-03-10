@@ -25,11 +25,32 @@ class _Section extends CI_Model {
     
     
     public function join_section($userSection) {
-             
-        $this->db->insert($this->table, $userSection);
         
-        // was it inserted?
-        return $this->db->affected_rows() == 1;
+        $ids = get_all_section_ids();
+        
+        $inthere = 0;
+        
+        foreach($ids as $id) {
+            echo $id;
+            if ($id == $userSection->section_id) {
+                $inthere = 1;
+            }
+        }
+        
+       if ($inthere == 1) {
+        
+            $this->db->insert($this->table, $userSection);
+
+             // was it inserted?
+             return true;
+       }
+       
+       else {
+           return false;
+       }
+       
+       
+       
         
     }
     
@@ -144,6 +165,27 @@ class _Section extends CI_Model {
         }
         
         return NULL;
+        
+    }
+    
+    public function get_all_section_ids() {
+     
+        
+        $result = array();
+        
+        $sectionQ = $this->db->get('section');
+      
+        
+        if ($sectionQ->num_rows() > 0 ) {
+            foreach ($sectionQ->result() as $secRow) {
+                        $result[$secRow->id] = $secRow->id;
+                    
+                
+    
+            }
+        }
+        
+        return $result;
         
     }
     

@@ -92,6 +92,10 @@ function get_sections_ids() {
     return get_instance()->_section->get_sections_ids();
 }
 
+function get_all_section_ids() {
+    return get_instance()->_section->get_all_section_ids();
+}
+
 function get_sections_pass() {
     return get_instance()->_section->get_sections_pass();
 }
