@@ -4,8 +4,14 @@ facilitate viewing and revising these reports, as well as make it convenient to 
 Link to Live site ==> http://chemlabaccs.com
 
 <For test purposes>
-Username: superman@krypton.edu
-Password: superb
+  <Test Admin Account>
+  Username: superman@krypton.edu
+  Password: superb
+  </Admin Account>
+  <Regular User>
+  Username: loislane@krypton.edu
+  Password: lois99
+  </Regular User>
 </For test purposes>
 
 Modified by David Allen.
