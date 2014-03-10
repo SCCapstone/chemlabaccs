@@ -45,16 +45,24 @@
           <div class="panel-body">
               <div class="col-md-6">
                   <b>Name</b> <br>
-                <?php 
+                 <?php 
 
                $row = $this->_section->get_sections();
+               
+               $ids = $this->_section->get_sections_ids();
+               
+               $curID = current($ids);
 
                       foreach($row as $sec) {
-                         echo $sec . '<br />';
+                          
+                         echo '<a href="../accidents/sectionResults/'.$curID.'">' . $sec . '</a>  <br />';
+                         
+                         $curID = next($ids);
+                         
                       } 
 
 
-                       ?> 
+                       ?>
               </div>
               
               <div class="col-md-2">
