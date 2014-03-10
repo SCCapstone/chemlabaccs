@@ -53,14 +53,24 @@
             <h3 class="panel-title">Your Sections</h3>
           </div>
           <div class="panel-body">
+              
+              
               <div class="col-md-6">
-                  <b>Name</b> <br>
+                  <u><b>Name</b></u> <br>
                 <?php 
 
                $row = $this->_section->get_sections();
+               
+               $ids = $this->_section->get_sections_ids();
+               
+               $curID = current($ids);
 
                       foreach($row as $sec) {
-                         echo $sec . '<br />';
+                          
+                         echo '<a href="../accidents/sectionResults/'.$curID.'">' . $sec . '</a>  <br />';
+                         
+                         $curID = next($ids);
+                         
                       } 
 
 
@@ -68,13 +78,16 @@
               </div>
               
               <div class="col-md-2">
-                  <b>ID</b> <br>
+                  <u><b>ID</b></u> <br>
                 <?php 
 
                $row = $this->_section->get_sections_ids();
 
                       foreach($row as $sec) {
-                         echo $sec . '<br />';
+                          
+                       //  $this->set_value('section_id', $sec);
+                          
+                         echo $sec . ' <br />';
                       } 
 
 
@@ -82,7 +95,7 @@
               </div>
               
               <div class="col-md-3">
-                  <b>Password</b> <br>
+                  <u><b>Password</b></u> <br>
                 <?php 
 
                $row = $this->_section->get_sections_pass();

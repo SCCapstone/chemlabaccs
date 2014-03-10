@@ -230,5 +230,25 @@ class Accidents extends CI_Controller {
         $this->load->library('commenthandler',$params);
     }
 
-    /*     * ********************************************************************************** */
+    
+    
+     /*     * ********************************************************************************** */
+
+    public function sectionResults($sec) {
+
+        $search = $this->_accidents->searchSection($sec);
+
+        if (count($search) == 0) {
+            $content = "No results found for specified criteria.";
+        } else {
+            $content = generate_accident_listing($search, array("show_report#" => true));
+        }
+
+        $this->template->write("title", "Search Results");
+        $this->template->write("heading", "Search Results");
+        $this->template->write("content", $content);
+        $this->template->render();
+    }
+    
+    
 }
