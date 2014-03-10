@@ -254,7 +254,32 @@ function initialize_section_count($section)
 	}
 	return $data;
 }
+function initialize_user_count($user)
+{
+	$data = array();
+	for($i = 1; $i < count($user); $i++)
+	{
+		$data[$i] = 0;
+	}
+	return $data;
+}
 
+
+function find_user_count($reports, $users)
+{
+	$user_count = initialize_user_count($users);
+	foreach ($reports as $report) 
+	{
+		for($i = 1; $i < count($users); $i++)
+		{
+			if($report[0]->user == $i)
+			{
+				$user_count[$i]++;
+			}
+		}
+	}
+	return $user_count;
+}
 //find the total number of accidents that occur in each building
 function find_section_count($reports, $section)
 {

@@ -13,10 +13,12 @@ class Charts extends CI_Controller {
 	
 	public function index()
 	{
-		//$section = get_sections();
+		$users = get_userID();
+        //        $section = get_sections();
 		$reports = get_latest_reports($this->db);
-		//$section_count = find_section_count($reports, $section);
-	    $severity_percents = find_severity_percents($reports);
+	//	$section_count = find_section_count($reports, $section);
+                $user_count = find_user_count($reports, $users);
+                $severity_percents = find_severity_percents($reports);
 		$time_percents = find_time_percents($reports);
 		
 	/*	for($i = 1; $i < count($section); $i++)
@@ -25,7 +27,13 @@ class Charts extends CI_Controller {
 			$series_data[] = array('name' => $section[$i], 'data' => $data);
 		}
 	*/	
-                $series_data[] = array('name' => $time_percents, 'data' => $severity_percents); //test
+                for($i = 1; $i < count($users); $i++)
+		{
+			$data = array($user_count[$i],$user_count[$i],$user_count[$i]);
+			$series_data[] = array('name' => $users[$i], 'data' => $data);
+		}
+	
+                $series_data[] = array('name' => $users, 'data' => $severity_percents); //test
                 
 		$count = 1;
 		$star = ' star';
@@ -69,7 +77,7 @@ class Charts extends CI_Controller {
 			$st_month_count[$i] = $s1_month_count[$i] + $s2_month_count[$i] + $s3_month_count[$i];
 		$sev_month_data[] = array('name' => 'All Accidents', 'data' => $st_month_count);
 		
-		$title = "Anonymous Data";
+		$title = "Big Data";
 		$this->view_data['series_data'] = json_encode($series_data);
 		$this->view_data['severity_data'] = $severity_data;
 		$this->view_data['month_data'] = json_encode($month_data);
