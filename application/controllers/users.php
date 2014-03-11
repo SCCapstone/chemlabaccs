@@ -112,9 +112,9 @@ class Users extends CI_Controller {
                 $this->email->from('NewUserAccount@chemlabaccs.com', 'Welcome to LARS!');
                 $this->email->to($newUser->email); 
                 $this->email->subject('Lab Accident Notification');  
-                $this->email->message("Welcome to LARS (Lab Accident Reporting System) ! <br>Your new account info is listed below,<br><br> "
-                        . "Username/Email:  " . $newUser->email . "<br>"
-                        . "Password:  " . $newUser->password);
+                $this->email->message("Welcome to LARS (Lab Accident Reporting System) ! <br>Your new account info is listed below,<br><br> " 
+                        . "Username/Email:  " . $newUser->email 
+                        . "<br>" . "Password:  " . $this->input->post("password"));
                 $this->email->send();
                 
                 
