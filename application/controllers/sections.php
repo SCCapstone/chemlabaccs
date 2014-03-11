@@ -76,8 +76,8 @@ class Sections extends CI_Controller {
                 $this->email->to(get_email());  
                 $this->email->subject('LARS - Your Section Information');  
                 $this->email->message("Thank you for creating a section in LARS, below is the Section information to give your students."
-                    . "\n" . "Section ID #:  " . $newSec->id
-                    . "\n" . "Section Password:  " . $newSec->password);
+                    . "<br>" . "Section ID #:  " . $newSec->id
+                    . "<br>" . "Section Password:  " . $newSec->password);
                     
                      
                 $this->email->send();

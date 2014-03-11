@@ -31,7 +31,7 @@ class _Section extends CI_Model {
         $inthere = 0;
         
         foreach($ids as $id) {
-            echo $id;
+            //echo $id;
             if ($id == $userSection->section_id) {
                 $inthere = 1;
             }
