@@ -204,7 +204,7 @@ function generate_accident_listing($accidents, $show = array()) {
         $row = array(
             $sectionInfo->name,
             date_mysql2human($acc->date) . " " . time_mysql2human($acc->time),
-            severity_scale($acc->severity),
+            $acc->severity,
             $user->substring(0, $user->indexOf("@")),
             (!$modified->equals("")) ? $modified->substring(0, $modified->indexOf("@")) : "-",
             date("m/d/Y", strtotime($acc->created)),
