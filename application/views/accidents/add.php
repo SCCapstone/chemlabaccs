@@ -9,14 +9,14 @@ $section = array(
     "class" => "form-control"
     );
 
-$date = array(
+ $date = array(
     "id" => "date",
     "name" => "date",
     "placeholder" => "Date",
     "class" => "form-control",
     "value" => set_value("date"),
     "type" => "date"
-);
+); 
 
 $time = array(
     "id" => "time",
@@ -249,13 +249,43 @@ background-color:#fff;
     </div>
 </div>
 
+
+        <!-- Jquery resources-->
+
+
+
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+        <!-- end of Jquery resources-->
+
+
+         <script>
+        $(function() {
+        $( "#datepicker" ).datepicker({
+        showOn: "button",
+        buttonImage: "<?php echo base_url("img/calendar.png") ?>" ,
+        buttonImageOnly: true
+        });
+        });
+        </script>
+
+        </head>
+
+
+
 <div class="form-group">
     <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
     <div class="col-sm-10">
         <?php echo form_error($date["name"]); ?>
-        <?php echo form_input($date); ?>
+        <input type="text" name="date" id="datepicker">
     </div>
 </div>
+
+
+
+
 
 <div class="form-group">
     <label for="<?php echo $time["id"]; ?>" class="col-sm-2 control-label"><?php echo $time["placeholder"]; ?></label>
