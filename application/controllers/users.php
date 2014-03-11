@@ -107,6 +107,17 @@ class Users extends CI_Controller {
             // if new user is created successfully
             if($auth->create_user($newUser)) {
                 
+                
+                $this->load->library('email');
+                $this->email->from('NewUserAccount@chemlabaccs.com', 'Welcome to LARS!');
+                $this->email->to($newUser->email); 
+                $this->email->subject('Lab Accident Notification');  
+                $this->email->message("Welcome to LARS (Lab Accident Reporting System) ! <br>Your new account info is listed below,<br><br> "
+                        . "Username/Email:  " . $newUser->email . "<br>"
+                        . "Password:  " . $newUser->password);
+                $this->email->send();
+                
+                
                 // if student account was created
                 if($newUser->userlvl == 9) {
                     $this->flash->success("New Account successfully created! You may now sign-in and join a Section.");
