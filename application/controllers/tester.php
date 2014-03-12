@@ -30,7 +30,18 @@ class Tester extends CI_Controller {
         $test = time_mysql2human('23:30:04');
         $this->unit->run($test, 'is_string', 'Test if the return value of time_mysql2human is string.');
         
-          
+        $test = get_admin('7211618');  // values from local DB, not live site
+        $this->unit->run($test, '36', 'Test function get_admin --> expected to return admin_id = 36 for section_id = 7211618.','values from local mySQL DB, not live site.');
+        
+        $test = get_email();
+        $this->unit->run($test, 'alexan84@email.sc.edu', 'Test function get_email() --> expected to return my email address = alexan84@email.sc.edu','values from local mySQL DB, not live site.');
+        
+        $test = get_email_id('37');
+        $this->unit->run($test, 'dangerdave10@gmail.com', 'Test function get_email_id() --> expected to return my email address given user_id as argument = dangerdave10@gmail.com','values from local mySQL DB, not live site.');
+        
+        $test = get_userID();
+        $this->unit->run($test, '36', 'Test function get_userID() --> expected to return my user_id = 36','values from local mySQL DB, not live site.');
+        
         
         // Test Result Output
         echo $this->unit->report();
