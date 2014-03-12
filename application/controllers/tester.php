@@ -42,6 +42,26 @@ class Tester extends CI_Controller {
         $test = get_userID();
         $this->unit->run($test, '36', 'Test function get_userID() --> expected to return my user_id = 36','values from local mySQL DB, not live site.');
         
+        $test = get_sections();
+        $this->unit->run($test, 'is_array', 'Test function get_sections() --> expected to return an array of section NAMES that user is part of','Checks if returned value is an array');
+        
+        $test = get_sections_ids();
+        $this->unit->run($test, 'is_array', 'Test function get_sections_ids() --> expected to return an array of section IDS that user is part of','Checks if returned value is an array');
+        
+        $test = get_all_section_ids();
+        $this->unit->run($test, 'is_array', 'Test function get_all_section_ids() --> expected to return an array of ids of ALL sections','Checks if returned value is an array');
+        
+        $test = get_sections_pass();
+        $this->unit->run($test, 'is_array', 'Test function get_sections_pass() --> expected to return an array of section PASSWORDS that user is part of','Checks if returned value is an array');
+        
+        $test = get_terms();
+        $this->unit->run($test, 'is_array', 'Test function get_terms() --> expected to return an array of terms like Spring, Fall etc.','Checks if returned value is an array');
+        
+        $test = get_years();
+        $this->unit->run($test, 'is_array', 'Test function get_years() --> expected to return an array of years','Checks if returned value is an array');
+        
+        $test = format_accident_report_number('24');
+        $this->unit->run($test, '0024', 'Test function format_accident_report_number() --> input (24) output (0024)','Checks if expected result is correct');
         
         // Test Result Output
         echo $this->unit->report();
