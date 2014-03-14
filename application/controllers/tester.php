@@ -63,6 +63,45 @@ class Tester extends CI_Controller {
         $test = format_accident_report_number('24');
         $this->unit->run($test, '0024', 'Test function format_accident_report_number() --> input (24) output (0024)','Checks if expected result is correct');
         
+        $test = get_latest_reports($this->db);
+        $this->unit->run($test, 'is_array', 'Test function get_latest_reports($db) --> expected to return an array of accident reports','Checks if returned value is an array');
+        
+        $test = initialize_user_count('36');
+        $this->unit->run($test, 'is_array', 'Test function initialize_user_count($user) --> expected to return an array of $user # of zeroes','Checks if returned value is an array');
+        
+        $test = initialize_section_count('7');
+        $this->unit->run($test, 'is_array', 'Test function initialize_section_count($section) --> expected to return an array of $section # of zeroes','Checks if returned value is an array');
+         
+        $users = get_userID();
+        $reports = get_latest_reports($this->db);
+        $test = find_user_count($reports, $users);
+        $this->unit->run($test, 'is_array', 'Test function find_user_count($reports, $users) --> expected to return array','Checks if returned value is an array');
+        
+        $section = get_sections();
+        $test = find_section_count($reports, $section);
+        $this->unit->run($test, 'is_array', 'Test function find_section_count($reports, $section) --> expected to return array','Checks if returned value is an array');
+        
+        $test = initialize_time_count();
+        $this->unit->run($test, 'is_array', 'Test function initialize_time_count() --> expected to return array','Checks if returned value is an array');
+        
+        $test = find_time_percents($reports);
+        $this->unit->run($test, 'is_array', 'Test function find_time_percents($reports) --> expected to return array','Checks if returned value is an array');
+        
+        $test = initialize_severity_count();
+        $this->unit->run($test, 'is_array', 'Test function initialize_severity_count() --> expected to return array','Checks if returned value is an array');
+        
+        $test = find_severity_percents($reports);
+        $this->unit->run($test, 'is_array', 'Test function find_severity_percents($reports) --> expected to return array','Checks if returned value is an array');
+        
+        $test = initialize_month_count();
+        $this->unit->run($test, 'is_array', 'Test function initialize_month_count() --> expected to return array','Checks if returned value is an array');
+        
+        $test = find_month_count($reports, 2014);
+        $this->unit->run($test, 'is_array', 'Test function find_month_count($reports, $accident_year) --> expected to return array','Checks if returned value is an array');
+        
+        $test = find_month_sev_count($reports, 2);
+        $this->unit->run($test, 'is_array', 'Test function find_month_sev_count($reports, $severity) --> expected to return array','Checks if returned value is an array');
+        
         // Test Result Output
         echo $this->unit->report();
     }
