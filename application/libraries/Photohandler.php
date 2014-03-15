@@ -107,7 +107,7 @@ class Photohandler {
         $this->CI->db->insert($this->table, $photodata);
     }
 
-    /*     * ************************************************************************* */
+    /*******************************************************************************/
 
     private function createPhoto() {
         $previewphotos = array();
@@ -125,7 +125,7 @@ class Photohandler {
             $temp_file = $_FILES["filefield"]["tmp_name"][$key];
             $fext = end(explode(".", $_FILES["filefield"]["name"][$key]));
             $fext = strtolower($fext);
-            /*             * ********************************************************* */
+            /*************************************************************** */
             // Preliminary Checks
             // 
             // Get the photo's extension
@@ -208,7 +208,39 @@ class Photohandler {
         //$photo=  $CI->load->library('image_lib');
     
 
-    /*     * ************************************************************************* */
+    /* ************************************************************************* */
+        // This function is responsible for unlinking photo in the accident_photos and accident_photos/thumbs directory
+        function unlinkphoto($photopath)
+        {
+            $accident_photos = '../../accident_photos/';
+            chdir($accident_photos);
+            $path= array_shift(explode('accident_photos/', $photopath));
+            $rmphoto = unlink($path);
+            
+            if($rmphoto)
+            {
+                $accident_photos='thumbs/';
+                chdir($accident_photos);
+                $path=array_shift(explode('accident_photos/thumbs/', $photopath));
+                unlink($path);
+            }
+        
+            
+        }
+    /* ************************************************************************* */
+        // This function is responsible for removing photos from the database. 
+        function removefromdb($photoid)
+        {
+            $photodata = array('id'=>$photoid);
+              $this->CI->db->delete($this->table,$photodata);
+
+
+//$this->unlinkphoto($photopath)
+            
+        }
+    /* ************************************************************************* */
+
+
 }
 
 /* End of  Class File */
