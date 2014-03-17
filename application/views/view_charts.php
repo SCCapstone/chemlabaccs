@@ -26,7 +26,7 @@
 		jQuery(document).ready(function()
 		{
 			console.log("Creating Graphs");
-			$('#accPerBuild').highcharts({
+	/*	$('#accPerBuild').highcharts({
 				chart: {
 					type: 'column'
 				},
@@ -41,9 +41,9 @@
 						text: 'Total Accidents'
 					}
 				},
-				series: <?php echo $series_data;?>
+				series: <?php //echo $series_data;?>
 			});
-			
+	*/		
 			
 			$('#accPerRate').highcharts({
 			chart: {
@@ -179,17 +179,19 @@
 	<div class="graph" id="accPerMonth">
 	</div>
 	
-	<div class="graph" id="accPerBuild">
+<!--	<div class="graph" id="accPerBuild">
 	</div>
-	
+-->	
 	<div class="graph" id="accPerTime">
+	</div>
+
+	<div class="graph" id="accPerRate">
 	</div>
 	
 	<div class="graph" id="accRateMonth">
 	</div>
 	
-	<div class="graph" id="accPerRate">
-	</div>
+
 </body>
 
 </html>

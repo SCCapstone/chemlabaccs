@@ -288,7 +288,7 @@ function find_section_count($reports, $section)
 	{
 		for($i = 1; $i < count($section); $i++)
 		{
-			if($report[0]->_section == $i)
+			if($report[0]->section_id == $i)
 			{
 				$section_count[$i]++;
 			}

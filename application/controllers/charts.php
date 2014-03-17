@@ -14,19 +14,19 @@ class Charts extends CI_Controller {
 	public function index()
 	{
 		$users = get_userID();
-        //        $section = get_sections();
+                $section = get_sections();
 		$reports = get_latest_reports($this->db);
-	//	$section_count = find_section_count($reports, $section);
+		$section_count = find_section_count($reports, $section);
                 $user_count = find_user_count($reports, $users);
                 $severity_percents = find_severity_percents($reports);
 		$time_percents = find_time_percents($reports);
-		
-	/*	for($i = 1; $i < count($section); $i++)
+	/*	
+		for($i = 1; $i < count($section); $i++)
 		{
 			$data = array($section_count[$i],$section_count[$i],$section_count[$i]);
-			$series_data[] = array('name' => $section[$i], 'data' => $data);
+			$series_data[] = array('name' => $section[$i], 'data' => $section_count);
 		}
-	*/	
+		
                 for($i = 1; $i < count($users); $i++)
 		{
 			$data = array($user_count[$i],$user_count[$i],$user_count[$i]);
@@ -34,7 +34,8 @@ class Charts extends CI_Controller {
 		}
 	
                 $series_data[] = array('name' => $users, 'data' => $severity_percents); //test
-                
+         */       
+                $series_data[] = array('name' => $section, 'data' => $section_count); //test
 		$count = 1;
 		$star = ' star';
 		foreach($severity_percents as $sev)
