@@ -212,6 +212,11 @@ class Photohandler {
         // This function is responsible for unlinking photo in the accident_photos and accident_photos/thumbs directory
         function unlinkphoto($photopath)
         {
+            // Check if the image is the person who upload the image.
+            // If the user isn't the author of the photo, then this function will return false.
+            // This function is going to be accessed via an asychronous call.
+            
+            
             $accident_photos = '../../accident_photos/';
             chdir($accident_photos);
             $path= array_shift(explode('accident_photos/', $photopath));
