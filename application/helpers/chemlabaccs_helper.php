@@ -351,11 +351,11 @@ function find_severity_percents($reports)
 	foreach($reports as $report)
 	{
 		$severity = $report[0]->severity;
-		if($severity == "low")
+		if($severity == "Low")
 			$data[0]++;
-		else if($severity == "medium")
+		else if($severity == "Medium")
 			$data[1]++;
-		else if($severity == "high")
+		else if($severity == "High")
 			$data[2]++;
 	}
 	

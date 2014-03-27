@@ -68,11 +68,11 @@ class Charts extends CI_Controller {
                 }
 		$month_data[] = array('name' => 'Last 3 Years', 'data' => $month_count);
 		
-		$s1_month_count = find_month_sev_count($reports, 'low');
+		$s1_month_count = find_month_sev_count($reports, 'Low');
 		$sev_month_data[] = array('name' => '1 star', 'data' => $s1_month_count);
-		$s2_month_count = find_month_sev_count($reports, 'medium');
+		$s2_month_count = find_month_sev_count($reports, 'Medium');
 		$sev_month_data[] = array('name' => '2 stars', 'data' => $s2_month_count);
-		$s3_month_count = find_month_sev_count($reports, 'high');
+		$s3_month_count = find_month_sev_count($reports, 'High');
 		$sev_month_data[] = array('name' => '3 stars', 'data' => $s3_month_count);
 		for($i = 0; $i < count($month_count); $i++)
 			$st_month_count[$i] = $s1_month_count[$i] + $s2_month_count[$i] + $s3_month_count[$i];
