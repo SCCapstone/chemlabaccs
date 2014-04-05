@@ -47,68 +47,57 @@
         </div>
     </div>    
     
+    
+    
+    
     <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Your Sections</h3>
           </div>
-          <div class="panel-body">
+             
               
-              
-              <div class="col-md-6">
-                  <u><b>Name</b></u> <br>
+            
+            <table class="table">
+                
+                <th>Name</th>
+                <th>ID</th>
+                <th>Password</th>
+                
                 <?php 
 
-               $row = $this->_section->get_sections();
-               
-               $ids = $this->_section->get_sections_ids();
-               
-               $curID = current($ids);
+                    $row = $this->_section->get_sections();
 
-                      foreach($row as $sec) {
-                          
-                         echo '<a href="../accidents/sectionResults/'.$curID.'">' . $sec . '</a>  <br />';
-                         
-                         $curID = next($ids);
-                         
-                      } 
+                    $ids = $this->_section->get_sections_ids();
+                    
+                    $pass = $this->_section->get_sections_pass();
+
+                    $curID = current($ids);
+                    
+                    $curPass = current($pass);
+
+                           foreach($row as $sec) {
+
+                              echo '<tr>'
+                                      . '<td><a href="../accidents/sectionResults/'.$curID.'">' . $sec . '</a></td>'
+                                      . '<td>'.$curID.'</td>'
+                                      . '<td>'.$curPass.'</td>'
+                                 . '</tr>';
+
+                              $curID = next($ids);
+                              $curPass = next($pass);
+
+                           } 
 
 
                        ?> 
-              </div>
+                
+            </table>
+            
               
-              <div class="col-md-2">
-                  <u><b>ID</b></u> <br>
-                <?php 
-
-               $row = $this->_section->get_sections_ids();
-
-                      foreach($row as $sec) {
-                          
-                       //  $this->set_value('section_id', $sec);
-                          
-                         echo $sec . ' <br />';
-                      } 
-
-
-                       ?> 
-              </div>
               
-              <div class="col-md-3">
-                  <u><b>Password</b></u> <br>
-                <?php 
 
-               $row = $this->_section->get_sections_pass();
-
-                      foreach($row as $sec) {
-                         echo $sec . '<br />';
-                      } 
-
-
-                       ?> 
-              </div>
-
-          </div>
+          
         </div>
     </div> 
     
