@@ -99,6 +99,89 @@ textarea.form-control:focus {
     .equamargins{
         width: 90% !important;
     }
+    /*************************************************************/
+    /* tables */
+table.tablesorter {
+    font-family:arial;
+    background-color: #CDCDCD;
+    margin:10px 0pt 15px;
+    font-size: 8pt;
+    width: 100%;
+    text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: #e6EEEE;
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding: 4px;
+}
+table.tablesorter thead tr .header {
+    background-image: url(bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+table.tablesorter tbody td {
+    color: #3D3D3D;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+    background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+table .header {
+    cursor: pointer;
+}
+
+table .header:after {
+  content: "";
+  float: right;
+  margin-top: 7px;
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #000000 transparent;
+  visibility: hidden;
+}
+
+table .headerSortUp, table .headerSortDown {
+  background-color: #f7f7f9;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+table .header:hover:after {
+  visibility: visible;
+}
+
+table .headerSortDown:after, table .headerSortDown:hover:after {
+  visibility: visible;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+
+table .headerSortUp:after {
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000000;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
    
 </style>
         </style>
@@ -130,7 +213,30 @@ textarea.form-control:focus {
                 });
 
             });
-        </script>
+        </script>      
+        
+    <!-- Tablesorter -->
+ 
+    <script type="text/javascript" src="<?php echo base_url(); ?>tablesorter/jquery-latest.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>tablesorter/jquery.tablesorter.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() 
+    { 
+        $("#resultsTable").tablesorter({
+
+            // customize header HTML
+            onRenderHeader: function(index) {
+                // the span wrapper is added by default
+                this.wrapInner('<span class="icons"></span>');
+            }
+
+        }); 
+        
+    } 
+    ); 
+    </script>
+    <!--// Tablesorter -->
+        
     </head>
     <body>
         <div class="navbar <?php echo $theme; ?> navbar-default navbar-fixed-top">

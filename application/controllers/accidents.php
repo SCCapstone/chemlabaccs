@@ -182,7 +182,11 @@ class Accidents extends CI_Controller {
         $this->template->write("title", "Search Results");
         $this->template->write("heading", "Search Results");
         $this->template->write("content", $content);
+       // $this->template->write_view("content", "accidents/results", $search);
         $this->template->render();
+        
+
+        
     }
 
     /*     * ********************************************************************************** */

@@ -157,7 +157,7 @@ function generate_accident_listing($accidents, $show = array()) {
     ), $show);
 
     $CI->table->set_template(array (
-        "table_open" => '<table class="table table-striped">'
+        "table_open" => '<table id="resultsTable" class="tablesorter">'
     ));
 
     $headings = array(
@@ -218,7 +218,7 @@ function generate_accident_listing($accidents, $show = array()) {
         $CI->table->add_row($row);
 
     }
-
+    
     return $CI->table->generate();        
 
 }
