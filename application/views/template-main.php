@@ -100,91 +100,55 @@ textarea.form-control:focus {
         width: 90% !important;
     }
     /*************************************************************/
-    /* tables */
+/* tables */
 table.tablesorter {
-    font-family:arial;
-    background-color: #CDCDCD;
-    margin:10px 0pt 15px;
-    font-size: 8pt;
-    width: 100%;
-    text-align: left;
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 10pt;
+	width: 100%;
+	text-align: left;
 }
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-    background-color: #e6EEEE;
-    border: 1px solid #FFF;
-    font-size: 8pt;
-    padding: 4px;
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 10pt;
+	padding: 4px;
+        text-align: left;
 }
-table.tablesorter thead tr .header {
-    background-image: url(bg.gif);
-    background-repeat: no-repeat;
-    background-position: center right;
-    cursor: pointer;
+table.tablesorter .header {
+	background-image: url(<?php echo base_url("tablesorter/themes/green/bg.png"); ?>);
+	background-repeat: no-repeat;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #000;
+	border-top: 1px solid #FFF;
+	padding-left: 30px;
+	padding-top: 8px;
+	height: auto;
+        cursor: pointer;
 }
 table.tablesorter tbody td {
-    color: #3D3D3D;
-    padding: 4px;
-    background-color: #FFF;
-    vertical-align: top;
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: middle;
 }
 table.tablesorter tbody tr.odd td {
-    background-color:#F0F0F6;
+	background-color: #E0F8E6;
 }
 table.tablesorter thead tr .headerSortUp {
-    background-image: url(asc.gif);
+	background-image: url(<?php echo base_url("tablesorter/themes/green/asc.png"); ?>);
 }
 table.tablesorter thead tr .headerSortDown {
-    background-image: url(desc.gif);
+	background-image: url(<?php echo base_url("tablesorter/themes/green/desc.png"); ?>);
 }
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
 }
-table .header {
-    cursor: pointer;
-}
 
-table .header:after {
-  content: "";
-  float: right;
-  margin-top: 7px;
-  border-width: 0 4px 4px;
-  border-style: solid;
-  border-color: #000000 transparent;
-  visibility: hidden;
-}
-
-table .headerSortUp, table .headerSortDown {
-  background-color: #f7f7f9;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-}
-
-table .header:hover:after {
-  visibility: visible;
-}
-
-table .headerSortDown:after, table .headerSortDown:hover:after {
-  visibility: visible;
-  filter: alpha(opacity=60);
-  -moz-opacity: 0.6;
-  opacity: 0.6;
-}
-
-table .headerSortUp:after {
-  border-bottom: none;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #000000;
-  visibility: visible;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  filter: alpha(opacity=60);
-  -moz-opacity: 0.6;
-  opacity: 0.6;
-}
    
 </style>
-        </style>
+        
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="<?php echo base_url("/js/html5shiv.js") ?>"></script>
@@ -224,6 +188,8 @@ table .headerSortUp:after {
     { 
         $("#resultsTable").tablesorter({
 
+            //theme: 'green',
+              widgets: ['zebra'] ,
             // customize header HTML
             onRenderHeader: function(index) {
                 // the span wrapper is added by default

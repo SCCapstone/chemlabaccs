@@ -223,6 +223,77 @@ function generate_accident_listing($accidents, $show = array()) {
 
 }
 
+function generate_accident_listing_mobile($accidents, $show = array()) {
+    
+    $CI =& get_instance();
+    
+    $CI->load->model('_section');
+
+    $show = array_merge(array(
+        "show_report#" => false,
+        "show_detail" => true,
+        "show_revisions" => true,
+    ), $show);
+
+    $CI->table->set_template(array (
+        "table_open" => '<table id="resultsTable" class="tablesorter">'
+    ));
+
+    $headings = array(
+        "Section",
+        "Date",
+        "Actions"
+    );
+
+    if ($show["show_report#"]) {
+        array_unshift($headings, "#");
+    }
+
+    $CI->table->set_heading($headings);
+
+    foreach ($accidents as $acc) {
+
+        $actions = array();
+        
+        $sectionInfo = $CI->_section->detail($acc->section_id);
+
+        if ($show["show_detail"]) {
+            $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
+                "class" => "btn btn-default"
+            ));
+        }
+        
+        if (isset($acc->count)) {
+
+            if ($show["show_revisions"] && $acc->count - 1 > 0) {
+                $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions (' . ($acc->count - 1) . ')', array(
+                    "class" => "btn btn-default"
+                ));
+            }
+        
+        }
+
+        $user = String($acc->email);
+        $modified = String($acc->modified);
+
+        $row = array(
+            $sectionInfo->name,
+            date_mysql2human($acc->date),
+            implode(' ', $actions)
+        );
+
+        if ($show["show_report#"]) {
+            array_unshift($row, '<span class="badge">' . format_accident_report_number($acc->revision_of) . '</span>');
+        }
+
+        $CI->table->add_row($row);
+
+    }
+    
+    return $CI->table->generate();        
+
+}
+
 function span($text, $class) {
     
     return sprintf('<span class="%s">%s</span>', $class, $text);

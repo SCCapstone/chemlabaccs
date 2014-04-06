@@ -171,12 +171,20 @@ class Accidents extends CI_Controller {
 
     public function results() {
 
+        $this->load->library('user_agent');
+        
         $search = $this->_accidents->search();
 
         if (count($search) == 0) {
             $content = "No results found for specified criteria.";
         } else {
-            $content = generate_accident_listing($search, array("show_report#" => true));
+            
+            if($this->agent->is_mobile()) {
+                $content = generate_accident_listing_mobile($search, array("show_report#" => true));
+            }
+            else {
+                $content = generate_accident_listing($search, array("show_report#" => true));
+            }
         }
 
         $this->template->write("title", "Search Results");
