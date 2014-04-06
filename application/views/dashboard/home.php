@@ -48,8 +48,9 @@
             
             <table class="table">
                 
-                <th>Name</th>
-                <th>ID</th>
+            <th><u>Name</u></th>
+            <th><u>ID</u></th>
+           
                 
                 <?php 
 

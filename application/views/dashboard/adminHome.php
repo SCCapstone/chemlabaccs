@@ -58,12 +58,13 @@
              
               
             
-            <table class="table">
-                
-                <th>Name</th>
-                <th>ID</th>
-                <th>Password</th>
-                
+            <table id="sectionTable" class="table">
+                <thead>
+            <th><u>Name</u></th>
+            <th><u>ID</u></th>
+            <th><u>Password</u></th>
+            </thead>
+            <tbody>
                 <?php 
 
                     $row = $this->_section->get_sections();
@@ -89,8 +90,10 @@
 
                            } 
 
+                           
 
                        ?> 
+            </tbody>
                 
             </table>
             
