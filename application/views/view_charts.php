@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo APP_NAME ?> | <?php echo $title ?></title>
     <link rel="shortcut icon" href="<?php echo base_url("img/favicon.png") ?>">
-	<script type="text/javascript" src="http://localhost/chemlabaccs/js/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="http://localhost/chemlabaccs/highcharts/Highcharts-3.0.7/js/highcharts.js"></script>
+	<script type="text/javascript" src="http://chemlabaccs.com/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="http://chemlabaccs.com/highcharts/Highcharts-3.0.7/js/highcharts.js"></script>
 	
 	<style type="text/css">
 		Div.graph {
