@@ -40,7 +40,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">Your Account</h3>
           </div>
-          <div class="panel-body">
+          <div class="panel-body">      
               <p> <?php echo anchor("sections/createSection", '<span class="glyphicon glyphicon-plus"></span> Create a Section', array("class" => "btn btn-success", "role" => "button")); ?> </p>
               <p> <?php echo anchor('users/signout', '<span class="glyphicon glyphicon-user"></span> Sign Out', array("class" => "btn btn-warning", "role" => "button")); ?></p>
           </div>
@@ -63,6 +63,7 @@
             <th><u>Name</u></th>
             <th><u>ID</u></th>
             <th><u>Password</u></th>
+            <th><u>Details</u></th>
             </thead>
             <tbody>
                 <?php 
@@ -83,6 +84,7 @@
                                       . '<td><a href="../accidents/sectionResults/'.$curID.'">' . $sec . '</a></td>'
                                       . '<td>'.$curID.'</td>'
                                       . '<td>'.$curPass.'</td>'
+                                      . '<td>'.anchor("sections/detail/" . $curID, '<span class="glyphicon glyphicon-list-alt"></span>', array("class" => "btn btn-default")).'</td>'
                                  . '</tr>';
 
                               $curID = next($ids);
