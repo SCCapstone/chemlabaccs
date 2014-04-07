@@ -88,6 +88,7 @@ function get_sections() {
     
 }
 
+// user's section's
 function get_sections_ids() {
     return get_instance()->_section->get_sections_ids();
 }

@@ -106,7 +106,7 @@ class _Accidents extends CI_Model {
         
     }
     
-    public function search() {
+    public function search($ids) {
         
         $results = array();
         
@@ -115,9 +115,16 @@ class _Accidents extends CI_Model {
         $this->db->from("accidents");
         $this->db->join("users", "accidents.user = users.id");
         
-        if ($this->input->post("section")) {
+        if ($this->input->post("section")){
             $this->db->where("section_id", $this->input->post("section"));
         }
+        else {
+
+            $this->db->where_in("section_id", $ids);
+ 
+            }
+            
+        
         
         if ($this->input->post("start_date") && $this->input->post("end_date")) {
             $this->db->where("date >=", date_human2mysql($this->input->post("start_date")));

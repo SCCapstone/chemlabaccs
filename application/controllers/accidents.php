@@ -173,7 +173,10 @@ class Accidents extends CI_Controller {
 
         $this->load->library('user_agent');
         
-        $search = $this->_accidents->search();
+        $secs = get_sections_ids();
+        
+        
+        $search = $this->_accidents->search($secs);
 
         if (count($search) == 0) {
             $content = "No results found for specified criteria.";
