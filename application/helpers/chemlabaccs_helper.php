@@ -122,13 +122,13 @@ function severity_scale($severity) {
     $rating = 0;
     
     switch ($severity) {
-        case "low":
+        case "Low":
             $rating = 1;
             break;
-        case "medium":
+        case "Medium":
             $rating = 2;
             break;
-        case "high":
+        case "High":
             $rating = 3;
             break;
     }
