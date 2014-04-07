@@ -355,12 +355,13 @@ function find_user_count($reports, $users)
 //find the total number of accidents that occur in each building
 function find_section_count($reports, $section)
 {
+    
 	$section_count = initialize_section_count($section);
 	foreach ($reports as $report) 
 	{
 		for($i = 1; $i < count($section); $i++)
 		{
-			if($report[0]->_section == $i)
+			if($report[0]->section_id == $i)
 			{
 				$section_count[$i]++;
 			}
