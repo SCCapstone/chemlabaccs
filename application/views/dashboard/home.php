@@ -37,53 +37,54 @@
         </div>
     </div>
     
-    <div class="col-md-6">
+    
+      <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Your Sections</h3>
           </div>
-          <div class="panel-body">
-              <div class="col-md-6">
-                  <b>Name</b> <br>
-                 <?php 
-
-               $row = $this->_section->get_sections();
-               
-               $ids = $this->_section->get_sections_ids();
-               
-               $curID = current($ids);
-
-                      foreach($row as $sec) {
-                          
-                         echo '<a href="../accidents/sectionResults/'.$curID.'">' . $sec . '</a>  <br />';
-                         
-                         $curID = next($ids);
-                         
-                      } 
-
-
-                       ?>
-              </div>
+             
               
-              <div class="col-md-2">
-                  <b>ID</b> <br>
+            
+            <table class="table">
+                
+            <th><u>Name</u></th>
+            <th><u>ID</u></th>
+           
+                
                 <?php 
 
-               $row = $this->_section->get_sections_ids();
+                    $row = $this->_section->get_sections();
 
-                      foreach($row as $sec) {
-                         echo $sec . '<br />';
-                      } 
+                    $ids = $this->_section->get_sections_ids();
+                    
+
+                    $curID = current($ids);
+
+
+                           foreach($row as $sec) {
+
+                              echo '<tr>'
+                                      . '<td><a href="../accidents/sectionResults/'.$curID.'">' . $sec . '</a></td>'
+                                      . '<td>'.$curID.'</td>'
+                                 . '</tr>';
+
+                              $curID = next($ids);
+
+
+                           } 
 
 
                        ?> 
-              </div>
+                
+            </table>
+            
               
-             
+              
 
-          </div>
+          
         </div>
-    </div>
+    </div> 
     
 </div>
      

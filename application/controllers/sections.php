@@ -101,7 +101,25 @@ class Sections extends CI_Controller {
     }
     
     
-    
+    public function detail($id) {
+        
+        $id = (int) $id;
+        
+        $data = array();
+        
+        $sectionInfo = $this->_section->detail($id);
+        
+        $data["sectionInfo"] = $sectionInfo;
+        
+        $title = 'Section Details:  ' . $sectionInfo->name;
+
+        $this->template->write("title", 'Section Details');
+        $this->template->write("heading", $title);
+        $this->template->write_view("content", "section/details", $data);
+
+        $this->template->render();
+        
+    }
     
     
     

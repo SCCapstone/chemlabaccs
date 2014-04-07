@@ -1,6 +1,6 @@
 <?php
 
-$sections = get_sections();
+$sections = array("All of My Sections", get_sections());
 
 $section = array(
     "id" => "section",
