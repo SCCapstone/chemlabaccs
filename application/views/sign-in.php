@@ -9,14 +9,17 @@
         <?php echo $_scripts ?>
         <style type="text/css">
             body {
-                padding-top: 40px;
-                padding-bottom: 40px;
-                background-color: #eee;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	overflow: hidden;
             }
             .form-signin {
-                max-width: 330px;
-                padding: 15px;
-                margin: 0 auto;
+	/* [disabled]max-width: 330px; */
+	padding: 15px;
+	margin: 0 auto;
+	width: 40%;
             }
             .form-signin .form-signin-heading,
             .form-signin .checkbox {
@@ -47,6 +50,36 @@
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
             }
+			     #sign_in_body_wrapper {
+	background-position: center center !important;
+	/* [disabled]background-repeat: no-repeat !important; */
+	background-size: cover !important;
+	left: 0px !important;
+	overflow: hidden !important;
+	/* [disabled]position: fixed !important; */
+	/* [disabled]top: 100px !important; */
+	width: 100% !important;
+	background: url(../chemlab_graphics/home_blur_accent.jpg) no-repeat fixed 0% 0% transparent;
+	padding-top: 100px;
+	min-height: 768px;
+	height: 100%;
+	/* [disabled]min-width: 1000px; */
+	margin-top: -20px;
+}
+        #lars_logo {
+	width: 140px;
+	height: 53px;
+	margin: 0 auto;
+}
+        .white_text {
+	font-size: 22px;
+	font-family: helvetica, arial, san-serif;
+	line-height: 22.7px;
+	color: #ffffff;
+	text-align: center;
+}
+        </style>
+  
         </style>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -55,11 +88,14 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container">
-            <?php echo form_open('users/authenticate', array('class' => 'form-signin')); ?>
-                <h2 class="form-signin-heading">Please sign-in or register now.</h2>
-                <?php echo $flash ?>
-                <?php
+    <div id="sign_in_body_wrapper">
+      <div class="container">
+        <p><?php echo form_open('users/authenticate', array('class' => 'form-signin')); ?></p>
+        <div id="lars_logo"><img src="../chemlab_graphics/chemlab_logo.png" width="140" height="53" alt="lars logo">
+        </div>
+<h3 class="form-signin-heading white_text">Please sign-in or register</h3>
+        <p><?php echo $flash ?>
+          <?php
                     echo form_input(array(
                         'name' => 'user_name',
                         'id' => 'user_name',
@@ -69,7 +105,7 @@
                         'type' => 'email'
                     ));
                 ?>
-                <?php
+          <?php
                     echo form_password(array(
                         'name' => 'password',
                         'id' => 'password',
@@ -77,7 +113,7 @@
                         'placeholder' => 'Password'
                     ));
                 ?>
-                <?php
+          <?php
                     echo form_submit(array(
                         'name' => 'sign-in',
                         'id' => 'sign-in',
@@ -85,12 +121,15 @@
                         'value' => 'Sign In'                     
                     ));
                 ?>
-        
-                
-                <?php echo anchor("users/register", "Register", array("class" => "btn btn-lg btn-primary btn-block")); ?>
-                       
-                
-            <?php echo form_close(); ?>
-        </div>
-    </body>
+          
+          
+          <?php echo anchor("users/register", "Register", array("class" => "btn btn-lg btn-primary btn-block")); ?>
+          
+          
+          <?php echo form_close(); ?>
+        </p>
+        <p>&nbsp;</p>
+  </div>
+    </div>
+</body>
 </html>

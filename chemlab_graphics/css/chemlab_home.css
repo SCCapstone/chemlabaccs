@@ -1,0 +1,326 @@
+.homeintro{
+	background-position: -50 10 !important;
+	/* [disabled]background-repeat: no-repeat !important; */
+	background-size: cover !important;
+	left: 0px !important;
+	overflow: hidden !important;
+	/* [disabled]position: fixed !important; */
+	/* [disabled]top: 100px !important; */
+	width: 100% !important;
+	background: url(../home_blur_accent.jpg) no-repeat fixed 0% 0% transparent;
+	/* [disabled]padding-top: 100px; */
+	min-height: 675px;
+
+}
+
+.introspacer{
+min-height: 175px;
+}
+
+.introtext_sub{
+font-size: 22.px; 
+color: #FFFFFF; 
+font-family: 'Roboto', sans-serif !important; 
+font-weight: 200; 
+line-height:20px; 
+letter-spacing: 3px; 
+font-size: 21px;
+
+}
+
+.introtext{
+font-size: 60px;
+color: #FFFFFF;
+font-family: 'Roboto', sans-serif !important;
+ font-weight: 200;
+
+}
+
+.btn-purple{
+background-color: #46385F; 
+border: none;/* [disabled]height: 30px; *//* [disabled]padding-top: 15px; */ border-radius: 0;
+color:#FFF;
+font-weight:bold;
+border-radius:2px;
+}
+#clear_navigation {
+	height: auto;
+	padding: 30px 100px 30px 100px;
+	overflow: auto;
+	border-bottom: 1px solid #93979E;
+}
+#logo_wrapper_main {
+	width: 140px;
+	float: left;
+}
+#clear_navigation_quick_links {
+	width: 60%;
+	float: right;
+	text-align: right;
+	padding-top: 10px;
+	color: #FFF;
+	font-weight: 700;
+	font-family: helvetica, san-serif, arial;
+	font-size: 14px;
+}
+#register_custom_btn {
+	width: 100px;
+	float: right;
+	height: 20px;
+	padding: 10px;
+	text-align: center;
+	border-radius: 4px;
+	border: 2px solid #AFB4BC;
+}
+#register_custom_btn_small {
+	width: 65px;
+	float: right;
+	height: 20px;
+	padding: 10px;
+	text-align: center;
+	border-radius: 4px;
+	border: 2px solid #AFB4BC;
+}
+#register_custom_btn_solid {
+	width: 200px;
+	/* [disabled]float: right; */
+	height: 25px;
+	padding: 20px;
+	text-align: center;
+	border-radius: 4px;
+	border: 2px solid #ffffff;
+	background-color: #ADD037;
+	color: #FFF;
+	font-weight: 600;
+	font-size: 18px;
+}
+#quick_links_anchors {
+	width: 50%;
+	float: right;
+	padding-top: 10px;
+	margin-right: 10px;
+	word-spacing: 5px;
+}
+#megatron_support_text {
+	width: auto;
+	float: left;
+	padding: 105px 0px;
+	margin-left: 100px;
+}
+#megatron_support_text_wrapper {
+	width: 1160px;
+	margin: 0 auto;
+	padding-top: 30px;
+	height: auto;
+	overflow: auto;
+	font-family: 'Open Sans', sans-serif;
+}
+.intro_text_white {
+	font-size: 50px;
+	color: #ffffff;
+	font-weight: 200;
+	font-family: 'Open Sans', sans-serif;
+
+}
+.intro_text_white_tablet_mobile {
+	font-size: 30px;
+	color: #ffffff;
+	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
+	/* [disabled]line-height:15px; */
+
+}
+.intro_text_dark {
+	font-size: 40px;
+	color: #333A44;
+	font-weight: 400;
+	font-family: 'Open Sans', sans-serif;
+
+}
+.white_text {
+	color: #FFF;
+	font-size: 18px !important;
+	font-weight:200;
+}
+.dark_text {
+	color: #333A44;
+	font-size: 18px !important;
+	font-weight: 200;
+}
+#megatron_support_graphics {
+	width: auto;
+	float: left;
+	height: auto;
+	/* [disabled]margin-right: 125px; */
+}
+#feature_spotlight {
+	height: auto;
+	background-color: #f2f3f5;
+	clear: both;
+	/* [disabled]margin-top: -20px; */
+	padding: 15px;
+	overflow: auto;
+	max-height: 400px;
+}
+#feature_badges {
+	margin: 0 auto;
+	/* [disabled]margin-top: -100px; */
+	/* [disabled]padding-top: -20px; */
+	overflow: auto;
+	max-width: 1010px;
+	width: auto;
+	/* [disabled]padding-left: 9%; */
+	/* [disabled]height: 500px; */
+	letter-spacing: .5px;
+}
+#lower_body_wrapper {
+	height: auto;
+	width: 50%;
+	margin: 0 auto;
+	/* [disabled]padding: 50px 30px; */
+	overflow: auto;
+	float: right;
+}
+#lower_body_wrapper_mobile_tablet {
+	height: auto;
+	width: 1120px;
+	margin: 0 auto;
+	padding: 50px 30px;
+	overflow: auto;
+}
+.feature_badges {
+	width: 310px;
+	/* [disabled]margin-left: 100px; */
+	/* [disabled]margin-right: 100px; */
+	float: left;
+	padding-left: 25px;
+}
+#video_container {
+	width: 100%;
+	height: 400px;
+	background-color: #D7D9DB;
+	/* [disabled]float: right; */
+}
+#left_justified_heading {
+	width: 50%;
+	float: left;
+	padding-top: 60px;
+}
+#mobile_video_heading {
+	/* [disabled]width: 50%; */
+	/* [disabled]float: left; */
+	padding-top: 60px;
+}
+#featured_header_panel {
+	/* [disabled]height: 200px; */
+	background-color: #1F2427;
+	padding: 25px;
+}
+#featured_heading {
+	color: #ffffff;
+	font-size: 25px;
+	text-align: center;
+	font-weight: 400;
+	font-family: 'Open Sans', sans-serif;
+}
+#accent_caret {
+	width: 55px;
+	margin: 0 auto;
+}
+#feature_container {
+	height: 200px;
+	width: 1010px;
+	margin: 0 auto;
+	/* [disabled]padding: 50px; */
+	padding-top: 30px;
+}
+#feature_container_tablet_mobile {
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	/* [disabled]padding: 50px; */
+	padding-top: 30px;
+	overflow: auto;
+}
+.lar_icon {
+	float: left;
+	/* [disabled]height: 75%; */
+	margin-right: 30px;
+	margin-left: 30px;
+	padding: 5px;
+	/* [disabled]border-left: 1px solid #b2b2b2; */
+	/* [disabled]border-right: 1px solid #b2b2b2; */
+}
+#sub_feature_block {
+	width: 168px;
+	float: left;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400 !important;
+	color: #333A44;
+}
+#sub_feature_block_tablet_mobile {
+	width: 50%;
+	float: left;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400 !important;
+	color: #333A44;
+}
+#home_footer {
+	height: 100px;
+	background-color: #E2E4E9;
+	padding: 100px;
+}
+#one-3-block {
+	width: 33.33%;
+	height: 100px;
+	float: left;
+	/* [disabled]background-image: url(badge_tablet_sprites.png); */
+	text-align: center;
+	padding: 30px 0px;
+}
+.lars_green{
+	background-color:#ACD036;
+}
+.lars_blue{
+	background-color:#2DC0D5;
+}
+.lars_purple{
+	background-color:#85459A;
+}
+#tablet_feature_spotlight {
+	height: auto;
+	overflow: auto;
+}
+#tablet_mobile_navigation {
+	padding: 20px;
+	height: auto;
+	overflow: auto;
+}
+#tablet_mobile_logo_wrapper {
+	width: 20%;
+	float: left;
+}
+#tablet_mobile_quick_links {
+	width: 80%;
+	float: right;
+	/* [disabled]padding-top: 20px; */
+	font-weight: 400;
+	color: #ffffff;
+	word-spacing: 4px;
+}
+#tablet_mobile_quick_link_wrapper {
+	width: 60%;
+	float: right;
+	text-align: right;
+	padding-top: 10px;
+	margin-right: 10px;
+}
+#tablet_mobile_megatron {
+}
+#tablet_mobile_intro_text {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
