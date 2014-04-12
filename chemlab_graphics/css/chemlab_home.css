@@ -172,10 +172,10 @@ border-radius:2px;
 	overflow: auto;
 	max-width: 1010px;
 	width: auto;
-	/* [disabled]padding-left: 9%; */
+	padding-left: 9%;
 	/* [disabled]height: 500px; */
-	letter-spacing: .5px;
-	text-align:center;
+	letter-spacing: 0.5px;
+	text-align: center;
 }
 #lower_body_wrapper {
 	height: auto;
@@ -278,7 +278,6 @@ border-radius:2px;
 }
 #one-3-block {
 	width: 33.33%;
-	height: 100px;
 	float: left;
 	/* [disabled]background-image: url(badge_tablet_sprites.png); */
 	text-align: center;
