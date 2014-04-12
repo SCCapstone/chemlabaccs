@@ -1,3 +1,8 @@
+@import url("../../bootstrap/css/bootstrap.css");
+body{
+	margin:0px !important;
+	padding:0px !important;
+}
 .homeintro{
 	background-position: -50 10 !important;
 	/* [disabled]background-repeat: no-repeat !important; */
@@ -7,7 +12,7 @@
 	/* [disabled]position: fixed !important; */
 	/* [disabled]top: 100px !important; */
 	width: 100% !important;
-	background: url(../home_blur_accent.jpg) no-repeat fixed 0% 0% transparent;
+	background: url(../../chemlab_graphics/home_blur_accent.jpg) no-repeat fixed 0% 0% transparent;
 	/* [disabled]padding-top: 100px; */
 	min-height: 675px;
 
@@ -66,7 +71,6 @@ border-radius:2px;
 #register_custom_btn {
 	width: 100px;
 	float: right;
-	height: 20px;
 	padding: 10px;
 	text-align: center;
 	border-radius: 4px;
@@ -84,7 +88,6 @@ border-radius:2px;
 #register_custom_btn_solid {
 	width: 200px;
 	/* [disabled]float: right; */
-	height: 25px;
 	padding: 20px;
 	text-align: center;
 	border-radius: 4px;
@@ -172,6 +175,7 @@ border-radius:2px;
 	/* [disabled]padding-left: 9%; */
 	/* [disabled]height: 500px; */
 	letter-spacing: .5px;
+	text-align:center;
 }
 #lower_body_wrapper {
 	height: auto;
@@ -323,4 +327,20 @@ border-radius:2px;
 	width: 80%;
 	margin: 0 auto;
 	text-align: center;
+}
+a:hover{
+	color:#f2f3f5 !important;
+	
+}
+a:visited{
+	color:#f2f3f5 !important;
+	
+}
+a:active{
+	color:#f2f3f5 !important;
+	
+}
+a{
+	color:#ffffff;
+	text-decoration:none;
 }

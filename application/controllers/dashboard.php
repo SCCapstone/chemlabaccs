@@ -11,9 +11,8 @@ class Dashboard extends CI_Controller {
             redirect("dashboard/home");
         }
 
-        $this->template->write("title", "Dashboard");
-        $this->template->write_view("content", "dashboard/index");
-        $this->template->render();
+      else 
+    $this->load->view('chemlabhome');
         
     }
 
