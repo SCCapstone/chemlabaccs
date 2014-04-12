@@ -191,11 +191,13 @@ class _Accidents extends CI_Model {
     
     //Search by keyword function
     public function searchKeyword($query) {
-
-        $results = array();
         
+               
         $sql = sprintf("SELECT * FROM accidents WHERE description LIKE '%$query%'");
         $query = $this->db->query($sql);
+        
+        //Test
+        echo $query; 
         
          if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {

@@ -6,11 +6,16 @@ if (!defined('BASEPATH'))
 <ul class="nav navbar-nav navbar-right">
     <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search by keyword">
+          <input type="text" class="form-control" placeholder="Search by keyword"  id="keyword" name="keyword">
         </div>
-        <?php echo anchor("accidents/detail", '<span class="glyphicon glyphicon-search"></span> Submit', array("class" => "btn btn-success", "role" => "button")); ?>
-<!--        <button type="submit" class="btn btn-default">Submit</button>
- -->
+        <a href="../accidents/keywordResults">           
+            <div id="search-btn" type="POST" class ="btn btn-success">
+      <!--         <button type="submit" class="btn btn-success">Submit</button>         -->
+                <span class="glyphicon glyphicon-search">
+                    Search
+                </span>  
+            </div>
+        </a>
     </form>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Signed in as <strong><?php echo CI()->auth->get_user_name(); ?></strong> <b class="caret"></b></a>

@@ -265,5 +265,26 @@ class Accidents extends CI_Controller {
         $this->template->render();
     }
     
+  
+public function keywordResults() {
+
+        $query = $_POST['keyword'];
+      //  $results = array();
+        
+        $search = $this->_accidents->searchKeyword($query);
+
+        if (count($search) == 0) {
+            $content = "No results found for specified criteria.";
+        } else {
+            $content = generate_accident_listing($search, array("show_report#" => true));
+        }
+
+        $this->template->write("title", "Search Results");
+        $this->template->write("heading", "Search Results");
+        $this->template->write("content", $content);
+        $this->template->render();
+    }
+    
     
 }
+
