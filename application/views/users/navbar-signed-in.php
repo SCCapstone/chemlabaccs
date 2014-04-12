@@ -8,8 +8,10 @@ if (!defined('BASEPATH'))
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search by keyword">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+        <?php echo anchor("accidents/detail", '<span class="glyphicon glyphicon-search"></span> Submit', array("class" => "btn btn-success", "role" => "button")); ?>
+<!--        <button type="submit" class="btn btn-default">Submit</button>
+ -->
+    </form>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Signed in as <strong><?php echo CI()->auth->get_user_name(); ?></strong> <b class="caret"></b></a>
         <ul class="dropdown-menu">
