@@ -146,7 +146,7 @@ class Users extends CI_Controller {
         
         
      }
-     
+    //function to join a specific section 
      public function joinSection() {
        
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
