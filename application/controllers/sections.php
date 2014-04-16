@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * Class for creating and managing new sections 
+ * 
+ * Author:
+ * Edited by: David Allen
+ */
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -15,7 +22,7 @@ class Sections extends CI_Controller {
     }
     
     
-    
+    //function for creating new section, validates the below fields
     public function createSection() {
         
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -59,7 +66,8 @@ class Sections extends CI_Controller {
             
             
             $this->load->model('_section');
-            
+            //if a new section is created, a section id is created and email
+            //sent to creater with section details
             if($this->_section->createSection($newSec)) {
                 
                 $userSection = new stdClass;
@@ -100,7 +108,7 @@ class Sections extends CI_Controller {
         
     }
     
-    
+    //stores the details of the section
     public function detail($id) {
         
         $id = (int) $id;

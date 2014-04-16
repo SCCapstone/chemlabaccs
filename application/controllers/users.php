@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * class to control user functions, such as signing in, signing out, 
+ * registration, user validation, and joining a section
+ * 
+ * Author:
+ * Edited by: David A. Allen
+ */
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -31,7 +39,8 @@ class Users extends CI_Controller {
         
         $user_name = $this->input->post('user_name');
         $password = $this->input->post('password');
-
+        
+        //if user name and password are authenticated, signin successful
         if ($this->auth->authenticate($user_name, $password)) {
             $this->flash->success("You have been signed in");
             redirect('');
@@ -41,7 +50,8 @@ class Users extends CI_Controller {
         } 
         
     }
-
+    
+    //function to sign in as a user
     public function signin() {
         
         $this->template->set_master_template('sign-in');
@@ -49,7 +59,7 @@ class Users extends CI_Controller {
         $this->template->render();
         
     }
-
+    //function to sign out as a user - deauthenticaiton
     public function signout() {
 
         $this->auth->deauthenticate();
@@ -158,7 +168,7 @@ class Users extends CI_Controller {
         $this->form_validation->set_rules('sectionID', 'Section ID #', 'required');
         $this->form_validation->set_rules('sectionPassword', 'Section Password', 'required');
         
-        
+        //if form validation does not run
         if ($this->form_validation->run() == FALSE) {
             $title = "Join a Section";
             $this->template->write("title", $title);
@@ -175,6 +185,7 @@ class Users extends CI_Controller {
             
             $this->load->model('_section');
             
+            //if user successfully joins section
             if($this->_section->join_section($userSection)) {
                 $this->flash->success("You have successfully joined the section!");
                 redirect('dashboard/home');
