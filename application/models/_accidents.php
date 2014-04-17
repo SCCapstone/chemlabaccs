@@ -6,7 +6,8 @@ if (!defined('BASEPATH'))
 /**
  * Accidents model
  */
-class _Accidents extends CI_Model {
+class _Accidents extends CI_Model 
+{
     
     // table name
     private $table = '';
@@ -14,7 +15,8 @@ class _Accidents extends CI_Model {
     /**
      * Accidents model construct
      */
-    public function __construct() {
+    public function __construct() 
+    {
 
         parent::__construct();
         
@@ -23,8 +25,9 @@ class _Accidents extends CI_Model {
         
     }
  
-    
-    public function add($record,$accidentid) {
+    //function to add an accident record to the database
+    public function add($record,$accidentid) 
+    {
         
         $this->db->insert($this->table, $record);
         
@@ -44,14 +47,16 @@ class _Accidents extends CI_Model {
         return $success;
         
     }
-    
-    public function detail($id) {
+    //function for accident id in database
+    public function detail($id) 
+    {
         
         $where = array("id" => $id);
         
         $query = $this->db->get_where($this->table, $where);
         
-        if ($query->num_rows() == 1) {
+        if ($query->num_rows() == 1) 
+        {
             return $query->row();
         }
         
@@ -59,7 +64,8 @@ class _Accidents extends CI_Model {
         
     }
     
-    public function mine() {
+    public function mine() 
+    {
         
         $mines = array();
         
@@ -72,8 +78,10 @@ class _Accidents extends CI_Model {
         
         $query = $this->db->query($sql);
         
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
+        if ($query->num_rows() > 0) 
+        {
+            foreach ($query->result() as $row) 
+            {
                 $mines[] = $row;
             }
         }
@@ -81,8 +89,9 @@ class _Accidents extends CI_Model {
         return $mines;
         
     }
-    
-    public function revisions($id) {
+    //corrections to specific fields
+    public function revisions($id) 
+    {
         
         $revisions = array();
         
@@ -96,8 +105,10 @@ class _Accidents extends CI_Model {
         
         $query = $this->db->query($sql);
         
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
+        if ($query->num_rows() > 0) 
+        {
+            foreach ($query->result() as $row) 
+            {
                 $revisions[] = $row;
             }
         }
@@ -105,8 +116,9 @@ class _Accidents extends CI_Model {
         return $revisions;
         
     }
-    
-    public function search($ids) {
+    //function to search for specific accident report
+    public function search($ids) 
+    {
         
         $results = array();
         
@@ -115,47 +127,55 @@ class _Accidents extends CI_Model {
         $this->db->from("accidents");
         $this->db->join("users", "accidents.user = users.id");
         
-        if ($this->input->post("section")){
+        if ($this->input->post("section"))
+        {
             $this->db->where("section_id", $this->input->post("section"));
         }
-        else {
-
+        else 
+        {
             $this->db->where_in("section_id", $ids);
- 
-            }
+        }
             
         
-        
-        if ($this->input->post("start_date") && $this->input->post("end_date")) {
+        //after start date, before end date search sequence
+        if ($this->input->post("start_date") && $this->input->post("end_date")) 
+        {
             $this->db->where("date >=", date_human2mysql($this->input->post("start_date")));
             $this->db->where("date <=", date_human2mysql($this->input->post("end_date")));
         }
-        
-        if ($this->input->post("start_time") && $this->input->post("end_time")) {
+        //after start time, before end time search sequence
+        if ($this->input->post("start_time") && $this->input->post("end_time")) 
+        {
             $this->db->where("time >=", time_human2mysql($this->input->post("start_time")));
             $this->db->where("time <=", time_human2mysql($this->input->post("end_time")));
         }
         
-        
-        if ($this->input->post("description")) {
+        //alike characters for description
+        if ($this->input->post("description")) 
+        {
             $this->db->like("description", $this->input->post("description"));
         }
-        
-        if ($this->input->post("severity")) {
-            if (count($this->input->post("severity")) > 0) {
+        //search by severity
+        if ($this->input->post("severity")) 
+        {
+            if (count($this->input->post("severity")) > 0) 
+            {
                 $values = array();
-                foreach ($this->input->post("severity") as $severity) {
+                foreach ($this->input->post("severity") as $severity) 
+                {
                     $values[] = $severity;
                 }
                 $this->db->where_in("severity", $values);
             }
         }
-        
-        if ($this->input->post("root")) {
+        //searching for like root
+        if ($this->input->post("root")) 
+        {
             $this->db->like("root", $this->input->post("root"));
         }
         
-        if ($this->input->post("prevention")) {
+        if ($this->input->post("prevention")) 
+        {
             $this->db->like("prevention", $this->input->post("prevention"));
         }
         
@@ -163,7 +183,8 @@ class _Accidents extends CI_Model {
         $this->db->_reset_select();
         
         $add = false;
-        if ($where->indexOf("WHERE") > -1) {
+        if ($where->indexOf("WHERE") > -1) 
+        {
             $add = true;
             $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a1.`");            
         }
@@ -179,8 +200,10 @@ class _Accidents extends CI_Model {
         
         #die($this->db->last_query());
         
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
+        if ($query->num_rows() > 0) 
+        {
+            foreach ($query->result() as $row) 
+            {
                 $results[] = $row;
             }
         }
@@ -190,7 +213,8 @@ class _Accidents extends CI_Model {
     }
     
     //Search by keyword function
-    public function searchKeyword($query) {
+    public function searchKeyword($query) 
+    {
         
                
         $sql = sprintf("SELECT * FROM accidents WHERE description LIKE '%$query%'");
@@ -199,66 +223,76 @@ class _Accidents extends CI_Model {
         //Test
         echo $query; 
         
-         if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
+         if ($query->num_rows() > 0) 
+         {
+            foreach ($query->result() as $row) 
+            {
                 $results[] = $row;
             }
         }
         
         return $results;
     }    
-    
-    public function searchSection($sec) {
+    //function to search for a specific section
+    public function searchSection($sec) 
+    {
         
         $results = array();
         
         $this->db->select("accidents.id, revision_of, date, time,
             description, severity, root, prevention, users.email, created");
         $this->db->from("accidents");
-        $this->db->join("users", "accidents.user = users.id");
-        
-     
-            $this->db->where("section_id", $sec);
+        $this->db->join("users", "accidents.user = users.id");     
+        $this->db->where("section_id", $sec);
         
         
-        if ($this->input->post("start_date") && $this->input->post("end_date")) {
+        if ($this->input->post("start_date") && $this->input->post("end_date")) 
+        {
             $this->db->where("date >=", date_human2mysql($this->input->post("start_date")));
             $this->db->where("date <=", date_human2mysql($this->input->post("end_date")));
         }
         
-        if ($this->input->post("start_time") && $this->input->post("end_time")) {
+        if ($this->input->post("start_time") && $this->input->post("end_time")) 
+        {
             $this->db->where("time >=", time_human2mysql($this->input->post("start_time")));
             $this->db->where("time <=", time_human2mysql($this->input->post("end_time")));
         }
         
         
-        if ($this->input->post("description")) {
+        if ($this->input->post("description")) 
+        {
             $this->db->like("description", $this->input->post("description"));
         }
         
-        if ($this->input->post("severity")) {
-            if (count($this->input->post("severity")) > 0) {
+        if ($this->input->post("severity")) 
+        {
+            if (count($this->input->post("severity")) > 0) 
+            {
                 $values = array();
-                foreach ($this->input->post("severity") as $severity) {
+                foreach ($this->input->post("severity") as $severity) 
+                {
                     $values[] = $severity;
                 }
                 $this->db->where_in("severity", $values);
             }
         }
         
-        if ($this->input->post("root")) {
+        if ($this->input->post("root")) 
+        {
             $this->db->like("root", $this->input->post("root"));
         }
         
-        if ($this->input->post("prevention")) {
+        if ($this->input->post("prevention")) 
+        {
             $this->db->like("prevention", $this->input->post("prevention"));
         }
         
         $where = new String($this->db->_compile_select());
         $this->db->_reset_select();
-        
         $add = false;
-        if ($where->indexOf("WHERE") > -1) {
+        
+        if ($where->indexOf("WHERE") > -1) 
+        {
             $add = true;
             $where = $where->substring($where->indexof("WHERE") + 5)->replace(" `", " a1.`");            
         }
@@ -274,8 +308,10 @@ class _Accidents extends CI_Model {
         
         #die($this->db->last_query());
         
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
+        if ($query->num_rows() > 0) 
+        {
+            foreach ($query->result() as $row) 
+            {
                 $results[] = $row;
             }
         }
