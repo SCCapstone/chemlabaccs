@@ -190,10 +190,15 @@ class Accidents extends CI_Controller {
             }
         }
 
+        
+       // $this->template->add_js('../tablesorter/jquery-latest.js', 'import');
+      //  $this->template->add_js('../tablesorter/jquery.tablesorter.js', 'import');
+        
+        
         $this->template->write("title", "Search Results");
         $this->template->write("heading", "Search Results");
+        $this->template->write_view("content", "accidents/results", $content);
         $this->template->write("content", $content);
-       // $this->template->write_view("content", "accidents/results", $search);
         $this->template->render();
         
 
@@ -261,6 +266,7 @@ class Accidents extends CI_Controller {
 
         $this->template->write("title", "Search Results");
         $this->template->write("heading", "Search Results");
+        $this->template->write_view("content", "accidents/results", $content);
         $this->template->write("content", $content);
         $this->template->render();
     }

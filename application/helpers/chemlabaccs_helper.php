@@ -1,33 +1,43 @@
 <?php
-
+/*
+ * Helper class used to retrieve data
+ * 
+ * Author:
+ * Modified by: David Allen
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-function date_human2mysql($date) {
+function date_human2mysql($date) 
+{
     
     return date("Y-m-d", strtotime($date));
     
 }
 
-function time_human2mysql($time) {
+function time_human2mysql($time) 
+{
     
     return date("H:i:s", strtotime("1970/01/01 " . $time));
     
 }
 
-function date_mysql2human($date) {
+function date_mysql2human($date) 
+{
     
     return date("m/d/Y", strtotime($date));
     
 }
 
-function time_mysql2human($time) {
+function time_mysql2human($time) 
+{
     
     return date("g:i a", strtotime("1970/01/01 " . $time));
     
 }
 
-function valid_date($date) {
+function valid_date($date) 
+{
     
     $date = trim($date);
 
@@ -37,7 +47,8 @@ function valid_date($date) {
     
 }
 
-function valid_time($time) {
+function valid_time($time) 
+{
     
     $time = trim($time);
     
@@ -45,13 +56,15 @@ function valid_time($time) {
     
 }
 /*
-function get_buildings($extra = false) {
+function get_buildings($extra = false) 
+{
     
     return get_instance()->_buildings->all($extra);
     
 }
 */
-function get_userID() {
+function get_userID() 
+{
     
     $auth = new Auth();
         
@@ -60,7 +73,8 @@ function get_userID() {
     return $userID;    
 }
 
-function get_email() {
+function get_email() 
+{
     
     $auth = new Auth();
     
@@ -70,46 +84,55 @@ function get_email() {
     
 }
 
-function get_admin($sectionID) {
+function get_admin($sectionID) 
+{
     
     return get_instance()->_auth->get_admin($sectionID);
     
 }
 
-function get_email_id($id) {
+function get_email_id($id) 
+{
     
     return get_instance()->_auth->get_user_email($id);
     
 }
 
-function get_sections() {
+function get_sections() 
+{
 
         return get_instance()->_section->get_sections();
     
 }
 
 // user's section's
-function get_sections_ids() {
+function get_sections_ids() 
+{
     return get_instance()->_section->get_sections_ids();
 }
 
-function get_all_section_ids() {
+function get_all_section_ids() 
+{
     return get_instance()->_section->get_all_section_ids();
 }
 
-function get_sections_pass() {
+function get_sections_pass() 
+{
     return get_instance()->_section->get_sections_pass();
 }
 
-function get_terms() {
+function get_terms() 
+{
     return array("Fall", "Spring", "Summer 1", "Summer 2", "Summer 3", "Other");
 }
 
-function get_years() {
+function get_years() 
+{
     
     $years = range(date("Y") - 1, date("Y") + 1);
     
-    foreach($years as $year) {
+    foreach($years as $year) 
+    {
         $year_list[$year] = $year;
     }
     
@@ -117,11 +140,13 @@ function get_years() {
     
 }
 
-function severity_scale($severity) {
+function severity_scale($severity) 
+{
     
     $rating = 0;
     
-    switch ($severity) {
+    switch ($severity) 
+    {
         case "Low":
             $rating = 1;
             break;
@@ -139,13 +164,15 @@ function severity_scale($severity) {
     
 }
 
-function format_accident_report_number($number) {
+function format_accident_report_number($number) 
+{
     
     return sprintf("%04d", $number);
     
 }
     
-function generate_accident_listing($accidents, $show = array()) {
+function generate_accident_listing($accidents, $show = array()) 
+{
     
     $CI =& get_instance();
     
@@ -171,28 +198,35 @@ function generate_accident_listing($accidents, $show = array()) {
         "Actions"
     );
 
-    if ($show["show_report#"]) {
+    if ($show["show_report#"]) 
+    {
         array_unshift($headings, "Report #");
     }
 
     $CI->table->set_heading($headings);
 
-    foreach ($accidents as $acc) {
+    foreach ($accidents as $acc) 
+    {
 
         $actions = array();
         
         $sectionInfo = $CI->_section->detail($acc->section_id);
 
-        if ($show["show_detail"]) {
+        if ($show["show_detail"]) 
+        {
             $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
                 "class" => "btn btn-default"
             ));
         }
         
-        if (isset($acc->count)) {
+        if (isset($acc->count)) 
+        {
 
-            if ($show["show_revisions"] && $acc->count - 1 > 0) {
-                $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions (' . ($acc->count - 1) . ')', array(
+            if ($show["show_revisions"] && $acc->count - 1 > 0) 
+            {
+                $actions[] = anchor("accidents/revisions/" . $acc->revision_of, 
+                    '<span class="glyphicon glyphicon-list-alt"></span> '
+                    . 'Revisions (' . ($acc->count - 1) . ')', array(
                     "class" => "btn btn-default"
                 ));
             }
@@ -212,8 +246,10 @@ function generate_accident_listing($accidents, $show = array()) {
             implode(' ', $actions)
         );
 
-        if ($show["show_report#"]) {
-            array_unshift($row, '<span class="badge">' . format_accident_report_number($acc->revision_of) . '</span>');
+        if ($show["show_report#"]) 
+        {
+            array_unshift($row, '<span class="badge">' . 
+            format_accident_report_number($acc->revision_of) . '</span>');
         }
 
         $CI->table->add_row($row);
@@ -224,7 +260,8 @@ function generate_accident_listing($accidents, $show = array()) {
 
 }
 
-function generate_accident_listing_mobile($accidents, $show = array()) {
+function generate_accident_listing_mobile($accidents, $show = array()) 
+{
     
     $CI =& get_instance();
     
@@ -246,27 +283,32 @@ function generate_accident_listing_mobile($accidents, $show = array()) {
         "Actions"
     );
 
-    if ($show["show_report#"]) {
+    if ($show["show_report#"]) 
+    {
         array_unshift($headings, "#");
     }
 
     $CI->table->set_heading($headings);
 
-    foreach ($accidents as $acc) {
+    foreach ($accidents as $acc) 
+    {
 
         $actions = array();
         
         $sectionInfo = $CI->_section->detail($acc->section_id);
 
-        if ($show["show_detail"]) {
+        if ($show["show_detail"]) 
+        {
             $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
                 "class" => "btn btn-default"
             ));
         }
         
-        if (isset($acc->count)) {
+        if (isset($acc->count)) 
+        {
 
-            if ($show["show_revisions"] && $acc->count - 1 > 0) {
+            if ($show["show_revisions"] && $acc->count - 1 > 0) 
+            {
                 $actions[] = anchor("accidents/revisions/" . $acc->revision_of, '<span class="glyphicon glyphicon-list-alt"></span> Revisions (' . ($acc->count - 1) . ')', array(
                     "class" => "btn btn-default"
                 ));
@@ -283,7 +325,8 @@ function generate_accident_listing_mobile($accidents, $show = array()) {
             implode(' ', $actions)
         );
 
-        if ($show["show_report#"]) {
+        if ($show["show_report#"]) 
+        {
             array_unshift($row, '<span class="badge">' . format_accident_report_number($acc->revision_of) . '</span>');
         }
 
@@ -295,14 +338,16 @@ function generate_accident_listing_mobile($accidents, $show = array()) {
 
 }
 
-function span($text, $class) {
+function span($text, $class) 
+{
     
     return sprintf('<span class="%s">%s</span>', $class, $text);
     
 }
 
 //return reports that have not been revised, and the lastest revision for those that have been revised
-function get_latest_reports($db) {
+function get_latest_reports($db) 
+{
 	$count = 0;
 	$sql = 'SELECT * FROM accidents WHERE `id` <=> `revision_of`';
 	$original_ids = $db->query($sql);

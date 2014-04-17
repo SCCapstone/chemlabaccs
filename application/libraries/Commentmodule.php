@@ -49,7 +49,8 @@ class Commentmodule {
         echo '<div class="list-group" id="comment_list">';
         foreach ($query->result() as $comment) {
             echo '<a href="#" class="list-group-item">';
-            echo '<h5 class="list-group-item-heading"><b>'.$this->getUser($comment->user_id).'</b><small>      - '. timespan($comment->comment_time, $now).' ago</small></h5>';
+            echo '<h5 class="list-group-item-heading"><b>'.$this->getUser($comment->user_id).'</b><small>      '
+                    . '- '. timespan($comment->comment_time, $now).' ago</small></h5>';
             echo '<p class="list-group-item-text">' . $comment->message . '</p> </a>';
 
             // echo  '<div id="commentbox" style="padding-top:20px; padding-bottom:15px; margin-top:10px; height:100px;background-color:#f5f5f5; border:1px solid #dddddd;">

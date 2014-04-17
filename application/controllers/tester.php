@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * The Tester class is responsible for testing function in the application
+ * 
+ * @author: David Alexander 
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Tester extends CI_Controller {

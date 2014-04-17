@@ -3,7 +3,7 @@
 /**
  * The Comment Handler class is responsible for inserting, displaying, and removing comments from the Chemlabaccs Application
  * Modified by D.Cooper 2/23/2014
- * @author allen_000
+ * @author David Allen
  */
 class CommentHandler {
 
