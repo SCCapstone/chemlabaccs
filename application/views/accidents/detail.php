@@ -101,6 +101,7 @@ $prevention = array(
          function rmcomment (id) 
        // $(".delcmt").click(function()
           {
+			  
               var comid =  id;
               var prompt=confirm('Are you sure you want to delete this comment?') ;
               if(prompt==true)
@@ -137,7 +138,14 @@ $prevention = array(
     // Created by D. Cooper 
     // Modified of 4/17/2014
     $(document).ready(function(){
-        $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
+       // $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
+	   
+	  var auto_refresh = setInterval(
+function ()
+{
+$('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>').fadeIn("slow");
+}, 1000); // refresh every 10000 milliseconds
+
         /***********************************************************************/
         $("#post_button").click(function(){
             // The content in the comment box
