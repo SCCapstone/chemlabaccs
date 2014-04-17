@@ -2,6 +2,15 @@
 
 $sections = array("All of My Sections", get_sections());
 
+$keyword = array(
+    "id" => "keyword",
+    "name" => "keyword",
+    "placeholder" => "Enter Keyword",
+    "class" => "form-control",
+    "rows" => 1,
+    "value" => set_value("keyword")
+    );
+
 $section = array(
     "id" => "section",
     "name" => "section",
@@ -49,6 +58,14 @@ $end_time = array(
 ?>
 
 <?php echo form_open("accidents/results", array("class" => "form-horizontal", "role" => "form")); ?>
+
+<div class="form-group">
+    <label for="<?php echo $keyword["id"]; ?>" class="col-sm-2 control-label"><?php echo $keyword["placeholder"]; ?></label>
+    <div class="col-sm-10">
+        <?php echo form_error($keyword["name"]); ?>
+        <?php echo form_textarea($keyword); ?>
+    </div>
+</div>
 
 <div class="form-group">
     <label for="<?php echo $section["id"]; ?>" class="col-sm-2 control-label"><?php echo $section["placeholder"]; ?></label>
