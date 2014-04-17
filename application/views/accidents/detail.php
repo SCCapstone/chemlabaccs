@@ -95,7 +95,6 @@ $prevention = array(
 ?>
 <script type="text/javascript">
     
-
      /*************************************************************************************************/
      
           // Function for deleting comments  
@@ -135,6 +134,8 @@ $prevention = array(
 
 </script>
 <script>
+    // Created by D. Cooper 
+    // Modified of 4/17/2014
     $(document).ready(function(){
         $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
         /***********************************************************************/
