@@ -151,9 +151,9 @@ class _Accidents extends CI_Model
         }
         
         //alike characters for description
-        if ($this->input->post("description")) 
+        if ($this->input->post("keyword")) 
         {
-            $this->db->like("description", $this->input->post("description"));
+            $this->db->like("description", $this->input->post("keyword"));
         }
         //search by severity
         if ($this->input->post("severity")) 
@@ -169,7 +169,7 @@ class _Accidents extends CI_Model
             }
         }
         //searching for like root
-        if ($this->input->post("root")) 
+        if ($this->input->post("keyword")) 
         {
             $this->db->like("root", $this->input->post("root"));
         }
@@ -211,28 +211,7 @@ class _Accidents extends CI_Model
         return $results;        
         
     }
-    
-    //Search by keyword function
-    public function searchKeyword($query) 
-    {
-        
-               
-        $sql = sprintf("SELECT * FROM accidents WHERE description LIKE '%$query%'");
-        $query = $this->db->query($sql);
-        
-        //Test
-        echo $query; 
-        
-         if ($query->num_rows() > 0) 
-         {
-            foreach ($query->result() as $row) 
-            {
-                $results[] = $row;
-            }
-        }
-        
-        return $results;
-    }    
+
     //function to search for a specific section
     public function searchSection($sec) 
     {
