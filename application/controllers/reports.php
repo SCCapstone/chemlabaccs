@@ -38,6 +38,7 @@ class Reports extends CI_Controller {
 
         $this->template->write("title", $title);
         $this->template->write("heading", $title);
+        $this->template->write_view("content", "accidents/results", $content);
         $this->template->write("content", $content);
         $this->template->render();
         
