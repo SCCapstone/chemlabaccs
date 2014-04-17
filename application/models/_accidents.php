@@ -168,6 +168,8 @@ class _Accidents extends CI_Model
                 $this->db->where_in("severity", $values);
             }
         }
+        /*
+        
         //searching for like root
         if ($this->input->post("keyword")) 
         {
@@ -178,6 +180,7 @@ class _Accidents extends CI_Model
         {
             $this->db->like("prevention", $this->input->post("prevention"));
         }
+        */
         
         $where = new String($this->db->_compile_select());
         $this->db->_reset_select();
@@ -238,9 +241,9 @@ class _Accidents extends CI_Model
         }
         
         
-        if ($this->input->post("description")) 
+        if ($this->input->post("keyword")) 
         {
-            $this->db->like("description", $this->input->post("description"));
+            $this->db->like("description", $this->input->post("keyword"));
         }
         
         if ($this->input->post("severity")) 
@@ -255,7 +258,7 @@ class _Accidents extends CI_Model
                 $this->db->where_in("severity", $values);
             }
         }
-        
+ /*       
         if ($this->input->post("root")) 
         {
             $this->db->like("root", $this->input->post("root"));
@@ -265,7 +268,7 @@ class _Accidents extends CI_Model
         {
             $this->db->like("prevention", $this->input->post("prevention"));
         }
-        
+  */      
         $where = new String($this->db->_compile_select());
         $this->db->_reset_select();
         $add = false;
