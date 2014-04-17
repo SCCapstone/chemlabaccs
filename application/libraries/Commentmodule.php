@@ -11,6 +11,7 @@ class Commentmodule {
     private $userID;
     private $table = "";
     private $comment;
+    
 
   /********************************************************************************/
     public function __construct($params) {
@@ -43,15 +44,25 @@ class Commentmodule {
 
 
     private function loadModule() {
+        
         $now = time();
         $this->CI->load->helper('date');
         $query = $this->requestComments();
         echo '<div class="list-group" id="comment_list">';
         foreach ($query->result() as $comment) {
-            echo '<a href="#" class="list-group-item">';
-            echo '<h5 class="list-group-item-heading"><b>'.$this->getUser($comment->user_id).'</b><small>      '
-                    . '- '. timespan($comment->comment_time, $now).' ago</small></h5>';
-            echo '<p class="list-group-item-text">' . $comment->message . '</p> </a>';
+            echo '<div class="list-group-item" id="box'.$comment->id.'">';
+            echo '<h5 class="list-group-item-heading"><b>'.$this->getUser($comment->user_id).'</b><small>      - '. timespan($comment->comment_time, $now).' ago</small></h5>';
+              if(get_userID()==$comment->user_id)
+            {
+      echo '<div class="float-right"><btn class="btn btn-default" comment-id="'.$comment->id.'" onclick=rmcomment('.$comment->id.')><span class="glyphicon glyphicon-trash"></span></button></div>';
+
+            }
+            echo '<p class="list-group-item-text"><br/>' . $comment->message . '</p><br/>';
+            echo '<div id="commentuser" class="hidden">'.$this->getUser($comment->user_id).'</div>';
+
+
+
+echo '</div>';
 
             // echo  '<div id="commentbox" style="padding-top:20px; padding-bottom:15px; margin-top:10px; height:100px;background-color:#f5f5f5; border:1px solid #dddddd;">
             //  <dl class="dl-horizontal">  <dt>Cooperd2</dt> <dt>'.$comment->comment_date.'<Date</d><dd>'.$comment->message.'</dd></dl></div>';  
