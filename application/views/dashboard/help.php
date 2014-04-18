@@ -51,3 +51,11 @@ Feel free to contact any of us via email.<br>
   </div>
 </div>
 
+<div class="panel panel-warning">
+    <div class="panel-body panel-info">
+      <b>Video Guide</b>
+    </div>
+    <div class="panel-footer" style="text-align: center">
+        <iframe width="720" height="515" src="//www.youtube.com/embed/tKRY9rmDVEk" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
