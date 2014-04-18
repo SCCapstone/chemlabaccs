@@ -1,13 +1,27 @@
-<?php
-
-/* 
- * User Guide File.
- * Author: David A. Allen
- * 
- */
-
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+          <style>
+            
+            .vidregion{
+                margin-top: 20px;
+            }
+            #spacer{
+                height:20px;
+                
+            }
+            
+            
+            
+        </style>
+    
+    <body>
+  
 <h2>User Guide <small> Lab Accident Reporting System</small></h2>
-    <dl class="dl-horizontal">
+    <dl class="">
     <dd>The Lab Accident Reporting System (LARS) is a web application whose purpose is to allow users to create accident reports that may occur in various types of laboratories.  Whether you are in Chemistry or Physics lab or even a Mechanical Engineering lab, LARS makes it simple to document accidents for the professor and class to view so that these types of accident can be avoided in the future. 
     Professors or lab Teaching Assistants have the ability to create their own sections for the students to join who are currently taking their labs.  Not only can the users view lab reports from their sections, but LARS also offers a correlated data chart of all lab accidents submitted so that students and teachers alike can assess which accidents are most frequent and plan accordingly.  
     The following is the user’s guide to operating LARS: </dd>
@@ -49,10 +63,15 @@
     <dt>Questions? </dt>
     <dd>Feel free to contact any of us via email.
     <ul>
-    <li>Tim Cieplowski @ cieplows@email.sc.edu </li>
-    <li>David Allen @ allenda@email.sc.edu </li>
-    <li>Davis Alexander @ alexan84@email.sc.edu </li>
-    <li>Demetrious Cooper @ cooperd2@email.sc.edu </li></dd>
-    </ul>
-    <br/>
+    <li><a href="mailto:cieplows@email.sc.edu?Subject=LARS%20Assistance">Tim Cieplowski</a></li>
+    <li><a href="mailto:allenda@email.sc.edu?Subject=LARS%20Assistance">David Allen</a></li>
+    <li><a href="mailto:alexan84@email.sc.edu?Subject=LARS%20Assistance">Davis Alexander</a></li>
+    <li><a href="mailto:cooperd2@email.sc.edu?Subject=LARS%20Assistance">Demetrious Cooper</a></li>
+    
+</ul>
+        <div class="spacer"></div>
+    <center>  <span class="vidregion"><iframe style="margin-top: 80px;" width="720" height="515" src="//www.youtube.com/embed/tKRY9rmDVEk" frameborder="0" allowfullscreen></iframe></span></center>
+
+    </body>
+</html>
 
