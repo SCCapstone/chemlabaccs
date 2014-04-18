@@ -95,40 +95,40 @@ $prevention = array(
 ?>
 <script type="text/javascript">
     
-     /*************************************************************************************************/
+    /*************************************************************************************************/
      
-          // Function for deleting comments  
-         function rmcomment (id) 
-       // $(".delcmt").click(function()
-          {
+    // Function for deleting comments  
+    function rmcomment (id) 
+    // $(".delcmt").click(function()
+    {
 			  
-              var comid =  id;
-              var prompt=confirm('Are you sure you want to delete this comment?') ;
-              if(prompt==true)
-              {
-                  var thisuser = <?php echo get_userID(); ?>;
-                  var post_data = { 'thisuser': thisuser,'id': comid };
+        var comid =  id;
+        var prompt=confirm('Are you sure you want to delete this comment?') ;
+        if(prompt==true)
+        {
+            var thisuser = <?php echo get_userID(); ?>;
+            var post_data = { 'thisuser': thisuser,'id': comid };
                
                 
                 
-                  $.ajax({
-                      type: "POST",
-                      url: "<?php echo base_url(); ?>accidents/deletecomment",
-                      data: post_data,
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>accidents/deletecomment",
+                data: post_data,
                    
-                      success: function(){
-                          var deletedcomment = document.getElementById('box'+comid);
-                          var list = document.getElementById("comment_list");
-                          list.removeChild(deletedcomment);
-                      }
-                  });
+                success: function(){
+                    var deletedcomment = document.getElementById('box'+comid);
+                    var list = document.getElementById("comment_list");
+                    list.removeChild(deletedcomment);
+                }
+            });
                       
-              }
+        }
                       
-              return false;
-          }
+        return false;
+    }
     
-          /*************************************************************************************************/
+    /*************************************************************************************************/
     
 
 
@@ -138,13 +138,13 @@ $prevention = array(
     // Created by D. Cooper 
     // Modified of 4/17/2014
     $(document).ready(function(){
-       // $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
+        // $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
 	   
-	  var auto_refresh = setInterval(
-function ()
-{
-$('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>').fadeIn("slow");
-}, 1000); // refresh every 10000 milliseconds
+        var auto_refresh = setInterval(
+        function ()
+        {
+            $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>').fadeIn("slow");
+        }, 10000); // refresh every 10000 milliseconds
 
         /***********************************************************************/
         $("#post_button").click(function(){
@@ -186,7 +186,7 @@ $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php 
                               /* document.getElementById('comment_content').value=' ';
                               var commentlist = document.getElementById('comment_list');
                               commentlist.insertBefore(newblock,commentlist.childNodes[0])*/
-                             $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
+                              $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
                               document.getElementById('comment_content').value=' ';
 
                               
@@ -268,7 +268,7 @@ $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php 
     } 
     .float-left{
         float:left;
-        
+
     }
     clear-both{
         clear:both;
