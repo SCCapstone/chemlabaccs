@@ -190,11 +190,6 @@ class Accidents extends CI_Controller {
             }
         }
 
-        
-       // $this->template->add_js('../tablesorter/jquery-latest.js', 'import');
-      //  $this->template->add_js('../tablesorter/jquery.tablesorter.js', 'import');
-        
-        
         $this->template->write("title", "Search Results");
         $this->template->write("heading", "Search Results");
         $this->template->write_view("content", "accidents/results", $content);
@@ -239,20 +234,40 @@ class Accidents extends CI_Controller {
         $this->template->render();
     }
 
-    /************************************************************************************** */
+    /*****************************************************************************************/
    // Created by D.Cooper 2/23/2014
     // Add a comment for an accident report 
     public function comment() {
+        
         $id = $_POST['id'];
+        $action = 'post';
         $comment = $_POST['comment_content'];
         $userid = $this->auth->get_user_id();
-        $params = array('accidentid'=>$id,'comment'=>$comment,'userid'=>$userid);
+        $params = array('accidentid'=>$id,'comment'=>$comment,'userid'=>$userid,'action'=>$action);
         $this->load->library('commenthandler',$params);
     }
+        /*****************************************************************************************/
 
+    public function deletecomment()
+    {
+        $action = 'delete';
+        $id = $_POST['id'];
+        $user = $_POST['thisuser'];
+        $userid = $this->auth->get_user_id();
+         $params = array('commentid'=>$id,'theuser'=>$user,'action'=>$action);
+                 $this->load->library('commenthandler',$params);
+
+       
+    }
+
+    public function getcomment($id){
+        
+       $params = array('accidentid' => $id, 'cmd' => 'print');        
+       $this->load->library('commentmodule', $params);
+
+    }
     
-    
-     /*     * ********************************************************************************** */
+     /********************************************************************************************/
 
     public function sectionResults($sec) {
 
