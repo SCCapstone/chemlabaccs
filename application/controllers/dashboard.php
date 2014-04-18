@@ -65,4 +65,15 @@ class Dashboard extends CI_Controller {
         
     }
 
+    public function help() {
+     
+        $this->auth->required();
+        
+        $user_id = $this->auth->get_user_id();
+        
+        $this->template->write("title", "Dashboard");
+        $this->template->write_view("content", "dashboard/help");
+        $this->template->render();
+
+    }
 }
