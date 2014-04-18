@@ -306,6 +306,15 @@ public function keywordResults() {
         $this->template->render();
     }
     
+public function userguide()
+{
+        $this->template->write("title", "User Guide");
+        $this->template->write_view("content", "../views/userguide");
+        $this->template->render();
+        
+}    
+
+    
     
 }
 
