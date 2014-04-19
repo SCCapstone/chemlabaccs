@@ -1,11 +1,11 @@
 
 <?php
-$sectionid = array(
-    "id" => "sectionid",
-    "name" => "sectionid",
+$section = array(
+    "id" => "section",
+    "name" => "section",
     "placeholder" => "Section ID #",
     "class" => "form-control",
-    "value" => set_value("sectionid", $details->section_id)
+    "value" => set_value("section", $details->section_id)
 );
 
 $sectionName = array(
@@ -284,6 +284,7 @@ $prevention = array(
 <?php echo form_open("accidents/add/save", array("class" => "form-horizontal container_content edit_form", "role" => "form")); ?>
 
 <?php echo form_hidden("revision_of", $details->revision_of); ?> <?php echo form_hidden("user", $details->user); ?>
+<?php echo form_hidden("section", $details->section_id); ?>
 <div class="form-group ">
     <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
     <div class="col-sm-10"> <?php echo form_error($date["name"]); ?> <?php echo form_input($date); ?> </div>
@@ -346,7 +347,7 @@ $prevention = array(
         </div>
 
         <div class="panel-body">
-            <b> Section ID #: </b> <?php echo $sectionid['value']; ?>
+            <b> Section ID #: </b> <?php echo $section['value']; ?>
             <p></p>
             <b>Section Name: </b> <?php echo $sectionName['value']; ?>
             <p></p>
@@ -470,7 +471,7 @@ $prevention = array(
             </div>
         </div>
     </div>
-</div>
+
 <!------------------------------------------------------Modal Assets------------------------------------------------------------------->
 <div class="comment_container container_content container">
     <h5><b>Accident Comments</b></h5>
@@ -495,6 +496,6 @@ $prevention = array(
 ?>
 <div id = "dynamic_comments"></div>
 
-
+    </div>
 </div>
 
