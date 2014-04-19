@@ -24,17 +24,28 @@ class _Section extends CI_Model {
     }
     
     
-    public function join_section($userSection) {
+    public function join_section($userSectionPass) {
         
+        $userSection = new stdClass;
+        $userSection->section_id = $userSectionPass->section_id;
+        $userSection->user_id = $userSectionPass->user_id;
+
         $ids = get_all_section_ids();
         
         $inthere = 0;
-        
+       
         foreach($ids as $id) {
             //echo $id;
-            if ($id == $userSection->section_id) {
-                $inthere = 1;
+            
+            if ($id == $userSection->section_id){
+                $secPass = get_sec_password($id);
+                //echo $secPass;
+                //exit();
+                if($secPass == $userSectionPass->pass){
+                    $inthere = 1;
+                }
             }
+            
         }
         
        if ($inthere == 1) {
@@ -167,6 +178,22 @@ class _Section extends CI_Model {
         return NULL;
         
     }
+    
+   public function get_pass($secid) {
+        
+        $sections = $this->db->get('section');
+        
+        if ($sections->num_rows() > 0) {
+            foreach ($sections->result() as $secRow) {
+                if($secRow->id == $secid) {
+                    return $secRow->password;
+                }
+            }
+        }
+        
+        return "";
+    }
+    
     
     public function get_all_section_ids() {
      

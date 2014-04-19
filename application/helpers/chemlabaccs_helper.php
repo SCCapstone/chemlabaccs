@@ -91,6 +91,13 @@ function get_admin($sectionID)
     
 }
 
+function get_sec_password($sectionID) {
+    
+    return get_instance()->_section->get_pass($sectionID);
+    
+}
+
+
 function get_email_id($id) 
 {
     
