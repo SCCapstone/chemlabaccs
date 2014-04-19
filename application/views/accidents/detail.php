@@ -299,23 +299,24 @@ $prevention = array(
 </div>
 <div class="form-group">
     <label class="col-sm-2 control-label">Severity</label>
-    <div class="col-sm-10"> <?php echo form_error("severity"); ?>
-        <?php
-        $i = 0;
-        foreach (array("low", "medium", "high") as $severity):
+    <div class="col-sm-10">
+        <?php echo form_error("severity"); ?>
+        <?php $i = 0;
+        foreach (array("Low", "Medium", "High") as $severity):
             ?>
             <?php
             $selected = "";
-            if ($this->input->post("severity") == $severity || $details->severity == $severity) {
+            if ($this->input->post("severity") == $severity) {
                 $selected = 'checked="checked"';
             }
             ?>
             <div class="radio">
                 <label>
                     <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-                    <?php echo severity_scale($severity); ?> </label>
+    <?php echo $severity; ?>
+                </label>
             </div>
-        <?php endforeach; ?>
+<?php endforeach; ?>
     </div>
 </div>
 <div class="form-group">
