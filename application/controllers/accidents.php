@@ -224,14 +224,22 @@ class Accidents extends CI_Controller {
     /*     * ********************************************************************************** */
 
     public function search($action = "") {
+        
+        if(count(get_sections()) > 0) {
 
-        $data = array();
+            $data = array();
 
-        $this->template->write("title", "Search Accident Reports");
-        $this->template->write("heading", "Search Accident Reports");
-        $this->template->write_view("content", "accidents/search", $data);
+            $this->template->write("title", "Search Accident Reports");
+            $this->template->write("heading", "Search Accident Reports");
+            $this->template->write_view("content", "accidents/search", $data);
 
-        $this->template->render();
+            $this->template->render();
+        }
+        else {
+            $this->flash->danger("You are not in any sections.");
+            redirect("dashboard/home");
+        }
+        
     }
 
     /*****************************************************************************************/
