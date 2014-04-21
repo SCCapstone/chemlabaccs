@@ -301,5 +301,19 @@ class _Accidents extends CI_Model
         return $results;        
         
     }
+    
+    public function isUnique($id) {
+        
+        $sql = "SELECT id FROM accidents";
+        
+        $accidents = $this->db->query($sql);
+        
+        foreach($accidents as $acc) {
+            if ($acc == $id) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

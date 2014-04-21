@@ -44,7 +44,17 @@ class Accidents extends CI_Controller {
         /*         * *********************************************************************************** */
         // Accident id's need to have random strings so we can relate our accident id's to our photo id's 
         $this->load->helper('string');
-        $accident_id = random_string('numeric', 7);
+        
+        $unique = false;
+        while ($unique == false) {
+            $testID = random_string('numeric', 7);
+            
+            if ($this->_accidents->isUnique($testID)) {
+                $accident_id = $testID;
+                $unique = true;
+            }
+            
+        }
 
         /*         * *********************************************************************************** */
 
