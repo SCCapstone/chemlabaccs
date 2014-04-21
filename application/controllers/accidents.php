@@ -236,7 +236,7 @@ class Accidents extends CI_Controller {
             $this->template->render();
         }
         else {
-            $this->flash->danger("You are not in any sections.");
+            $this->flash->danger("You must first Join a Section in order to do that.");
             redirect("dashboard/home");
         }
         
