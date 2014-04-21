@@ -35,6 +35,11 @@ class Accidents extends CI_Controller {
     }
 
     public function add($action = "") {
+        
+        if(count(get_sections()) < 1) {
+            $this->flash->danger("You must first Join a Section in order to do that.");
+            redirect("dashboard/home");
+        }
 
         /*         * *********************************************************************************** */
         // Accident id's need to have random strings so we can relate our accident id's to our photo id's 
