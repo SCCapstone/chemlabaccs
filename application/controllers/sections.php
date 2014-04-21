@@ -66,6 +66,16 @@ class Sections extends CI_Controller {
             
             
             $this->load->model('_section');
+            
+            
+            // Checks that name is unique
+            if ($this->_section->nameIsUnique($newSec->name) == false) {
+                $this->flash->danger("You already have a section with this name. Please enter a unique name.");
+                redirect('sections/createSection');
+            }
+            
+            
+            
             //if a new section is created, a section id is created and email
             //sent to creater with section details
             if($this->_section->createSection($newSec)) {
