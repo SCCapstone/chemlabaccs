@@ -139,7 +139,7 @@ class Accidents extends CI_Controller {
             // End of modifiction by Davis
                // $adminofsec = implode("", $secAdmin);
                 $this->flash->success("Report successfully added.");
-                redirect("dashboard/home");
+                redirect("accidents/sectionResults/" . $secid);
             } else {
                 $data["error"] = "Error adding report. Please Try again.";
             }
@@ -302,8 +302,10 @@ class Accidents extends CI_Controller {
             $content = generate_accident_listing($search, array("show_report#" => true));
         }
 
-        $this->template->write("title", "Search Results");
-        $this->template->write("heading", "Search Results");
+        $secName = $this->_section->get_name($sec);
+        
+        $this->template->write("title", "Accidents");
+        $this->template->write("heading", "Accidents in <i><b>" . $secName . "</b></i>");
         $this->template->write_view("content", "accidents/results", $content);
         $this->template->write("content", $content);
         $this->template->render();

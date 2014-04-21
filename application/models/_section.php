@@ -157,6 +157,22 @@ class _Section extends CI_Model {
         
     }
     
+    public function get_name($secid) {
+         
+        $sections = $this->db->get('section');
+        
+        if ($sections->num_rows() > 0) {
+            foreach ($sections->result() as $secRow) {
+                if($secRow->id == $secid) {
+                    return $secRow->name;
+                }
+            }
+        }
+        
+        return "";
+        
+    }
+    
     public function createSection($newSec) {
          
         $this->db->insert('section', $newSec);
