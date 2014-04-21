@@ -59,6 +59,7 @@ $room = array(
     <div class="col-sm-10">
         <?php echo form_error($sectionName["name"], '<div class="error">', '</div>'); ?>
         <?php echo form_input($sectionName); ?>
+        <div class="help-block"<p>Recommended format: <br> <b>[Class Code] - [Section #]</b></p> <p>Example: <br><b>CSCE 592 - 001</b></p>
     </div>
 </div>
 
