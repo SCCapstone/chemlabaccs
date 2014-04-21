@@ -154,6 +154,73 @@ class Accidents extends CI_Controller {
         $this->template->render();
     }
 
+     /*     * ********************************************************************************** */
+    
+    public function edit($id) {
+        
+        $data = array();
+        $data["error"] = NULL;
+
+    
+        $this->form_validation->set_rules('date', 'Date', 'required|callback_date_check');
+        $this->form_validation->set_rules('time', 'Time', 'required|callback_time_check');
+        $this->form_validation->set_rules('description', 'Description', 'required');
+        $this->form_validation->set_rules('severity', 'Severity', 'required');
+        $this->form_validation->set_rules('root', 'Root', 'required');
+        $this->form_validation->set_rules('prevention', 'Prevention', 'required');
+        
+        $id = (int) $id;
+        
+        $accInfo = $this->_accidents->detail($id);
+        
+        
+        if ($this->form_validation->run() == FALSE) {
+        
+            $title = 'Editing Accident Report: <b>'  .  $id . "</b> <br>In Section: <i>" . $this->_section->get_name($accInfo->section_id) . "</i>";
+            $this->template->write("title", $title);
+            $this->template->write("heading", $title);
+            $this->template->write_view("content", "accidents/edit", $accInfo);
+            $this->template->render();
+            
+        }
+        
+        else {
+            
+            $newAcc = new stdClass();
+            
+            $newAcc->id = $id;
+            $newAcc->section_id = $accInfo->section_id;
+            $newAcc->revision_of = $accInfo->revision_of;
+            $newAcc->user = $accInfo->user;
+            $newAcc->created = $accInfo->created;
+            
+            $newAcc->modified_by = get_userID();
+            
+            $newAcc->date = date_human2mysql($this->input->post("date"));
+            $newAcc->time = time_human2mysql($this->input->post("time"));
+            $newAcc->description = $this->input->post("description");
+            $newAcc->severity = $this->input->post("severity");
+            $newAcc->root = $this->input->post("root");
+            $newAcc->prevention = $this->input->post("prevention");
+        
+        
+            if($this->_accidents->updateAccident($newAcc)) {
+                $this->flash->success("You have successfully edited Accident Report <b>#" . $newAcc->id . "</b>");
+                    redirect('accidents/sectionResults/' . $newAcc->section_id);
+
+                }
+
+                else {
+
+                    $this->flash->danger("Problem editing Accident Report. Please try again.");
+                    redirect('accidents/edit/' . $id);
+
+                }
+        }
+        
+        
+    }
+    
     /*     * ********************************************************************************** */
 
     public function detail($id) {
@@ -173,7 +240,7 @@ class Accidents extends CI_Controller {
             redirect("dashboard");
         }
 
-        $title = sprintf('<span class="label label-default">#%s</span> Accident Report Details', format_accident_report_number($details->revision_of));
+        $title = sprintf('<span class="label label-default">#%s</span> Accident Report Details', format_accident_report_number($details->id));
 
         $this->template->write("title", 'Accident Report Details');
         $this->template->write("heading", $title);

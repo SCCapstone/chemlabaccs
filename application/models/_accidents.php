@@ -47,6 +47,17 @@ class _Accidents extends CI_Model
         return $success;
         
     }
+    
+    public function updateAccident($newAcc) {
+        
+        $this->db->where('id', $newAcc->id);
+        $this->db->update('accidents', $newAcc);
+        
+        return $this->db->affected_rows() ==1;
+        
+    }
+    
+    
     //function for accident id in database
     public function detail($id) 
     {
