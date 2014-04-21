@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `section` (
   `admin_id` int(10) NOT NULL,
   `institution_id` int(10) NOT NULL,
   `Term` enum('Fall','Spring','Summer 1','Summer 2','Summer 3','Other') NOT NULL,
-  `Year` year(4) NOT NULL,
+  `Year` varchar(10) NOT NULL,
   `building_name` varchar(60) NOT NULL,
   `room_num` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
