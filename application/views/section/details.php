@@ -81,8 +81,9 @@ $room = array(
       <p><b>Building: </b> <?php echo $sectionInfo->building_name; ?></p>
       
       <p><b>Room: </b> <?php echo $sectionInfo->room_num; ?></p>
-      
-<div class="row mar20 text-left"><button type="button" class="btn btn-default btn-sm edit_btn"><span class="glyphicon glyphicon-pencil"></span> Edit</button></div> 
-      
+
+
+<p><?php echo anchor('sections/edit/' . $sectionInfo->id , '<span class="glyphicon glyphicon-pencil"></span> Edit', array("class" => "btn btn-default btn-sm", "role" => "button")); ?> </p>
+
     </div>
   

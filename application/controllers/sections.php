@@ -74,6 +74,7 @@ class Sections extends CI_Controller {
              
                 $userSection->section_id = $newSec->id;
                 $userSection->user_id = CI()->auth->get_user_id();
+                $userSection->pass = $newSec->password;
 
                 $this->load->model('_section');
 
@@ -129,6 +130,87 @@ class Sections extends CI_Controller {
         
     }
     
+    public function edit($id) {
+        
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        
+         $this->form_validation->set_rules('sectionName', 'Name', 'required');
+         $this->form_validation->set_rules('sectionPassword', 'Password', 'required');
+         $this->form_validation->set_rules('secTerm', 'Term', 'required');
+         $this->form_validation->set_rules('secYear', 'Year', 'required');
+         $this->form_validation->set_rules('building', 'Building Name', 'required');
+         $this->form_validation->set_rules('room', 'Room #', 'required');
+         
+        
+        $id = (int) $id;
+
+        $sectionInfo = $this->_section->detail($id);
+        
+        
+        
+        if ($this->form_validation->run() == FALSE) {
+        
+            $title = 'Editing Section:  '  .  $sectionInfo->id . ' - "' . $sectionInfo->name . '"';
+            $this->template->write("title", $title);
+            $this->template->write("heading", $title);
+            $this->template->write_view("content", "section/edit", $sectionInfo);
+            $this->template->render();
+            
+        }
+        
+        else {
+            
+            $newSec = new stdClass();
+            
+            $newSec->id = $id;
+            $newSec->name = $this->input->post("sectionName");
+            $newSec->password = $this->input->post("sectionPassword");
+            $newSec->term = $this->input->post("secTerm");
+            $newSec->Year = $this->input->post("secYear");
+            $newSec->building_name = $this->input->post("building");
+            $newSec->room_num = $this->input->post("room");
+            $newSec->admin_id = get_userID();
+            $newSec->institution_id = 1;    // for now
+            
+            
+            //if section is edited, email
+            //sent to creator with section details
+            if($this->_section->updateSection($newSec)) {
+                
+                $userSection = new stdClass;
+             
+                $userSection->section_id = $newSec->id;
+                $userSection->user_id = CI()->auth->get_user_id();
+                
+                $this->load->library('email');
+                $this->email->from('accidentreport@chemlabaccs.com', 'LARS Notification');
+                $this->email->to(get_email());  
+                $this->email->subject('LARS - Your Section Information Has Changed');  
+                $this->email->message("You have edited your section on LARS, below is the NEW Section information to give your students."
+                    . "<br>" . "Section ID #:  " . $newSec->id
+                    . "<br>" . "Section Password:  " . $newSec->password);
+                    
+                     
+                $this->email->send();
+                
+                $this->flash->success("You have successfully edited a section!");
+                redirect('dashboard/home');
+                
+            }
+            
+            else {
+                
+                $this->flash->danger("Problem editing section. Please try again.");
+                redirect('sections/edit/' . $id);
+                
+            }
+  
+            
+        }
+        
+        
+        
+    }
     
     
     

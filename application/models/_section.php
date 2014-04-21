@@ -165,6 +165,15 @@ class _Section extends CI_Model {
         
     }
     
+    public function updateSection($section) {
+        
+        $this->db->where('id', $section->id);
+        $this->db->update('section', $section);
+        
+        return $this->db->affected_rows() == 1;
+        
+    }
+    
     public function detail($id) {
         
         $where = array("id" => $id);
