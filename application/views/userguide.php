@@ -22,10 +22,6 @@
   
 <h2>User Guide <small> Lab Accident Reporting System</small></h2>
     <dl class="">
-    <dd>The Lab Accident Reporting System (LARS) is a web application whose purpose is to allow users to create accident reports that may occur in various types of laboratories.  Whether you are in Chemistry or Physics lab or even a Mechanical Engineering lab, LARS makes it simple to document accidents for the professor and class to view so that these types of accident can be avoided in the future. 
-    Professors or lab Teaching Assistants have the ability to create their own sections for the students to join who are currently taking their labs.  Not only can the users view lab reports from their sections, but LARS also offers a correlated data chart of all lab accidents submitted so that students and teachers alike can assess which accidents are most frequent and plan accordingly.  
-    The following is the user’s guide to operating LARS: </dd>
-    <br/>
     <dt>Getting Started </dt>
     <dd>In order to have access to the LARS features, a user must own an account.  If an account is owned, enter the username and password in the respective boxes and click “Sign in”.
     If an account is not owned, the user must create an account by clicking the “Register” button on the bottom of the page.  A page will then appear titled “Register as new User”.  The user must fill out the boxes labeled: “Email”, “Password”, and “Password Confirmation”.  
