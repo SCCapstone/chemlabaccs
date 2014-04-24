@@ -130,7 +130,7 @@ function get_sections_pass()
 
 function get_terms() 
 {
-    return array("Fall", "Spring", "Summer 1", "Summer 2", "Summer 3", "Other");
+    return array("", "Fall", "Spring", "Summer 1", "Summer 2", "Summer 3", "Other");
 }
 
 function get_years() 
@@ -138,12 +138,20 @@ function get_years()
     
     $years = range(date("Y") - 1, date("Y") + 1);
     
+    $year_list["zero"] = "";
+    
+    $i = 1;
     foreach($years as $year) 
     {
         $year_list[$year] = $year;
+        $i = $i +1;
     }
     
     return $year_list;
+    
+    //return array("", (idate("Y")-1), (idate("Y")), (idate("Y")+1));
+    
+    
     
 }
 
