@@ -144,7 +144,7 @@ $prevention = array(
         function ()
         {
             $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>').fadeIn("slow");
-        }, 10000); // refresh every 10000 milliseconds
+        }, 100000); // refresh every 10000 milliseconds
 
         /***********************************************************************/
         $("#post_button").click(function(){
@@ -389,7 +389,7 @@ $prevention = array(
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <center>
-                    <h2><small> Photo Management</small></h2>
+                    <h2><small> Accident Photos</small></h2>
                 </center>
             </div>
             <div class="modal-body" id="modal-body"> </div>
@@ -415,7 +415,7 @@ $prevention = array(
             </div>
         </div>
     </div>
-
+</div>
 <!------------------------------------------------------Modal Assets------------------------------------------------------------------->
 <div class="comment_container container_content container">
     <h5><b>Accident Comments</b></h5>
@@ -441,5 +441,3 @@ $prevention = array(
 <div id = "dynamic_comments"></div>
 
     </div>
-</div>
-
