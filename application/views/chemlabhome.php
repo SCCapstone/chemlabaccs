@@ -5,6 +5,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LARS</title>
+<link rel="shortcut icon" href="<?php echo base_url("img/favicon.png") ?>">
 
 <!-- Additional meta -->
 
