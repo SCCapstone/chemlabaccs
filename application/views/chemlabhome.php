@@ -4,7 +4,7 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LARS</title>
+<title>LARS | Lab Accident Reporting System</title>
 <link rel="shortcut icon" href="<?php echo base_url("img/favicon.png") ?>">
 
 <!-- Additional meta -->
@@ -31,10 +31,10 @@
     </div>
   </div>
   <div id="megatron_support_text_wrapper" class="hidden-sm hidden-xs">
-    <div class="media-body" id="megatron_support_text"> <span class="intro_text_white">Easy Lab Accident Reporting </span>
+    <div class="media-body" id="megatron_support_text"> <span class="intro_text_white">Lab Accident Reporting System </span>
       <p span class="white_text" >keep track of, search and view reports all in one place. Create, analyze<br />
         and share accidents for all types of labs. </p>
-      <div id="register_custom_btn_solid">Learn More</div>
+        <a href="dashboard/about"><div id="register_custom_btn_solid">Learn More</div></a>
       <p span class="white_text" >&nbsp;</p>
     </div>
     <div id="megatron_support_graphics" class="hidden-sm hidden-xs"><img src="chemlab_graphics/lars_iphone_display.png" width="350" height="523" /></div>
@@ -151,9 +151,9 @@
   </div>
 </div>
 <div id="home_footer">
-  <p>Statistics  </p>
-  <p>Login</p>
-  <p>Register</p>
+    <a href="charts"><p>Statistics  </p></a>
+    <a href="users/signin"><p>Login</p></a>
+    <a href="users/register"><p>Register</p></a>
 </div>
 
 <!-------------Tentative Accent Area---><!-------------End Footer Area---------><!-------------Javascript--------------> 
