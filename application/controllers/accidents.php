@@ -173,6 +173,14 @@ class Accidents extends CI_Controller {
         
         $accInfo = $this->_accidents->detail($id);
         
+        $currentUserID = get_userID();
+        
+        if ($currentUserID != $this->_auth->get_admin($accInfo->section_id) AND $currentUserID != $accInfo->user) {
+            $this->flash->danger("You do not have sufficient permission to edit this accident report."
+                    . "<br><b>Reports can only be edited by their creator or the section Admin.</b>");
+            redirect('accidents/detail/' . $id);
+        }
+        
         
         if ($this->form_validation->run() == FALSE) {
         
