@@ -223,6 +223,22 @@ class Sections extends CI_Controller {
     }
     
     
+    public function delete($id) {
+        
+        $secDetails = $this->_section->detail($id);
+        
+        if ($this->_section->remove($id)) {
+            $this->flash->success("You have successfully DELETED Section: <b>" . $secDetails->name . "</b>");
+            redirect('dashboard/home');      
+        }
+        else {
+            $this->flash->danger("Problem deleting Section.");
+            redirect('dashboard/home');
+        }
+        
+    }
+    
+    
     
     
     

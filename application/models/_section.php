@@ -190,6 +190,18 @@ class _Section extends CI_Model {
         
     }
     
+    public function remove($id) {
+        
+        $this->db->delete('accidents', array('section_id' => $id));
+        
+        $this->db->delete('lab_user', array('section_id' => $id));
+        
+        $this->db->delete('section', array('id' => $id));
+        
+        return $this->db->affected_rows() == 1;
+        
+    }
+    
     public function detail($id) {
         
         $where = array("id" => $id);

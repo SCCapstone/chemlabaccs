@@ -83,7 +83,8 @@ $room = array(
       <p><b>Room: </b> <?php echo $sectionInfo->room_num; ?></p>
 
 
-<p><?php echo anchor('sections/edit/' . $sectionInfo->id , '<span class="glyphicon glyphicon-pencil"></span> Edit', array("class" => "btn btn-default btn-sm", "role" => "button")); ?> </p>
+<p><?php echo anchor('sections/edit/' . $sectionInfo->id , '<span class="glyphicon glyphicon-pencil"></span> Edit', array("class" => "btn btn-primary btn-sm", "role" => "button")); ?> </p>
+<p><?php echo anchor('sections/delete/' . $sectionInfo->id , '<span class="glyphicon glyphicon-remove-circle"></span> Delete', array('onClick' => "return confirm('Are you sure you want to delete this Section?');", "class" => "btn btn-danger btn-sm", "role" => "button")); ?> </p>
 
     </div>
   
