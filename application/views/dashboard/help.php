@@ -53,9 +53,18 @@ Feel free to contact any of us via email.<br>
 
 <div class="panel panel-warning">
     <div class="panel-body panel-info">
-      <b>Video Guide</b>
+      <b>User Help Video</b>
     </div>
     <div class="panel-footer" style="text-align: center">
         <iframe width="720" height="515" src="//www.youtube.com/embed/tKRY9rmDVEk" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<div class="panel panel-warning">
+    <div class="panel-body panel-info">
+      <b>Administrator Help Video</b>
+    </div>
+    <div class="panel-footer" style="text-align: center">
+        <iframe width="720" height="515" src="////www.youtube.com/embed/lTZ_gfEEMQs" frameborder="0" allowfullscreen></iframe>
     </div>
 </div>
