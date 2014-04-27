@@ -93,7 +93,7 @@ $prevention = array(
          // Show our loader to show the user that the photos are preparing to show a preview
                    $(".btn").hide(10);
         $('#uploadbtn').hide(10);
-        $('#linear_loader').show(10);
+        $('#linear_loader').show(1000);
 
          
        // previewbox.removeAttribute("style");
@@ -145,17 +145,20 @@ $prevention = array(
                 container.appendChild(new_img);
              }*/
                 {
+					var imgpos = i;
+				
                     var description_field = document.createElement('textarea');
                            description_field.setAttribute('placeholder',"Say Something!");
-                            description_field.setAttribute('name',"dymanic_comment[]");
+                            description_field.setAttribute('name',imgpos);
                             description_field.setAttribute('class',"row dynamic_comment");
                             description_field.setAttribute('type',"text");
 
 
                     
                     new_div.appendChild(new_img);
-                    new_div.appendChild(description_field);
+                    //new_div.appendChild(description_field);
                     container.appendChild(new_div);
+					
                 }
              
            
@@ -166,102 +169,81 @@ $prevention = array(
          // The linear loader is hidden
          //  again.  
         $('#uploadbtn').show(10);
-        $('#linear_loader').hide(10);
+        $('#linear_loader').hide();
         $(".btn").show(10);
    
     };// EOF PreviewImage(); 
 </script>
 <!------------------------------------ Javascript for custom upload area -------------------------->
 <!------------------------------------------------------------------------------------------------->
-
 <style>
-    .formcs{
-            width: auto !important;
-            max-width: 980px;
-                    margin:0 auto;
-
-       
-        }
-    .constrained_preview{
-
-        max-width: 150px;
-        min-width: 150px;
-        max-height: 150px !important;
-        min-height: 150px !important;
-
-        margin-bottom:5px;
-
-    }
-    .dynamic_comment{
-        
-       width: auto;
-       min-width:150px;
-       max-width: 150px;
-       min-height:100px;
-       padding:5px;
-       max-height:200px !important;
-       font-size: 12px;
-       line-height:1.4em;
-       font-color:#333;
-       border-style: solid;
-       border-color: #DDD;
-       background-color: #f8f8f8;
-       border-width: 1px;
-       padding-bottom:5px;
-       
-        
-    }
-    textarea:focus
-{
-background-color:#fff;
-} 
-    #dymanic_comment{
-       max-height:200px !important;
-       width: 200px;
-       margin-left: 10px;
-        
-    }
-    #filefield{
-        visibility: none;
-
-    }
-    
-    .well{
-        overflow:auto !important;
-        padding:15px 12px;
-        width:auto;
-        min--width: 600px !important;
-        
-    }
-
-
-
+.formcs {
+	width: auto !important;
+	max-width: 980px;
+	margin: 0 auto;
+}
+.constrained_preview {
+	max-width: 150px;
+	min-width: 150px;
+	max-height: 150px !important;
+	min-height: 150px !important;
+	margin-bottom: 5px;
+}
+.dynamic_comment {
+	width: auto;
+	min-width: 150px;
+	max-width: 150px;
+	min-height: 100px;
+	padding: 5px;
+	max-height: 200px !important;
+	font-size: 12px;
+	line-height: 1.4em;
+	font-color: #333;
+	border-style: solid;
+	border-color: #DDD;
+	background-color: #f8f8f8;
+	border-width: 1px;
+	padding-bottom: 5px;
+}
+textarea:focus {
+	background-color: #fff;
+}
+#dymanic_comment {
+	max-height: 200px !important;
+	width: 200px;
+	margin-left: 10px;
+}
+#filefield {
+	visibility: none;
+}
+.well {
+	overflow: auto !important;
+	padding: 15px 12px;
+	width: auto;
+	min--width: 600px !important;
+}
+#modal-body{
+	text-align:center;
+}
 </style>
 
 <!------------------------------------------------------------------------------------------------->
 <?php echo form_open_multipart("accidents/add/save", array("class" => "form-horizontal formcs", "role" => "form","encytype" =>"multipart/form-data")); ?>
 
 <div class="form-group">
-    <label for="<?php echo $section["id"]; ?>" class="col-sm-2 control-label"><?php echo $section["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($section["name"]); ?>
-        <?php echo form_dropdown($section["name"], $sections, CI()->input->post($section["name"]), 'class="form-control" id="section"'); ?>
-    </div>
+  <label for="<?php echo $section["id"]; ?>" class="col-sm-2 control-label"><?php echo $section["placeholder"]; ?></label>
+  <div class="col-sm-10"> <?php echo form_error($section["name"]); ?> <?php echo form_dropdown($section["name"], $sections, CI()->input->post($section["name"]), 'class="form-control" id="section"'); ?> </div>
 </div>
 
+<!-- Jquery resources-->
 
-        <!-- Jquery resources-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.9.1.js"></script> 
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script> 
 
+<!-- end of Jquery resources--> 
 
-
-         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-        <!-- end of Jquery resources-->
-
-
-         <script>
+<script>
         $(function() {
         $( "#datepicker" ).datepicker({
         showOn: "button",
@@ -270,104 +252,67 @@ background-color:#fff;
         });
         });
         </script>
-
-        </head>
-
-
-
+</head>
 <div class="form-group">
-    <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($date["name"]); ?>
-        <input type="text" name="date" id="datepicker">
-    </div>
+  <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
+  <div class="col-sm-10"> <?php echo form_error($date["name"]); ?>
+    <input type="text" name="date" id="datepicker">
+  </div>
 </div>
-
-
-
-
-
 <div class="form-group">
-    <label for="<?php echo $time["id"]; ?>" class="col-sm-2 control-label"><?php echo $time["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($time["name"]); ?>
-        <?php echo form_input($time); ?>
-    </div>
+  <label for="<?php echo $time["id"]; ?>" class="col-sm-2 control-label"><?php echo $time["placeholder"]; ?></label>
+  <div class="col-sm-10"> <?php echo form_error($time["name"]); ?> <?php echo form_input($time); ?> </div>
 </div>
-
-
-
 <div class="form-group">
-    <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($description["name"]); ?>
-        <?php echo form_textarea($description); ?>
-        <span class="help-block"><?php echo lang('cla_f_description'); ?></span>
-    </div>
+  <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
+  <div class="col-sm-10"> <?php echo form_error($description["name"]); ?> <?php echo form_textarea($description); ?> <span class="help-block"><?php echo lang('cla_f_description'); ?></span> </div>
 </div>
-
 <div class="form-group">
-    <label class="col-sm-2 control-label">Severity</label>
-    <div class="col-sm-10">
-        <?php echo form_error("severity"); ?>
-        <?php $i = 0;
+  <label class="col-sm-2 control-label">Severity</label>
+  <div class="col-sm-10"> <?php echo form_error("severity"); ?>
+    <?php $i = 0;
         foreach (array("Low", "Medium", "High") as $severity):
             ?>
-            <?php
+    <?php
             $selected = "";
             if ($this->input->post("severity") == $severity) {
                 $selected = 'checked="checked"';
             }
             ?>
-            <div class="radio">
-                <label>
-                    <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-    <?php echo $severity; ?>
-                </label>
-            </div>
-<?php endforeach; ?>
+    <div class="radio">
+      <label>
+        <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
+        <?php echo $severity; ?> </label>
     </div>
+    <?php endforeach; ?>
+  </div>
 </div>
-
 <div class="form-group">
-    <label for="<?php echo $root["id"]; ?>" class="col-sm-2 control-label"><?php echo $root["placeholder"]; ?></label>
-    <div class="col-sm-10">
-        <?php echo form_error($root["name"]); ?>
-<?php echo form_textarea($root); ?>
-        <span class="help-block"><?php echo lang('cla_f_root'); ?></span>
-    </div>
+  <label for="<?php echo $root["id"]; ?>" class="col-sm-2 control-label"><?php echo $root["placeholder"]; ?></label>
+  <div class="col-sm-10"> <?php echo form_error($root["name"]); ?> <?php echo form_textarea($root); ?> <span class="help-block"><?php echo lang('cla_f_root'); ?></span> </div>
 </div>
-
 <div class="form-group">
-    <label for="<?php echo $prevention["id"]; ?>" class="col-sm-2 control-label"><?php echo $prevention["placeholder"]; ?></label>
-
-    <div class="col-sm-10">
-        <?php echo form_error($prevention["name"]); ?>
-<?php echo form_textarea($prevention); ?>
-        <span class="help-block"><?php echo lang('cla_f_prevention'); ?></span>
-    </div>
+  <label for="<?php echo $prevention["id"]; ?>" class="col-sm-2 control-label"><?php echo $prevention["placeholder"]; ?></label>
+  <div class="col-sm-10"> <?php echo form_error($prevention["name"]); ?> <?php echo form_textarea($prevention); ?> <span class="help-block"><?php echo lang('cla_f_prevention'); ?></span> </div>
 </div>
-
 <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+<div class="col-sm-offset-2 col-sm-10">
 
-        <!------------------------------------------------Desktop Preview Area------------------------------------------------------------->
-        <label>You may add up to 10 photos of the accident.</label>
-        <div class="well" id="preview_area" style="display:none;" >
+<!------------------------------------------------Desktop Preview Area------------------------------------------------------------->
+<label>You may add up to 10 photos of the accident.</label>
+<div class="well" id="preview_area" style="display:none;" > </div>
+<span style="visibility:hidden;">
+<input type="file" name="filefield[]" id="filefield"  onchange="PreviewImage();" multiple="" accept="image/*">
+</span> 
 
-        </div>
-        <span style="visibility:hidden;"><input type="file" name="filefield[]" id="filefield"  onchange="PreviewImage();" multiple="" accept="image/*"></span>
-
-
-
-        <!------------------------------------------------------------------------------------------------------------------------>
-        <!-------------------Custom Upload Button-------------------------->
-        <div class="well well-sm">
-            <div id ="uploadbtn" class="btn btn-primary"><span class="glyphicon glyphicon-camera" type="" method=""></span> Add Photos</div><div id="linear_loader" style="display:none;"><img src="../img/linear_loader.GIF"/></div>
-            <!----------------------------------------------------------------->
-
-
-            <script>
+<!------------------------------------------------------------------------------------------------------------------------> 
+<!-------------------Custom Upload Button-------------------------->
+<div class="well well-sm">
+  <div id ="uploadbtn" class="btn btn-primary"><span class="glyphicon glyphicon-camera" type="" method=""></span> Add Photos</div>
+  <div id="linear_loader" style="display:none;"><img src="../img/linear_loader.GIF"/></div>
+  <!-----------------------------------------------------------------> 
+  
+  <script>
 
                 document.querySelector('#uploadbtn').addEventListener('click', function(e) {
                     var fileInput = document.querySelector('#filefield');
@@ -375,12 +320,7 @@ background-color:#fff;
                     fileInput.click(); // Or, use the native click() of the file input.
                 }, false);
 
-            </script>
-
-        </div>
-        <div class="row">
-            <span style="float: right;"> <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-plus"></span> Add Report')); ?></span>
-        </div>
-
-
+            </script> 
+</div>
+<div class="row"> <span style="float: right;"> <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-plus"></span> Add Report')); ?></span> </div>
 <?php echo form_close(); ?>
