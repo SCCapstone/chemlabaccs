@@ -34,7 +34,7 @@
     <div class="media-body" id="megatron_support_text"> <span class="intro_text_white">Lab Accident Reporting System </span>
       <p span class="white_text" >Keep track of, search and view reports all in one place. Create, analyze<br />
         and share accidents for all types of labs. </p>
-        <a href="dashboard/about"><div id="register_custom_btn_solid">Learn More</div></a>
+        <a href="dashboard/about"><div id="register_custom_btn_solid"><b>Learn More</b></div></a>
       <p span class="white_text" >&nbsp;</p>
     </div>
     <div id="megatron_support_graphics" class="hidden-sm hidden-xs"><img src="chemlab_graphics/lars_iphone_display.png" width="350" height="523" /></div>
