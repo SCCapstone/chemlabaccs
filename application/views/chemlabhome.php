@@ -94,12 +94,11 @@ a{
 
 <body>
 <div class="homeintro" id="intro_display">
-  <p>&nbsp;</p>
   <div class="hidden-sm hidden-xs" id="clear_navigation">
     <div id="logo_wrapper_main"><img src="chemlab_graphics/chemlab_logo.png" width="137" height="53" alt="lars_logo" /></div>
     <div id="clear_navigation_quick_links">
-      <a href="../users/register"><div id="register_custom_btn">Register</div></a>
-      <div id="quick_links_anchors"> <a href="dashboard/about">About </a><a href="charts">Statistics </a><a href="../users/signin">Login</a></div>
+      <a href="users/register"><div id="register_custom_btn">Register</div></a>
+      <div id="quick_links_anchors"> <a href="dashboard/about">About </a><a href="charts">Statistics </a><a href="users/signin">Login</a></div>
     </div>
   </div>
   <div id="megatron_support_text_wrapper" class="hidden-sm hidden-xs h_intro">
@@ -115,8 +114,8 @@ a{
   <div id="tablet_mobile_navigation" class="hidden-lg hidden-md">
     <div id="tablet_mobile_logo_wrapper"><img src="chemlab_graphics/chemlab_logo.png" width="105" height="40" /></div>
     <div id="tablet_mobile_quick_links">
-      <div id="register_custom_btn_small"><a href="../users/register">Register</a></div>
-      <div id="tablet_mobile_quick_link_wrapper"><a href="dashboard/about">About </a><a href="../users/signin"> Login</a> </div>
+      <div id="register_custom_btn_small"><a href="users/register">Register</a></div>
+      <div id="tablet_mobile_quick_link_wrapper"><a href="dashboard/about">About </a><a href="users/signin"> Login</a> </div>
     </div>
   </div>
   <div id="tablet_mobile_megatron">
@@ -238,8 +237,8 @@ a{
 </div>
 <div id="home_footer">
   <ul>
-  <li><a href="../users/signin">Login</a></li>
- <li><a href="../users/register">Register</a></li>
+  <li><a href="users/signin">Login</a></li>
+ <li><a href="users/register">Register</a></li>
    <li><a href="charts">Statistics </a> </li>
    <li><a href="dashboard/about">About </a></li>
 
