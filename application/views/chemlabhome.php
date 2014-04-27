@@ -43,6 +43,7 @@
   <div id="tablet_mobile_navigation" class="hidden-lg hidden-md">
     <div id="tablet_mobile_logo_wrapper"><img src="chemlab_graphics/chemlab_logo.png" width="105" height="40" /></div>
     <br>
+        <br>
     <div id="tablet_mobile_quick_links">
         <a href="users/register"><div id="register_custom_btn_small">Register</div></a>
         <div id="tablet_mobile_quick_link_wrapper"><a href="charts">Statistics</a> <a href="users/signin">Login</a> </div>
