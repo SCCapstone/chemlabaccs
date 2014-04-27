@@ -249,6 +249,8 @@ $prevention = array(
           });
          
 
+
+
 </script>
 
 <style>
@@ -278,7 +280,8 @@ $prevention = array(
 
 <!-----------------Edit Button---------------------->
 <div class ="container formcs container_content detail_form">
-    <div class="row mar20 text-right"><p><?php echo anchor('accidents/edit/' . $details->id , '<span class="glyphicon glyphicon-pencil"></span> Edit', array("class" => "btn btn-default btn-sm", "role" => "button")); ?> </p></div> 
+    <div class="row mar20 text-right"><p><?php echo anchor('accidents/edit/' . $details->id , '<span class="glyphicon glyphicon-pencil"></span> Edit', array("class" => "btn btn-primary btn-sm", "role" => "button")); ?>
+                                         <?php echo anchor('accidents/delete/' . $details->id , '<span class="glyphicon glyphicon-remove-circle"></span> Delete', array('onClick' => "return confirm('Are you sure you want to delete this Accident Report?');", 'class' => "btn btn-danger btn-sm", 'role' => "button")); ?></p></div> 
 
 
     <!-------Section Information ----->

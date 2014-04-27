@@ -230,6 +230,28 @@ class Accidents extends CI_Controller {
     }
     
     /*     * ********************************************************************************** */
+    
+    public function delete($id) {
+        
+        $accDetails = $this->_accidents->detail($id);
+        
+        if ($this->_accidents->remove($id)) {
+            $this->flash->success("You have successfully DELETED Accident Report <b>#" . $id . "</b>");
+            redirect('accidents/sectionResults/' . $accDetails->section_id);      
+        }
+        else {
+            $this->flash->danger("Problem deleting Accident Report.");
+            redirect('accidents/edit/' . $id);
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    /*     * ********************************************************************************** */
 
     public function detail($id) {
 

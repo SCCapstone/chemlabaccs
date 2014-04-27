@@ -57,6 +57,14 @@ class _Accidents extends CI_Model
         
     }
     
+    public function remove($id) {
+        
+        $this->db->delete('accidents', array('id' => $id));
+        
+        return $this->db->affected_rows() == 1;
+        
+    }
+    
     
     //function for accident id in database
     public function detail($id) 
