@@ -138,7 +138,7 @@ $prevention = array(
     // Created by D. Cooper 
     // Modified of 4/17/2014
     $(document).ready(function(){
-        // $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
+     $('#dynamic_comments').load('<?php echo base_url() ?>accidents/getcomment/<?php echo $details->id ?>');
 	   
         var auto_refresh = setInterval(
         function ()
