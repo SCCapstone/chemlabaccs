@@ -295,7 +295,7 @@ function generate_accident_listing_mobile($accidents, $show = array())
     $headings = array(
         "Section",
         "Date",
-        "Actions"
+        "Details"
     );
 
     if ($show["show_report#"]) 
@@ -314,7 +314,7 @@ function generate_accident_listing_mobile($accidents, $show = array())
 
         if ($show["show_detail"]) 
         {
-            $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span> Details', array(
+            $actions[] = anchor("accidents/detail/" . $acc->id, '<span class="glyphicon glyphicon-eye-open"></span>', array(
                 "class" => "btn btn-default"
             ));
         }
