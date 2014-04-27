@@ -1,8 +1,16 @@
-<div class="row">
+<style>
+.admin-banner{
+	font-size:18px;
+	font-weight:200;
+	text-align:center;
+}
+
+</style>
+<div class="">
     <h3>
-        <div class="label-danger">
+        <div class="alert alert-danger">
             <div align="center">
-                <font color ="white"><b>Admin Account</b></font>
+                <span class="admin-banner">Admin Account</span>
             </div>
         </div>
     </h3>
@@ -50,7 +58,7 @@
     
     
     
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Your Sections</h3>
