@@ -49,10 +49,13 @@ font-weight:bold;
 border-radius:2px;
 }
 #clear_navigation {
-	height: auto;
-	padding: 30px 100px 30px 100px;
-	overflow: auto;
-	border-bottom: 1px solid #93979E;
+    height: auto;
+    padding: 30px 100px;
+    overflow: auto;
+    /*border-bottom: 1px solid #93979E;*/
+    /*background-image: url('../../chemlab_graphics/home_glass_effect.jpg');*/
+    background-attachment: fixed;
+    background-size: cover;
 }
 #logo_wrapper_main {
 	width: 140px;
@@ -77,9 +80,7 @@ border-radius:2px;
 	border: 2px solid #AFB4BC;
 }
 #register_custom_btn_small {
-	width: 65px;
 	float: right;
-	height: 20px;
 	padding: 10px;
 	text-align: center;
 	border-radius: 4px;
@@ -94,7 +95,7 @@ border-radius:2px;
 	border: 2px solid #ffffff;
 	background-color: #ADD037;
 	color: #FFF;
-	font-weight: 600;
+	font-weight: 200;
 	font-size: 18px;
 }
 #quick_links_anchors {
@@ -110,6 +111,14 @@ border-radius:2px;
 	padding: 105px 0px;
 	margin-left: 100px;
 }
+#mobile_vid_block{
+	height: auto;
+	overflow: auto;
+	padding: 20px;
+	text-align: center;
+	word-wrap: normal;
+	width: 100%;
+}
 #megatron_support_text_wrapper {
 	width: 1160px;
 	margin: 0 auto;
@@ -117,6 +126,15 @@ border-radius:2px;
 	height: auto;
 	overflow: auto;
 	font-family: 'Open Sans', sans-serif;
+}
+.add-cursor{
+	cursor:pointer;
+}
+#main_vid_block_accent_wrapper{
+	height: auto;
+	overflow: auto;
+	background-color: #FAFBFC;
+	width: 100%;
 }
 .intro_text_white {
 	font-size: 50px;
@@ -135,9 +153,18 @@ border-radius:2px;
 }
 .intro_text_dark {
 	font-size: 40px;
-	color: #333A44;
-	font-weight: 400;
+	color: #77736C;
+	font-weight: 200;
 	font-family: 'Open Sans', sans-serif;
+
+}
+.intro_text_dark_mobile{
+	font-size: 20px;
+	color: #77736C;
+	font-weight: 200;
+	font-family: 'Open Sans', sans-serif;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
 
 }
 .white_text {
@@ -145,20 +172,27 @@ border-radius:2px;
 	font-size: 18px !important;
 	font-weight:200;
 }
+.mid_text{
+	color:#999;
+}
 .dark_text {
 	color: #333A44;
 	font-size: 18px !important;
 	font-weight: 200;
 }
-#megatron_support_graphics {
+#megatron_support_graphics {U
 	width: auto;
 	float: left;
 	height: auto;
 	/* [disabled]margin-right: 125px; */
 }
 #feature_spotlight {
-	height: auto;
+	/* [disabled]height: auto; */
 	background-color: #f2f3f5;
+	background-image: url(../../chemlab_graphics/home_glass_effect.jpg);
+	background-attachment: fixed;
+	background-position: -50 10;
+	background-size: cover;
 	clear: both;
 	/* [disabled]margin-top: -20px; */
 	padding: 15px;
@@ -170,12 +204,16 @@ border-radius:2px;
 	/* [disabled]margin-top: -100px; */
 	/* [disabled]padding-top: -20px; */
 	overflow: auto;
-	max-width: 1010px;
-	width: auto;
-	padding-left: 9%;
+	width: 70%;
 	/* [disabled]height: 500px; */
-	letter-spacing: 0.5px;
 	text-align: center;
+	
+    color: #FFF;
+    font-size: 14px !important;
+    font-weight: 400;
+	line-height:1.4em;
+	font-family:'Open Sans',sans-serif;
+
 }
 #lower_body_wrapper {
 	height: auto;
@@ -193,12 +231,13 @@ border-radius:2px;
 	overflow: auto;
 }
 .feature_badges {
-	width: 310px;
+	width: 33.33%;
 	/* [disabled]margin-left: 100px; */
 	/* [disabled]margin-right: 100px; */
 	float: left;
 	padding-left: 25px;
 }
+
 #video_container {
 	width: 100%;
 	height: 400px;
@@ -216,20 +255,27 @@ border-radius:2px;
 	padding-top: 60px;
 }
 #featured_header_panel {
-	/* [disabled]height: 200px; */
-	background-color: #1F2427;
-	padding: 25px;
+    background-color: #1F2427;
+    padding: 25px;
+    background-image: url('../../chemlab_graphics/home_very_blur_accent.jpg');
+    background-attachment: fixed;
+    background-position: -50 10;
+	background-size:cover;
 }
 #featured_heading {
 	color: #ffffff;
 	font-size: 25px;
 	text-align: center;
-	font-weight: 400;
+	font-weight: 200;
 	font-family: 'Open Sans', sans-serif;
 }
 #accent_caret {
 	width: 55px;
 	margin: 0 auto;
+	/*background-image:url(../../chemlab_graphics/home_very_blur_accent.jpg);*/
+	background-attachment:fixed;
+	background-position:-68 -46;
+
 }
 #feature_container {
 	height: 200px;
@@ -275,6 +321,10 @@ border-radius:2px;
 	height: 100px;
 	background-color: #E2E4E9;
 	padding: 100px;
+	background-image:url(../../chemlab_graphics/home_glass_effect.jpg);
+	background-attachment:fixed;
+	background-position:-50 10;
+	background-size:cover;
 }
 #one-3-block {
 	width: 33.33%;
@@ -342,4 +392,33 @@ a:active{
 a{
 	color:#ffffff;
 	text-decoration:none;
+}
+#main_vid_block {
+	height: auto;
+	overflow: auto;
+	width: 1160px;
+	margin: 0 auto;
+	padding: 60px 0px 60px 0px;
+}
+#video_wrapper {
+	width: auto;
+	height: auto;
+	float: right;
+}
+#vid_into_txt {
+	width: 550px;
+	height: auto;
+	overflow: auto;
+	margin-top: 100px;
+	float: left;
+}
+#mobile_vid_into_txt {
+	width: 100%;
+	height: auto;
+	overflow: auto;
+	float: left;
+	
+}
+#mobile_vid_into_txt intro_text_dark{
+	font-size:20px;
 }
