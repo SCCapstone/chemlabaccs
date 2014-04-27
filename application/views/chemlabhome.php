@@ -27,7 +27,7 @@
     <div id="logo_wrapper_main"><img src="chemlab_graphics/chemlab_logo.png" width="137" height="53" alt="lars_logo" /></div>
     <div id="clear_navigation_quick_links">
       <a href="users/register"><div id="register_custom_btn">Register</div></a>
-      <div id="quick_links_anchors"> <a href="">Statistics </a><a href="users/signin">Login</a></div>
+      <div id="quick_links_anchors"> <a href="charts">Statistics </a><a href="users/signin">Login</a></div>
     </div>
   </div>
   <div id="megatron_support_text_wrapper" class="hidden-sm hidden-xs">
