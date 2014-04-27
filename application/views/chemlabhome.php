@@ -32,7 +32,7 @@
   </div>
   <div id="megatron_support_text_wrapper" class="hidden-sm hidden-xs">
     <div class="media-body" id="megatron_support_text"> <span class="intro_text_white">Lab Accident Reporting System </span>
-      <p span class="white_text" >keep track of, search and view reports all in one place. Create, analyze<br />
+      <p span class="white_text" >Keep track of, search and view reports all in one place. Create, analyze<br />
         and share accidents for all types of labs. </p>
         <a href="dashboard/about"><div id="register_custom_btn_solid">Learn More</div></a>
       <p span class="white_text" >&nbsp;</p>
@@ -42,17 +42,18 @@
   <!-----------------------------Alternative Views-------------------------------->
   <div id="tablet_mobile_navigation" class="hidden-lg hidden-md">
     <div id="tablet_mobile_logo_wrapper"><img src="chemlab_graphics/chemlab_logo.png" width="105" height="40" /></div>
+    <br>
     <div id="tablet_mobile_quick_links">
-      <div id="register_custom_btn_small">Register</div>
-      <div id="tablet_mobile_quick_link_wrapper">Statistics Login </div>
+        <a href="users/register"><div id="register_custom_btn_small">Register</div></a>
+        <div id="tablet_mobile_quick_link_wrapper"><a href="charts">Statistics</a> <a href="users/signin">Login</a> </div>
     </div>
   </div>
   <div id="tablet_mobile_megatron">
     <div id="tablet_mobile_intro_text" class="hidden-md hidden-lg">
       <p><img src="chemlab_graphics/lars_iphone_display.png" width="245" height="366" /></p>
       <div id="megatron_support_text_wrapper2">
-        <div id="megatron_support_text2"> <span class="intro_text_white_tablet_mobile">Easy Lab Accident Reporting</span>
-          <p class="white_text">keep track of, search and view reports all in one place. Create, analyze<br />
+        <div id="megatron_support_text2"> <span class="intro_text_white_tablet_mobile">Lab Accident Reporting System</span>
+          <p class="white_text">Keep track of, search and view reports all in one place. Create, analyze<br />
             and share accidents for all types of labs. </p>
         </div>
       </div>
