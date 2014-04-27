@@ -158,12 +158,15 @@ class Photohandler {
                 //
                 // List the width and the height
                 list($width, $height) = getimagesize($upload);
+                // Only if the width is larger than 64
                 $width_new = "640";
+                $resize = false;
 
                 //Keep the width and height in proportion
                 if ($width > $width_new) {
                     $height_new = ($height / $width) * $width_new;
                     $temp_img = imagecreatetruecolor($width_new, $height_new);
+                    $resize = true;
                 } 
                 else {
                     $temp_img = imagecreatetruecolor($width, $height);
@@ -171,8 +174,16 @@ class Photohandler {
                 }
 
                 /*                 * ******************************************************************************* */
-                // Create our photo 
+                // Create our photo
+                if(resize){
                 imagecopyresampled($temp_img, $uploadsrc, 0, 0, 0, 0, $width_new, $height_new, $width, $height);
+                }
+                else 
+                {
+                                imagecopyresampled($temp_img, $uploadsrc, 0, 0, 0, 0, $width, $height, $width, $height);
+
+                }
+                    
 
                 /*                 * ******************************************************************************* */
                 // Creation of Thumbnail Images
