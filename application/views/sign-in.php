@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo APP_NAME ?> | <?php echo $title ?></title>
-        <link rel="shortcut icon" href="img/favicon.png">
+        <link rel="shortcut icon" href="<?php echo base_url("img/favicon.png") ?>">
         <?php echo $_styles ?>
         <?php echo $_scripts ?>
         <style type="text/css">
@@ -17,9 +17,9 @@
             }
             .form-signin {
 	/* [disabled]max-width: 330px; */
-	padding: 15px;
+	padding: 5px;
 	margin: 0 auto;
-	width: 40%;
+	width: 300px;
             }
             .form-signin .form-signin-heading,
             .form-signin .checkbox {
