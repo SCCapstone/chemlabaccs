@@ -88,7 +88,7 @@ class Users extends CI_Controller {
             $title = "Register as new user";
             $this->template->write("title", $title);
             $this->template->write("heading", $title);
-            $this->template->write_view("content", "view_register", $view_data);
+            $this->template->write_view("content", "register/view_register", $view_data);
             $this->template->render();
               //echo "if";
             // $this->load->view('view_register');
