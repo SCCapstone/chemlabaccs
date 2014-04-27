@@ -178,24 +178,29 @@ class Users extends CI_Controller {
          }
           else {
              
-            $userSection = new stdClass;
+            $userSectionPass = new stdClass;
              
-            $userSection->section_id = $this->input->post("sectionID");
-            $userSection->user_id = CI()->auth->get_user_id();
+            $userSectionPass->section_id = $this->input->post("sectionID");
+            $userSectionPass->user_id = CI()->auth->get_user_id();
+            $userSectionPass->pass = $this->input->post("sectionPassword");
             
             $this->load->model('_section');
             
             //if user successfully joins section
-            if($this->_section->join_section($userSection)) {
-                $this->flash->success("You have successfully joined the section!");
-                redirect('dashboard/home');
-            }
-            else {
-                $this->flash->danger("Problem joining section. Please try again.");
-                redirect('users/joinSection');
+            
+             if($this->_section->join_section($userSectionPass) ) {
+                     $this->flash->success("You have successfully joined the section!");
+                    redirect('dashboard/home');
+                }
+             else {
+                    
+                    $this->flash->danger("Problem joining section. Please try again.");
+                    redirect('users/joinSection');
+                  }
             }
             
-          }
+            
+          
          
          
          

@@ -4,7 +4,8 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LARS</title>
+<title>LARS | Lab Accident Reporting System</title>
+<link rel="shortcut icon" href="<?php echo base_url("img/favicon.png") ?>">
 
 <!-- Additional meta -->
 
@@ -26,14 +27,14 @@
     <div id="logo_wrapper_main"><img src="chemlab_graphics/chemlab_logo.png" width="137" height="53" alt="lars_logo" /></div>
     <div id="clear_navigation_quick_links">
       <a href="users/register"><div id="register_custom_btn">Register</div></a>
-      <div id="quick_links_anchors"> <a href="">Statistics </a><a href="users/signin">Login</a></div>
+      <div id="quick_links_anchors"> <a href="charts">Statistics </a><a href="users/signin">Login</a></div>
     </div>
   </div>
   <div id="megatron_support_text_wrapper" class="hidden-sm hidden-xs">
-    <div class="media-body" id="megatron_support_text"> <span class="intro_text_white">Easy Lab Accident Reporting </span>
-      <p span class="white_text" >keep track of, search and view reports all in one place. Create, analyze<br />
+    <div class="media-body" id="megatron_support_text"> <span class="intro_text_white">Lab Accident Reporting System </span>
+      <p span class="white_text" >Keep track of, search and view reports all in one place. Create, analyze<br />
         and share accidents for all types of labs. </p>
-      <div id="register_custom_btn_solid">Learn More</div>
+        <a href="dashboard/about"><div id="register_custom_btn_solid"><b>Learn More</b></div></a>
       <p span class="white_text" >&nbsp;</p>
     </div>
     <div id="megatron_support_graphics" class="hidden-sm hidden-xs"><img src="chemlab_graphics/lars_iphone_display.png" width="350" height="523" /></div>
@@ -41,17 +42,19 @@
   <!-----------------------------Alternative Views-------------------------------->
   <div id="tablet_mobile_navigation" class="hidden-lg hidden-md">
     <div id="tablet_mobile_logo_wrapper"><img src="chemlab_graphics/chemlab_logo.png" width="105" height="40" /></div>
+    <br>
+        <br>
     <div id="tablet_mobile_quick_links">
-      <div id="register_custom_btn_small">Register</div>
-      <div id="tablet_mobile_quick_link_wrapper">Statistics Login </div>
+        <a href="users/register"><div id="register_custom_btn_small">Register</div></a>
+        <div id="tablet_mobile_quick_link_wrapper"><a href="charts">Statistics</a> <a href="users/signin">Login</a> </div>
     </div>
   </div>
   <div id="tablet_mobile_megatron">
     <div id="tablet_mobile_intro_text" class="hidden-md hidden-lg">
       <p><img src="chemlab_graphics/lars_iphone_display.png" width="245" height="366" /></p>
       <div id="megatron_support_text_wrapper2">
-        <div id="megatron_support_text2"> <span class="intro_text_white_tablet_mobile">Easy Lab Accident Reporting</span>
-          <p class="white_text">keep track of, search and view reports all in one place. Create, analyze<br />
+        <div id="megatron_support_text2"> <span class="intro_text_white_tablet_mobile">Lab Accident Reporting System</span>
+          <p class="white_text">Keep track of, search and view reports all in one place. Create, analyze<br />
             and share accidents for all types of labs. </p>
         </div>
       </div>
@@ -150,9 +153,9 @@
   </div>
 </div>
 <div id="home_footer">
-  <p>Statistics  </p>
-  <p>Login</p>
-  <p>Register</p>
+    <a href="charts"><p>Statistics  </p></a>
+    <a href="users/signin"><p>Login</p></a>
+    <a href="users/register"><p>Register</p></a>
 </div>
 
 <!-------------Tentative Accent Area---><!-------------End Footer Area---------><!-------------Javascript--------------> 

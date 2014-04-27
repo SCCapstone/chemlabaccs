@@ -62,7 +62,8 @@ $autoload['libraries'] = array(
 	'String',
 	'table',
         'template',
-        'database'
+        'database',
+        'user_agent'
 );
 
 

@@ -1,7 +1,14 @@
 <?php
 
+/*
+ * class for search functionality
+ * Author: 
+ * 
+ */
+
 $sections = array("All of My Sections", get_sections());
 
+//search by keyword
 $keyword = array(
     "id" => "keyword",
     "name" => "keyword",
@@ -12,6 +19,7 @@ $keyword = array(
     "value" => set_value("keyword")
     );
 
+//search by section
 $section = array(
     "id" => "section",
     "name" => "section",
@@ -19,6 +27,7 @@ $section = array(
     "class" => "form-control"
     );
 
+//search by start date
 $start_date = array(
     "id" => "start_date",
     "name" => "start_date",
@@ -28,6 +37,7 @@ $start_date = array(
     "type" => "date"
 );
 
+//search by end date
 $end_date = array(
     "id" => "end_date",
     "name" => "end_date",
@@ -37,6 +47,7 @@ $end_date = array(
     "type" => "date"
 );
 
+//search by start time
 $start_time = array(
     "id" => "start_time",
     "name" => "start_time",
@@ -46,6 +57,7 @@ $start_time = array(
     "type" => "time"
 );
 
+//search by end time
 $end_time = array(
     "id" => "end_time",
     "name" => "end_time",

@@ -1,11 +1,11 @@
 
 <?php
-$sectionid = array(
-    "id" => "sectionid",
-    "name" => "sectionid",
+$section = array(
+    "id" => "section",
+    "name" => "section",
     "placeholder" => "Section ID #",
     "class" => "form-control",
-    "value" => set_value("sectionid", $details->section_id)
+    "value" => set_value("section", $details->section_id)
 );
 
 $sectionName = array(
@@ -274,68 +274,11 @@ $prevention = array(
         clear:both;
     }
 </style>
-<?php
-/*
-  $params = array($details->id);
 
-  $this->load->library('gallerybuilder',$params);
- */
-?>
-<?php echo form_open("accidents/add/save", array("class" => "form-horizontal container_content edit_form", "role" => "form")); ?>
 
-<?php echo form_hidden("revision_of", $details->revision_of); ?> <?php echo form_hidden("user", $details->user); ?>
-<div class="form-group ">
-    <label for="<?php echo $date["id"]; ?>" class="col-sm-2 control-label"><?php echo $date["placeholder"]; ?></label>
-    <div class="col-sm-10"> <?php echo form_error($date["name"]); ?> <?php echo form_input($date); ?> </div>
-</div>
-<div class="form-group">
-    <label for="<?php echo $time["id"]; ?>" class="col-sm-2 control-label"><?php echo $time["placeholder"]; ?></label>
-    <div class="col-sm-10"> <?php echo form_error($time["name"]); ?> <?php echo form_input($time); ?> </div>
-</div>
-
-<div class="form-group">
-    <label for="<?php echo $description["id"]; ?>" class="col-sm-2 control-label"><?php echo $description["placeholder"]; ?></label>
-    <div class="col-sm-10"> <?php echo form_error($description["name"]); ?> <?php echo form_textarea($description); ?> <span class="help-block"><?php echo lang('cla_f_description'); ?></span> </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-2 control-label">Severity</label>
-    <div class="col-sm-10"> <?php echo form_error("severity"); ?>
-        <?php
-        $i = 0;
-        foreach (array("low", "medium", "high") as $severity):
-            ?>
-            <?php
-            $selected = "";
-            if ($this->input->post("severity") == $severity || $details->severity == $severity) {
-                $selected = 'checked="checked"';
-            }
-            ?>
-            <div class="radio">
-                <label>
-                    <input type="radio" name="severity" id="severity_<?php echo $severity; ?>" value="<?php echo $severity; ?>" <?php echo $selected; ?>>
-                    <?php echo severity_scale($severity); ?> </label>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
-<div class="form-group">
-    <label for="<?php echo $root["id"]; ?>" class="col-sm-2 control-label"><?php echo $root["placeholder"]; ?></label>
-    <div class="col-sm-10"> <?php echo form_error($root["name"]); ?> <?php echo form_textarea($root); ?> <span class="help-block"><?php echo lang('cla_f_root'); ?></span> </div>
-</div>
-<div class="form-group">
-    <label for="<?php echo $prevention["id"]; ?>" class="col-sm-2 control-label"><?php echo $prevention["placeholder"]; ?></label>
-    <div class="col-sm-10"> <?php echo form_error($prevention["name"]); ?> <?php echo form_textarea($prevention); ?> <span class="help-block"><?php echo lang('cla_f_prevention'); ?></span> </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <div class="well"> <?php echo form_button(array("type" => "submit", "class" => "btn btn-success", "content" => '<span class="glyphicon glyphicon-pencil"></span> Save')); ?><span class="mar10left"><?php echo form_button(array("type" => "", "class" => "btn btn-default cancel_btn", "content" => '<span class="glyphicon glyphicon-remove-circle"></span> Cancel')); ?></span> </div>
-    </div>
-</div>
-<?php echo form_close(); ?> 
-
-<!-----------------Detailed View---------------------->
+<!-----------------Edit Button---------------------->
 <div class ="container formcs container_content detail_form">
-    <div class="row mar20 text-right"><button type="button" class="btn btn-default btn-sm edit_btn"><span class="glyphicon glyphicon-pencil"></span> Edit</button></div> 
+    <div class="row mar20 text-right"><p><?php echo anchor('accidents/edit/' . $details->id , '<span class="glyphicon glyphicon-pencil"></span> Edit', array("class" => "btn btn-default btn-sm", "role" => "button")); ?> </p></div> 
 
 
     <!-------Section Information ----->
@@ -345,7 +288,7 @@ $prevention = array(
         </div>
 
         <div class="panel-body">
-            <b> Section ID #: </b> <?php echo $sectionid['value']; ?>
+            <b> Section ID #: </b> <?php echo $section['value']; ?>
             <p></p>
             <b>Section Name: </b> <?php echo $sectionName['value']; ?>
             <p></p>
@@ -393,7 +336,7 @@ $prevention = array(
         </div>
         <div class="panel-body"> <b>Description: </b> <?php echo $description['value']; ?>
             <p></p>
-            <b>Severity:  </b> <?php echo $severity; ?>
+            <b>Severity:  </b> <?php echo $details->severity; ?>
             <p></p>
             <b>Root Cause:  </b> <?php echo $root['value']; ?>
             <p></p>
@@ -469,7 +412,7 @@ $prevention = array(
             </div>
         </div>
     </div>
-</div>
+
 <!------------------------------------------------------Modal Assets------------------------------------------------------------------->
 <div class="comment_container container_content container">
     <h5><b>Accident Comments</b></h5>
@@ -494,6 +437,6 @@ $prevention = array(
 ?>
 <div id = "dynamic_comments"></div>
 
-
+    </div>
 </div>
 

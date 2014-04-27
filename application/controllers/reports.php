@@ -50,8 +50,13 @@ class Reports extends CI_Controller {
         
         if (count($mines) == 0) {            
             $content = "No results found";            
-        } else {
-            $content = generate_accident_listing($mines, array("show_report#" => true));
+        } else {            
+            if($this->agent->is_mobile()) {
+                $content = generate_accident_listing_mobile($mines, array("show_report#" => true));
+            }
+            else {
+                $content = generate_accident_listing($mines, array("show_report#" => true));
+            }
         }
         
         $title = sprintf("My Accident Reports");
