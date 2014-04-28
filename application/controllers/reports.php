@@ -68,38 +68,84 @@ class Reports extends CI_Controller {
         
     }
     
-    public function export() {
+//    public function export() {
+//        
+//        $csv = new CSVWriter();
+//        
+//        $this->db->select("*")
+//                ->from("accidents")
+//                ->order_by("revision_of", "ASC")
+//                ->order_by("created", "DESC");
+//        
+//        $query = $this->db->get();
+//        
+//        $csv->addRecord(array(
+//            "Accident ID",
+//            "Section ID",
+//            "Revision Of",
+//            "Date",
+//            "Time",
+//            "Description",
+//            "Severity",
+//            "Root",
+//            "Prevention",
+//            "User ID",
+//            "Modified By",
+//            "Created"
+//        ));
+//        
+//        foreach ($query->result() as $row) {
+//            $csv->addRecord((array) $row);
+//        }
+//        
+//        $csv->download();
+//        
+//    }
+    
+     public function export() {
+         
+         $csv = new CSVWriter();
+         
+         $secs = $this->_section->get_sections_ids();
+  
+         $search = $this->_accidents->search($secs);
+         
+         $accDetails = array();
+         
+         foreach($search as $res) {
+             $accDetails[] = $this->_accidents->detail($res->id);
+         }
         
-        $csv = new CSVWriter();
-        
-        $this->db->select("*")
-                ->from("accidents")
-                ->order_by("revision_of", "ASC")
-                ->order_by("created", "DESC");
-        
-        $query = $this->db->get();
         
         $csv->addRecord(array(
             "Accident ID",
-            "Section ID",
-            "Revision Of",
+            "Section",
             "Date",
             "Time",
             "Description",
             "Severity",
-            "Root",
+            "Root Cause",
             "Prevention",
-            "User ID",
+            "Created By",
             "Modified By",
-            "Created"
+            "Created Time/Date"
         ));
         
-        foreach ($query->result() as $row) {
+        foreach ($accDetails as $acc) {
+            
+            
+            
+            $row = array($acc->id, $this->_section->get_name($acc->section_id), $acc->date, $acc->time, 
+                $acc->description, $acc->severity, $acc->root, $acc->prevention,
+                $this->_auth->get_user_name($acc->user), $this->_auth->get_user_name($acc->modified_by),
+                $acc->created);
+            
             $csv->addRecord((array) $row);
         }
         
         $csv->download();
-        
-    }
+         
+     }
+    
 
 }
