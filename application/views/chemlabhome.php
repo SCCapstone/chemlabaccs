@@ -4,8 +4,8 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LARS</title>
-
+<title>LARS | Lab Accident Reporting System</title>
+<link rel="shortcut icon" href="<?php echo base_url("img/favicon.png") ?>">
 <!-- Additional meta -->
 
 <!-- The OPEN GRAPH -->
@@ -103,9 +103,9 @@ a{
   </div>
   <div id="megatron_support_text_wrapper" class="hidden-sm hidden-xs h_intro">
     <div class="media-body" id="megatron_support_text"> <span class="intro_text_white">Easy Lab Accident Reporting </span>
-      <p span class="white_text" >keep track of, search and view reports all in one place. Create, analyze<br />
+      <p span class="white_text" >Keep track of, search and view reports all in one place. Create, analyze<br />
         and share accidents for all types of labs. </p>
-      <div id="register_custom_btn_solid" class="add-cursor">Learn More</div>
+        <div id="register_custom_btn_solid" class="add-cursor"><b>Learn More</b></div>
       <p span class="white_text" >&nbsp;</p>
     </div>
     <div id="megatron_support_graphics" class="hidden-sm hidden-xs"><img src="chemlab_graphics/lars_iphone_display.png" width="350" height="523" /></div>
