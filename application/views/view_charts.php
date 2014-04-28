@@ -181,10 +181,10 @@
 	
 <!--	<div class="graph" id="accPerBuild">
 	</div>
--->	
+	
 	<div class="graph" id="accPerTime">
 	</div>
-
+-->
 	<div class="graph" id="accPerRate">
 	</div>
 	
