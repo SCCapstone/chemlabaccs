@@ -36,16 +36,15 @@ class Charts extends CI_Controller {
                 $series_data[] = array('name' => $users, 'data' => $severity_percents); //test
          */       
                 $series_data[] = array('name' => $section, 'data' => $section_count); //test
-		$count = 1;
-		$star = ' star';
+		$severities = array("Low", "Medium", "High");
+                $count = 0;
+                
 		foreach($severity_percents as $sev)
-		{
-			if($count > 1)
-				$star = ' stars';
-			$severity_data[] = array('name' => $count . $star, 'data' => $sev);
+		{	
+			$severity_data[] = array('name' => $severities[$count], 'data' => $sev);
 			$count++;
 		}
-		
+                
 		//currently count serves as the names, need to change it to represent each time period
 		$count = 1;
 		foreach($time_percents as $time)
